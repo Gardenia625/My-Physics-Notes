@@ -1,0 +1,217 @@
+\section{哈密顿力学}
+
+对于凸函数 $ f $, 其{\bf 共轭函数}为
+\[ f^*(y):=\sup_{x\in C}(\langle y,x \rangle-f(x)),\quad y\in \mathrm{dom}f^*, \]
+其中 
+\[ \mathrm{dom}f^*=\left\{ y\in\mathbb{R}^n \;\middle|\; \sup_{x\in C}(\langle y,x \rangle-f(x))<\infty \right\}. \]
+共轭函数 $ f^* $ 也是凸函数, 且若 $ f $ 是闭的, 则 $ f^{**}=f $. 
+
+当 $ f $ 可微时, 共轭函数 $ f^* $ 也叫做 $ f $ 的勒让德变换, 若 $ f $ 还是严格凸的则 $ f^* $ 可表达为
+\[ f^*(p)=\left[\langle p,x \rangle-f(x)\right]\big|_{x=(\nabla f)^{-1}(p)}.\]
+
+考虑位形空间为 $ \mathbb{R}^n $ 时的经典力学.
+
+\begin{definition}[哈密顿量]
+{\bf 哈密顿量}是对拉格朗日函数 $ L(q,\dot{q})=\frac{1}{2}m\dot{q}^2-V(q) $ 做关于变量 $ \dot{q} $ 的勒让德变换所得的函数, 即
+\begin{align*}
+    H(q,p) :&= \frac{p^2}{2m}+V(q)=T+V\\ 
+    &= p\cdot\dot{q}-L(q,\dot{q}).
+\end{align*}
+\end{definition}
+
+我们称 $ q $ 和 $ p $ 共同构成的 $ 2n $ 维空间为相空间, 哈密顿量是相空间上的函数. 由于哈密顿量等于动能加势能, 它的物理含义就是{\bf 能量}. 
+
+\begin{theorem}
+    拉格朗日方程等价于下述方程组
+    \begin{align*}
+        \dot{q}&=\frac{\partial H}{\partial p},\\
+        \dot{p}&=-\frac{\partial H}{\partial q},
+    \end{align*}
+    这个方程组叫做{\bf 哈密顿方程}.
+\end{theorem}
+\begin{remark}
+    拉格朗日方程是 $ n $ 个二阶方程, 而哈密顿方程是 $ 2n $ 个一阶方程.
+\end{remark}
+\begin{proof}
+$ H(q,p) $ 的全微分
+\[ \mathrm{d}H=\frac{\partial H}{\partial p}\mathrm{d}p+\frac{\partial H}{\partial q}\mathrm{d}q, \]
+应等于 $ p\cdot\dot{q}-L $ 的全微分
+\[ \dot{q}\mathrm{d}p-\frac{\partial L}{\partial q}\mathrm{d}q, \]
+若 $ q(t) $ 满足拉格朗日方程, 则
+\[ \dot{q}=\frac{\partial H}{\partial p},\quad \dot{p}=-\frac{\partial H}{\partial q}. \]
+
+反之, $ L(q,\dot{q}) $ 的全微分
+\[ \mathrm{d}L=\frac{\partial L}{\partial q}\mathrm{d}q+\frac{\partial L}{\partial\dot{q}}\mathrm{d}\dot{q} \]
+应等于 $ p\cdot\dot{q}-H $ 的全微分
+\[ -\frac{\partial H}{\partial q}\mathrm{d}q+p\mathrm{d}\dot{q}, \]
+若 $ (q(t),p(t)) $ 满足哈密顿方程, 则 $ q(t) $ 满足拉格朗日方程.
+\end{proof}
+\begin{corollary}[能量守恒]\keepline
+    \[ \frac{\mathrm{d}H}{\mathrm{d}t}=0. \] 
+\end{corollary}
+\vspace{0ex}
+\begin{proof}\keepline
+    \begin{align*}
+        \frac{\mathrm{d}H}{\mathrm{d}t} &= \frac{\partial H}{\partial q}\cdot{\dot{q}}+\frac{\partial H}{\partial p}\cdot{\dot{p}}\\ 
+        &= \frac{\partial H}{\partial q}\cdot\frac{\partial H}{\partial p}-\frac{\partial H}{\partial p}\cdot\frac{\partial H}{\partial q}\\ 
+        &= 0.\qedhere
+    \end{align*}
+\end{proof}
+
+对于 $ \mathbb{R}^n $ 上的常微分方程组 $ \dot{x}=f(x) $, 称单参变换群 $ \varphi_t:x(0)\mapsto x(t) $ 为相流. 对任意区域 $ D $, 记
+\[ D(t):=\varphi_t(D),\quad v(t):=\int_{D(t)}\mathrm{d}V, \]
+则 $v(t)$ 表示了区域 $D$ 随体积随时间变化的情况.
+
+特别地, 哈密顿方程诱导了相空间中的相流. 若将相空间直观地想象为流体, 则哈密顿方程描述了其流动方式. 一个十分神奇的事情是: 相空间是不可压缩流体! 这个结论叫做刘维尔定理, 在统计力学中有重要应用. 为了严格证明它, 我们要先证明一个更一般的结论.
+
+\begin{theorem}
+    若 $ \nabla\cdot f=0 $ ($f$ 的散度为 $0$), 则 $\dot{x}=f(x)$ 对应的相流保持体积, 即任意区域的体积 $v(t)$ 为常值函数.
+\end{theorem}
+
+\begin{proof}
+    首先通过坐标变换有
+    \[ v(t)=\int_{D(0)}\mathrm{det}\left( \frac{\partial\varphi_t(x)}{\partial x} \right)\mathrm{d}V. \]
+    将 $ \varphi_t $ 展开为
+    \[ \varphi_t(x)=x(t)=x+f(x)t+O(t^2), \]
+    两边同时对 $ x $ 求导得
+    \[ \frac{\partial\varphi_t(x)}{\partial x} = I+\frac{\partial f(x)}{\partial x}t+O(t^2), \]
+    应用
+    \[ \mathrm{det}(I+tA)=1+t\mathrm{Tr}(A)+O(t^2) \]
+    可得
+    \[ \mathrm{det}\left( \frac{\partial\varphi_t(x)}{\partial x} \right)=1+t\mathrm{Tr}\left( \frac{\partial f(x)}{\partial x} \right)+O(t^2). \]
+    由于
+    \[ \mathrm{Tr}\left( \frac{\partial f(x)}{\partial x} \right)=\nabla\cdot f, \]
+    我们有
+    \[ v(t)=\int_{D(0)}\left[ 1+t\nabla\cdot f+O(t^2) \right]\,\mathrm{d}V, \]
+    因此
+    \[ \left.\frac{\mathrm{d}v(t)}{\mathrm{d}t}\right|_{t=0}=\int_{D(0)}\nabla\cdot f\,\mathrm{d}V. \]
+    上述证明中的 $ t=0 $ 可替换为任意 $ t=t_0 $, 因此 
+    \[ \frac{\mathrm{d}v}{\mathrm{d}t}=0,\quad v(t)=v(0),\quad\forall t\in\mathbb{R}.\qedhere \]
+\end{proof}
+
+\begin{corollary}[刘维尔定理]
+    哈密顿相流保持体积不变
+\end{corollary}
+\begin{proof}\keepline
+    \[ \sum_{i=1}^{n}\frac{\partial^2 H}{\partial q_i\partial p_i}-\sum_{i=1}^{n}\frac{\partial^2 H}{\partial p_i\partial q_i}=0.\qedhere \]
+\end{proof}
+
+\begin{definition}[泊松括号]
+    在坐标 $ (q,p) $ 下, 相空间上的光滑函数 $f,g$ 的{\bf 泊松括号} (Poisson bracket) 为
+    \[ \{f,g\}:=\sum_{i=1}^{n}\left( \frac{\partial f}{\partial q_i}\frac{\partial g}{\partial p_i}-\frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q_i} \right). \]
+\end{definition}
+
+\begin{proposition}
+    泊松括号满足
+    \begin{enumerate}
+        \item $ \{f,g+ch\}=\{f,g\}+c\{f,h\} $, $ \forall c\in\mathbb{R} $;
+        \item $ \{f,g\}=-\{g,f\} $;
+        \item $ \{f,\{g,h\}\}+\{h,\{f,g\}\}+\{g,\{h,f\}\}=0 $;
+        \item $ \{f,gh\}=\{f,g\}h+\{f,h\}g $.
+    \end{enumerate}
+\end{proposition}
+
+前两条说明泊松括号是双线性的, 第三条叫做{\bf 雅克比恒等式} (Jacobi identity), 前三条性质说明相空间上的光滑函数配上泊松括号构成一个李代数, 李代数的定义可见附录 \ref{lie}.
+
+\begin{proposition}\keepline
+    \[ \dot{f}=\frac{\mathrm{d}}{\mathrm{d}t}f=\{f,H\}. \]
+\end{proposition}
+\vspace{0ex}
+\begin{corollary}
+    相空间上的光滑函数 $ f $ 为守恒量当且仅当 $ \{f,H\}=0$.
+\end{corollary}
+\vspace{0ex}
+\begin{proposition}\keepline
+    \label{commutation}
+    \[\begin{aligned}
+        \{q_i,q_j\} &= 0,\\ 
+        \{p_i,p_j\} &= 0,\\ 
+        \{q_i,p_j\} &= \delta_{ij}.
+    \end{aligned}\]
+\end{proposition}
+\vspace{0ex}
+拉格朗日方程不依赖于位形空间的坐标选取, 但哈密顿方程没有这么好的性质. 这是因为相空间上有特殊的结构 (辛结构), 一般的坐标变换会破坏它.
+
+\begin{definition}
+    对于坐标变换 $ (q,p)\mapsto(Q,P) $, 若 $ Q(q,p) $ 和 $ P(q,p) $ 满足命题 \ref{commutation} 中的对易关系, 即
+    \[ \{Q_i,Q_j\}=0,\quad\{P_i,P_j\}=0,\quad\{Q_i,P_i\}=\delta_{ij}, \]
+    则称该坐标变换为{\bf 正则变换}, 称通过正则变换得到的坐标为{\bf 正则坐标}.
+\end{definition}
+
+\begin{theorem}
+    正则变换保持泊松括号不变, 即对于坐标 $ (q,p) $ 和 $ (Q,P) $ 下定义的泊松括号 $ \{f,g\}_{(q,p)} $ 和 $ \{f,g\}_{(Q,P)} $, 有
+    \[ \{f,g\}_{(q,p)}=\{f,g\}_{(Q,P)}. \]
+\end{theorem}
+\begin{proof}
+    将
+    \begin{align*}
+        \frac{\partial f}{\partial q_i} &= \sum_{j=1}^{n}\left( \frac{\partial f}{\partial Q_j}\frac{\partial Q_j}{\partial q_i}+\frac{\partial f}{\partial P_j}\frac{\partial P_j}{\partial q_i} \right), &
+        \frac{\partial f}{\partial p_i} &= \sum_{j=1}^{n}\left( \frac{\partial f}{\partial Q_j}\frac{\partial Q_j}{\partial p_i}+\frac{\partial f}{\partial P_j}\frac{\partial P_j}{\partial p_i} \right), \\
+        \frac{\partial g}{\partial q_i} &= \sum_{k=1}^{n}\left( \frac{\partial g}{\partial Q_k}\frac{\partial Q_k}{\partial q_i}+\frac{\partial g}{\partial P_k}\frac{\partial P_k}{\partial q_i} \right), &
+        \frac{\partial g}{\partial p_i} &= \sum_{k=1}^{n}\left( \frac{\partial g}{\partial Q_k}\frac{\partial Q_k}{\partial p_i}+\frac{\partial g}{\partial P_k}\frac{\partial P_k}{\partial p_i} \right),
+    \end{align*}
+    带入 $ \{f,g\}_{(q,p)} $ 有
+    \begin{align*}
+        &\phantom{=}\;\;\{f,g\}_{(q,p)}\\[2pt]
+        &= \sum_{i=1}^{n}\left( \frac{\partial f}{\partial q_i}\frac{\partial g}{\partial p_i}-\frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q_i} \right)\\
+        &= \sum_{i,j,k=1}^{n}\left[ \left( \frac{\partial f}{\partial Q_j}\frac{\partial Q_j}{\partial q_i}+\frac{\partial f}{\partial P_j}\frac{\partial P_j}{\partial q_i} \right)\left( \frac{\partial g}{\partial Q_k}\frac{\partial Q_k}{\partial p_i}+\frac{\partial g}{\partial P_k}\frac{\partial P_k}{\partial p_i} \right)\right.\\ 
+        &\hspace{32.7pt}-\left.\left( \frac{\partial f}{\partial Q_j}\frac{\partial Q_j}{\partial p_i}+\frac{\partial f}{\partial P_j}\frac{\partial P_j}{\partial p_i} \right)\left( \frac{\partial g}{\partial Q_k}\frac{\partial Q_k}{\partial q_i}+\frac{\partial g}{\partial P_k}\frac{\partial P_k}{\partial q_i} \right)\right]\\[2pt]
+        &=\sum_{i,j,k=1}^{n}\left[\frac{\partial f}{\partial Q_j}\frac{\partial g}{\partial Q_k}\left( \frac{\partial Q_j}{\partial q_i}\frac{\partial Q_k}{\partial p_i}-\frac{\partial Q_j}{\partial p_i}\frac{\partial Q_k}{\partial q_i} \right) + \frac{\partial f}{\partial P_j}\frac{\partial g}{\partial P_k}\left( \frac{\partial P_j}{\partial q_i}\frac{\partial P_k}{\partial p_i}-\frac{\partial P_j}{\partial p_i}\frac{\partial P_k}{\partial q_i} \right)\right.\\
+        &\hspace{33.9pt}+\frac{\partial f}{\partial Q_j}\frac{\partial g}{\partial P_k}\left( \frac{\partial Q_j}{\partial q_i}\frac{\partial P_k}{\partial p_i}-\frac{\partial Q_j}{\partial p_i}\frac{\partial P_k}{\partial q_i} \right)+\left. \frac{\partial f}{\partial P_j}\frac{\partial g}{\partial Q_k}\left( \frac{\partial P_j}{\partial q_i}\frac{\partial Q_k}{\partial p_i}-\frac{\partial P_j}{\partial p_i}\frac{\partial Q_k}{\partial q_i} \right) \right]\\[2pt]
+        &=\sum_{j,k=1}^{n}\left( \frac{\partial f}{\partial Q_j}\frac{\partial g}{\partial Q_k}\{Q_j,Q_k\}_{(q,p)}+\frac{\partial f}{\partial P_j}\frac{\partial g}{\partial P_k}\{P_j,P_k\}_{(q,p)} \right.\\ 
+        &\hspace{40.8pt}\left.\frac{\partial f}{\partial Q_j}\frac{\partial g}{\partial P_k}\{Q_j,P_k\}_{(q,p)}+\frac{\partial f}{\partial P_j}\frac{\partial g}{\partial Q_k}\{P_j,Q_k\}_{(q,p)}\right).\\
+        &= \sum_{j,k=1}^{n}\left( \frac{\partial f}{\partial Q_j}\frac{\partial g}{\partial P_k}\delta_{jk}-\frac{\partial f}{\partial P_j}\frac{\partial g}{\partial Q_k}\delta_{jk} \right)\\ 
+        &= \sum_{j=1}^{n}\left( \frac{\partial f}{\partial Q_j}\frac{\partial g}{\partial P_j}-\frac{\partial f}{\partial P_j}\frac{\partial g}{\partial Q_j} \right)\\ 
+        &= \{f,g\}_{(Q,P)},
+    \end{align*}
+    其中第 $5$ 个等号用到了正则变换的定义.
+\end{proof}
+
+\begin{theorem}
+    正则变换保持哈密顿方程.
+\end{theorem}
+
+对于坐标 $ (q,p) $, 定义{\bf 辛标记} (symplectic notation) 为 
+\[ \xi:=(q_1,\dots,q_n,p_1,\dots,p_n)^{\mathsf{T}},\] 
+或写作
+\[ \xi_i=\begin{cases}
+    q_i, & i=1,\dots,n\\ 
+    p_{i-n}, & i=n+1,\dots,2n
+\end{cases}. \]
+定义{\bf 辛矩阵}为
+\[ \Omega:=\left( \begin{matrix}
+    0 & I_n\\ 
+    -I_n & 0
+\end{matrix} \right), \]
+则哈密顿方程可重写为
+\[ \dot{\xi}=\Omega\frac{\partial H}{\partial\xi}. \]
+
+记坐标 $ (Q,P) $ 的辛标记为 $ \zeta $, 记坐标变换 $ (q,p)\mapsto(Q,P) $ 的雅克比矩阵为 
+\[ M=(M_{ij}):=\left(\dfrac{\partial\zeta_i}{\partial\xi_j}\right).\] 则
+\[ \dot{\zeta}=M\dot{\xi},\quad \frac{\partial H}{\partial\xi}=M^{\mathsf{T}}\frac{\partial H}{\partial\zeta}, \]
+将它们带入 $ \xi $ 的哈密顿方程有
+\[ \dot{\zeta}=M\Omega M^{\mathsf{T}}\frac{\partial H}{\partial\zeta}. \]
+
+因此, 想要让坐标变换保持哈密顿方程, 只需让它满足{\bf 辛条件}, 即
+\[ M\Omega M^{\mathsf{T}}=\Omega. \]
+
+\begin{theorem}
+    一个坐标变换是正则的当且仅当它满足辛条件.
+\end{theorem}
+\begin{proof}
+    将
+    \[ M=\frac{\partial\zeta}{\partial\xi}=\left( \begin{matrix}
+        \frac{\partial Q}{\partial q} & \frac{\partial Q}{\partial p}\\ 
+        \frac{\partial P}{\partial q} & \frac{\partial P}{\partial p}
+    \end{matrix} \right) \]
+    带入 $ M\Omega M^{\mathsf{T}} $ 有
+    \[M\Omega M^{\mathsf{T}} = \left( \begin{matrix}
+            \big(\{Q_i,Q_j\}\big) & \big(\{Q_i,P_j\}\big) \\ 
+            \big(\{P_i,Q_j\}\big) & \big(\{P_j,P_j\}\big)
+        \end{matrix} \right).\qedhere\]
+\end{proof}
+\begin{corollary}
+    正则变换保持哈密顿方程.
+\end{corollary}
+
+综上, 哈密顿力学不依赖于正则坐标的选取.

@@ -1,0 +1,61 @@
+\section{量子力学公理}
+在哈密顿力学中, 系统的状态可由相空间上的点表示, 物理量都是相空间上的函数, 而在量子力学中, 情况则完全不同.
+\begin{quantumaxiom}
+    系统的状态可用一个可分的复希尔伯特空间 $ H $ 中的向量 $ \psi $ 来表示. 
+    
+    对于两个向量 $ \psi_1 $, $ \psi_2 $, 若存在 $ c\in\mathbb{C} $ 使得 $ \psi_2=c\psi_1 $, 则它们表示同一个状态. 因此, 不失一般性地, 我们只考虑单位向量.
+\end{quantumaxiom}
+
+我们把这个 $ H $ 叫做{\bf 量子希尔伯特空间}. 量子力学主要考虑 $ H=L^2(\mathbb{R}^3) $ 的情况, 唯独在讨论自旋时, 取 $ H=\mathbb{R}^n $.
+
+单位长度的 $ L^2 $ 函数 $ \psi $ 就是物理学家所说的{\bf 波函数} (wave function). 另外, 物理学家会用右矢 (ket) $ |\psi\rangle $ 来表示向量, 用左矢 (bra) $ \langle\psi| $ 来表示对偶向量.
+
+\begin{quantumaxiom}
+    {\bf 可观测量}可以用 $ H $ 上的自伴算子来表示, 其中可观测量指的是在现实中可以用物理装置去测量的物理量. 
+    
+    经典力学中的可观测量是相空间上的实值函数, 对于每个经典可观测量 $ f $, 存在一个对应的 $ H $ 上的自伴算子 $ \hat{f} $, 叫做 $ f $ 对应的量子可观测量.
+\end{quantumaxiom}
+
+为 $ f $ 寻找对应的 $ \hat{f} $ 这个行为叫做量子化 (量子化的方案有很多). 
+
+\begin{remark}
+    不是所有自伴算子都可观测, 也不是所有量子可观测量都有对应的经典可观测量. 本书考虑的所有物理量都是可观测的.
+\end{remark}
+
+物理学家将算子 (operator) 翻译为算符, 将自伴 (self-adjoint) 叫做埃尔米特 (Hermitian), 将酉 (unitary) 翻译为幺正.
+
+\begin{quantumaxiom}
+    每次测量可观测量 $ A $ 会得到 $ A $ 的谱中的一个元素, 测量结果服从一个概率分布. 设系统处于状态 $ \psi\in H $, 则该分布的各阶矩满足
+    \[ E(A^m)=\langle \psi,A^m\psi \rangle. \]
+\end{quantumaxiom}
+
+根据常识, 大部分物理量是可以任意大的, 那么它们对应的算子也应该是无界的, 根据定理 \ref{Hellinger-Toeplitz}, 无界算子的定义域不能是整个 $ H $, 这会让事情变得很复杂. 事实上情况就是这么的残酷! 为了方便讨论, 本书不细究算子的定义域问题. 有关这个问题的严谨讨论见 \cite[第 9 章]{hall2013quantum}.
+
+设可观测量 $ A $ 的谱完全由特征值构成, 其特征值为 $ \lambda_1,\lambda_2,\dots $, 对应的特征向量为 $ e_1,e_2,\dots $, 且这些特征向量构成了 $ H $ 的一组正规正交基. 任给状态 $ \psi $, 做分解
+\[ \psi=\sum_{i=1}^{\infty}a_ie_i,\quad a_i=\langle \psi,e_i \rangle, \]
+则对 $ \psi $ 测量 $ A $ 得到 $ \lambda_i $ 的概率为 $ |a_i|^2 $.
+
+对于更一般的情况, 测量结果所服从的分布可由无界算子的谱定理给出, 由于过于复杂, 这里不对其进行陈述, 感兴趣的读者可以阅读 \cite[第 10 章]{hall2013quantum}.
+
+\textbf{基于上述原因, 本章时常会进行一些不严谨的讨论 (但结论一定是对的).}
+
+\begin{definition}[哥本哈根诠释]
+    若我们对 $ \psi $ 测量 $ A $, 我们会得到 $ A $ 的一个特征值 $ \lambda $, 同时 $ \psi $ 会瞬间变为 $ \lambda $ 对应的一个特征向量. 
+\end{definition}
+
+特征向量的线性组合 (未必有限) 叫做{\bf 叠加态}, 波函数瞬间由叠加态变为特征向量的这个过程叫做{\bf 波函数的坍缩}. 
+\begin{remark}
+    若谱不是由至多可数个特征值构成的, 则要用谱定理来描述 $ \psi $ 会如何坍缩.
+\end{remark}
+
+由于描述起来简单且便于计算, 使用哥本哈根诠释来思考问题是很有帮助的. 但是, 波函数的坍缩是不可逆的, 我们没有道理引入这样一个不可逆的过程 (从审美上, 它还破坏了量子力学过程的幺正性). 哥本哈根诠释并不是唯一的选择, 有很多其它诠释可以避免坍缩这个概念, 但描述起来很复杂, 在此不做过多介绍.
+
+物理学家会用记号 $ \langle\varphi|A|\psi\rangle $ 来表示 $ \langle\varphi, A\psi\rangle $, 并将特征值与特征向量翻译为本征值与本征向量 (或本征态).
+
+\begin{quantumaxiom}[薛定谔方程] 波函数随时间演化的方式满足{\bf 薛定谔方程}
+    \[ \frac{\mathrm{d}}{\mathrm{d}t}\psi=\frac{1}{\mathrm{i}\hbar}\hat{H}\psi. \]
+\end{quantumaxiom}
+
+薛定谔方程中的 $ \hat H $ 是哈密顿量对应的算子, 其具体形式我们留到后面再讨论. 方程中的 $ \hbar $ 叫做{\bf 约化普朗克常数}, 其值约为 $ 1.054571817\times 10^{-34} \mathrm{J\cdot s} $, 而{\bf 普朗克常数} $ h $ 的值约为 $ 6.62607015\times 10^{-34}\mathrm{J}\cdot \mathrm{s} $, 它们的关系为 $ \hbar=\frac{h}{2\pi} $.
+
+有些文献会称上述薛定谔方程为{\bf 含时薛定谔方程} (Time-dependent Schr\"{o}dinger equation), 称特征方程 $ \hat H\psi=E\psi $ 为{\bf 定态薛定谔方程} (Time-independent Schr\"{o}dinger equation).

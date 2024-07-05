@@ -1,0 +1,97 @@
+\section{物质场}
+连续的介质 (如气体、液体、固体、等离子体等) 可与电磁场统称为{\bf 物质场}. 
+\subsection{能动张量}
+物质场的能量密度、动量密度、应力张量可由一个 $ (0,2) $ 型张量{\bf 能动张量} (energy-momentum tensor) $ T $ 来表示. 给定观者 $(p,(Z,e_i))$, 则能动张量有以下性质:
+\begin{enumerate}
+    \item $ T_{\alpha\beta}=T_{\beta\alpha} $.
+    \item 封闭 (与外界无相互作用) 物质场有 $ \partial^\alpha T_{\alpha\beta}=0 $.
+    \item $T_{\alpha\beta}$ 包含以下可观测量:
+        \begin{enumerate}
+            \item $ \mu:=T_{00} $ 是该观者测得的{\bf 能量密度},
+            \item $ w_i:=-T_{0i} $ 是该观者测得的 $ 3 $ {\bf 动量密度} (能流密度),
+            \item $ T_{ij} $ 是该观者测得的 $ 3 $ {\bf 应力张量} (stress tensor).
+        \end{enumerate}
+\end{enumerate}
+\begin{definition}[$ 4 $ 动量密度]
+    瞬时观者 $ (p,Z) $ 测得的 $ 4 $ {\bf 动量密度}为
+    \[ W^\alpha:=-T^\alpha{}_\beta Z^\beta. \]
+\end{definition}
+\begin{proposition}
+    瞬时观者 $ (p,Z) $ 测得的 $ 4 $ 动量密度满足
+    \[ W^\alpha=\mu Z^\alpha+w^\alpha. \]
+\end{proposition}
+\begin{proof}
+    直接计算分量有
+    \begin{align*}
+        W^0 &= -T^0{}_\beta Z^\beta=T_{00}=\mu,\\
+        W^i &= -T^i{}_\beta Z^\beta=-T_{i0}=w^i.\qedhere
+    \end{align*}
+\end{proof}
+\begin{remark}
+    $ 4 $ 动量不依赖于观者, 但是 $ 4 $ 动量密度依赖于观者.
+\end{remark}
+\begin{proposition}
+    $ \partial^\alpha T_{\alpha\beta}=0 $ 蕴涵能量守恒.
+\end{proposition}
+\begin{proof}
+    设 $ \{t,x,y,z\} $ 为观者 $(p,Z)$ 所在惯性系的坐标, $ \displaystyle Z= \frac{\partial}{\partial t}$, 则
+    \[ \partial_\alpha W^\alpha = \partial_\alpha(-T^\alpha{}_\beta Z^\beta)=-Z^\beta\partial^\alpha T_{\alpha\beta}-T^\alpha{}_\beta\partial_\alpha Z^\beta=0. \]
+    将 $\partial_\alpha W^{\alpha}$ 展开得
+    \[ 0=\partial_\alpha W^\alpha=\frac{\partial\mu}{\partial t}+\nabla\cdot \vec{w}, \]
+    其中 $ \nabla\cdot $ 为散度. 直观地说, 这个方程指出任意区域能量增加的速率与能量离开该区域的速率的和为 $ 0 $.
+\end{proof}
+\begin{remark}
+    形如
+    \[ \frac{\partial\rho}{\partial t}+\nabla\cdot \vec{j}=\sigma \]
+    的方程叫做{\bf 连续性方程} (continuity equation), 其中 $ \rho $ 为物理量 $ q $ 的密度 (每单位体积中 $ q $ 的量), $ j $ 为 $ q $ 的通量 (flux, 单位时间内通过单位面积的 $ q $ 的量), $ \sigma $ 是 $ q $ 每单位体积每单位时间生成的量.
+\end{remark}
+
+\subsection{流体力学}
+\begin{definition}
+    {\bf 理想流体} (perfect fluid) 是能动张量可在一组坐标系下表示为
+    \[ T_{\alpha\beta}=(\mu+p)U_\alpha U_\beta+p\eta_{\alpha\beta} \]
+    的物质场, 其中能量密度 $ \mu $  压强 $ p $ 为标量场, $ U^\alpha $ 为满足 $ U^\alpha U_\alpha=-1 $ 的向量场, 叫做理想流体的 $ 4 $ 速度场.
+\end{definition}
+流体本身可作为一个参考系, 若瞬时观者 $ (p,(e_\alpha)) $ 满足 $ (e_0)^{\alpha}=U^{\alpha}|_p $, 则它相对于流体静止, 叫做{\bf 共动观者} (comoving observer).
+
+共动观者测得的能量密度为 $ T_{00}=\mu $, 因此 $ \mu $ 也叫固有能量密度; 共动观者测得的能流密度为 $ T_{0i}=0 $, 因此没有热传导; 共动观者测得的 $3$ 应力张量写成矩阵形式为
+\[ \left(\begin{matrix}
+    p & 0 & 0\\ 
+    0 & p & 0\\ 
+    0 & 0 & p
+\end{matrix}\right), \]
+即只有各向同性的压强, 没有切向应力. 这些是理想流体的重要特征.
+
+牛顿力学中的理想流体满足
+\begin{align*}
+    \frac{\partial\rho}{\partial t}+\nabla\cdot(\rho \vec{u})&=0,\tag{连续性方程}\\
+    \rho\left[ \frac{\partial \vec{u}}{\partial t}+(\vec{u}\cdot\nabla)\,\vec{u} \right]+\nabla p&=0,\tag{欧拉方程}
+\end{align*}
+其中 $ \rho $ 为流体质量密度, $ \vec{u} $ 为流速向量场 ($ \rho \vec{u} $ 为质量通量), $ p $ 为压强. 
+\begin{remark}
+    连续性方程反映了质量守恒.
+\end{remark}
+
+在相对论中, 对于
+\[ 0=\partial^\alpha T_{\alpha \beta}=U_\alpha U_\beta\partial^\alpha(\mu+p)+(\mu+p)(U^\alpha \partial_\alpha U_\beta+U_\beta\partial_\alpha U^\alpha)+\partial_\beta p, \]
+\begin{enumerate}
+    \item 作用于 $ U^\beta $ 得
+    \[ U^\alpha\partial_\alpha\mu+(\mu+p)\partial_\alpha U^\alpha=0. \]
+    \item 利用 $ h_\nu{}^\beta=\delta_\nu{}^\beta+U_\nu U^\beta $ 做投影得
+    \[ (\mu+p)U^\alpha\partial_\alpha U_\nu +\partial_\nu p+U_\nu U^\beta\partial_\beta p=0. \]
+\end{enumerate}
+这两个方程可以视作连续性方程和欧拉方程在相对论中的推广. 
+为看出这一点, 我们对这两个式子做非相对论近似 $ \gamma\approx 1 $, $ p\ll \mu $, 并做分解
+\[ U^\alpha=\gamma\left[ \left( \frac{\partial}{\partial t}\right)^\alpha+u^\alpha \right]\approx \left( \frac{\partial}{\partial t} \right)^\alpha+u^\alpha, \]
+于是
+\begin{enumerate}
+    \item \keepline
+    \[ 0=\left( \frac{\partial}{\partial t} \right)^\alpha\partial_\alpha\mu+u^\alpha\partial_\alpha\mu+\mu\partial_\alpha u^\alpha=\frac{\partial\mu}{\partial t}+\partial_\alpha(\mu u^\alpha)=\frac{\partial\mu}{\partial t}+\nabla\cdot(\mu \vec{u}), \]
+    这正是连续性方程.
+    \item \keepline
+    \begin{align*}
+        0 &= \mu\left[ \left( \frac{\partial}{\partial t} \right)^\alpha+u^\alpha \right]\partial_\alpha u_\nu+\partial_\nu p+u_\nu\left[ \left( \frac{\partial}{\partial t} \right)^\beta+u^\beta \right]\partial_\beta p\\ 
+        &=\mu\left( \frac{\partial u_\nu}{\partial t}+u^\alpha\partial_\alpha u_\nu \right)+\frac{\partial p}{\partial x^\nu}+u_\nu\frac{\partial p}{\partial t}+u_\nu u^j\frac{\partial p}{\partial x^j},
+    \end{align*}
+    在非相对论情况下 $ |u|\ll 1 $, 可以忽略最后两项, 再分别取 $\nu=1,2,3$ 即可得到欧拉方程.
+\end{enumerate}

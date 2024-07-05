@@ -1,0 +1,225 @@
+\section{质点}
+接下来我们要在 $ 4 $ 维时空中讨论经典运动学中的各种概念 (及其推广).
+\subsection{切向量的 \texorpdfstring{$ 3+1 $}{3+1} 分解}
+\begin{definition}[$ 4 $ 速度]
+    质点的 $ 4 $ {\bf 速度}是质点世界线的切向量
+    \[ U:=\frac{\partial}{\partial\tau}. \]
+\end{definition}
+由于固有时是质点世界线的线长参数, 固有时对应的切向量为单位向量, 即 $ 4 $ 速度满足 $ |\eta_{\alpha\beta}U^\alpha U^\beta|=1 $.
+
+将一点 $ p $, 及 $ p $ 上的一个 (指向未来的) 类时单位向量 $ Z $ 的组合 $ (p,Z) $ 称为一个{\bf 瞬时观者} (instantaneous observer), 其中 $Z$ 是该观者的 $4$ 速度.  
+\begin{remark}
+    严格地说, 一个瞬时观者应该是一点 $ p $ 及该点处的一个正交归一标架 $ \{e_\alpha\} $, 其中 $ e_0=Z $ 为类时向量. 在不会产生混淆的情况下, 我们省略 $ e_0 $ 之外的基向量. 由于 $Z$ 是标架的一部分, 我们一般不将其记作 $Z^\alpha$.
+\end{remark}
+\begin{remark}
+    任给瞬时观者 $(p,Z)$, 一定存在一个惯性观者, 其世界线过点 $p$, 且世界线在点 $p$ 处的切向量为 $Z$. 因此在不会产生混淆时, 我们也将瞬时观者简称为观者.
+\end{remark}
+
+\begin{definition}[切空间的 $3+1$ 分解]
+    对于任意观者 $G$ 的世界线上的任意一点 $ p $, 都有一个对应的瞬时观者 $ (p,Z) $, 我们将点 $ p $ 处的切空间做 $ 3+1 $ 分解 $ N_p\oplus S_p $, 其中
+    \begin{align*}
+        N_p&=\mathrm{span}\{Z\},\\
+        S_P&=\left\{ V^{\alpha}\in T_pM \;\middle|\; \eta_{\alpha\beta}V^\alpha Z^\beta=0 \right\}.
+    \end{align*}
+    我们称 $ S_p $ 中的向量为空间向量 (spatial vector), $ S_p $ 就是 $ G $ 在这一瞬间所感受到的空间. 
+\end{definition}
+
+\begin{remark}
+    空间向量一定是类空向量, 而反之不然.
+\end{remark}
+
+\begin{proposition}
+    任给瞬时观者 $(p,Z)$, 点 $ p $ 处度量 $ \eta $ 在 $ S_p $ 上的诱导度量 (将 $ \eta $ 限制到 $ S_p $ 上)  为
+    \[ h_{\alpha\beta}=\eta_{\alpha\beta}+Z_{\alpha}Z_{\beta}. \]
+\end{proposition}
+\begin{proof}
+    给定标架 $\{e_\alpha\}$, 其中 $e_0=Z$. 则 
+    \[ h_{0\beta}=h_{\alpha\beta}Z^{\alpha}=\eta_{\alpha\beta}Z^\alpha+Z_{\alpha}Z_{\beta}Z^{\alpha}=Z_\beta-Z_\beta=0,\quad \alpha=0,1,2,3. \]
+    因此 $h_{\alpha\beta}$ 是定义在 $S_p$ 上的.
+    任给 $v^{\alpha},w^{\alpha}\in S_p$, 则
+    \[ h_{\alpha\beta}v^{\alpha}w^{\beta}=\eta_{\alpha\beta}v^{\alpha}w^{\beta}+Z_{\alpha} Z_{\beta}v^{\alpha}w^{\beta}=\eta_{\alpha\beta}v^{\alpha}w^{\beta}, \]
+    因此 $h_{\alpha\beta}$ 为 $\eta_{\alpha\beta}$ 在 $S_p$ 上的诱导度量.
+\end{proof}
+
+\begin{proposition}
+    任给瞬时观者 $(p,Z)$ 及点 $p$ 处的切向量 $u^{\alpha}$, 对 $u^{\alpha}$ 做 $3+1$ 分解 $u^{\alpha}=v^{\alpha}+w^{\alpha}$, 其中 $v^{\alpha}\in N_p$, $w^{\alpha}\in S_p$, 则
+    \[ v^{\alpha} = -Z^{\alpha}(Z_{\beta}u^{\beta}),\quad
+        w^{\alpha} = h^{\alpha}{}_{\beta}u^{\beta}. \]
+\end{proposition}
+\begin{proof}
+    由于
+    \[ h^{\alpha}{}_{\beta}=\eta^{\alpha\mu}h_{\mu\beta}=\delta^{\alpha}{}_{\beta}+Z^{\alpha}Z_{\beta}, \]
+    我们可将 $u^{\alpha}$ 分解为
+    \[ u^{\alpha}=h^{\alpha}{}_{\beta}u^{\beta}-Z^{\alpha}(Z_{\beta}u^{\beta}), \]
+    其中 $ -Z^{\alpha}(Z_{\beta}u^{\beta})\in N_p $, 且 $-Z^{\alpha}(Z_{\beta}u^{\beta})Z_\alpha=-Z_{\beta}u^{\beta}$, 因此这就是 $u^{\alpha}$ 到 $N_p$ 上的投影, 进而知 $h^{\alpha}{}_{\beta}u^{\beta}$ 是 $u^{\alpha}$ 到 $S_p$ 上的投影.
+\end{proof}
+
+\subsection{质点运动学与动力学}
+\textcolor{blue}{再次强调我们只关心惯性系, 以下所有坐标展开都是在惯性系中进行的.}
+
+由于任意空间向量 $v^\alpha$ 的第一个分量为 $0$, 我们也可将其简记为 $v^i$, 有时也将其记为 $\vec{v}$. 下文中所有 $3$ 物理量都是依赖于观者的空间向量, 默认第一个分量为 $0$.
+
+一个质点的 $ 4 $ 速度 $ U $ 可以借由瞬时观者 $ (p,Z) $ 展开为
+\[ U=\frac{\partial}{\partial\tau}=\frac{\mathrm{d}t}{\mathrm{d}\tau}\frac{\partial}{\partial t}+\frac{\mathrm{d}x^{i}}{\mathrm{d}\tau}\frac{\partial}{\partial x^i}. \]
+于是前文中定义的洛伦兹因子
+\[ \gamma=\frac{\mathrm{d}t}{\mathrm{d}\tau}=\frac{1}{\sqrt{1-v^2}}. \]
+可重写表达为
+\[ \gamma=-U^\alpha Z_\alpha. \]
+这是因为
+\[ -U^\alpha Z_\alpha=-\eta_{\alpha\beta}U^\alpha\left( \frac{\partial}{\partial t} \right)^{\beta}=-\eta_{00}U^0\left( \frac{\partial}{\partial t} \right)^0=U^0=\frac{\mathrm{d}t}{\mathrm{d}\tau}=\gamma. \]
+
+\begin{definition}[$ 3 $ 速度]
+    质点相对于瞬时观者 $ (p,Z) $ 的 $ 3 $ {\bf 速度}为
+    \[ u^{i}:=\frac{\mathrm{d}x^i}{\mathrm{d}t}\frac{\partial}{\partial x^{i}}. \]
+\end{definition}
+\begin{proposition}
+    质点的 $ 4 $ 速度可借由瞬时观者 $ (p,Z) $ 做 $ 3+1 $ 分解
+    \[ U^{\alpha}=\gamma(Z^{\alpha}+u^{\alpha}). \]
+\end{proposition}
+\begin{definition}[$ 3 $ 速率]
+    质点相对于瞬时观者的 $ 3 $ {\bf 速率}为 $ \sqrt{u^{\alpha}u_{\alpha}}$.
+\end{definition}
+
+\begin{definition}[$ 4 $ 动量]
+    设质点的 (静) 质量为 $ m $, 则其 $ 4 $ {\bf 动量}为
+    \[ P^\alpha:=mU^\alpha. \]
+\end{definition}
+
+\begin{definition}[能量与 $ 3 $ 动量]
+    质点的 $ 4 $ 动量可借由瞬时观者 $ (p,Z) $ 做 $ 3+1 $ 分解
+    \[ P^{\alpha}=m(\gamma Z^{\alpha}+\gamma u^{\alpha})=:EZ^{\alpha}+p^{\alpha}, \]
+    我们称其中的 $ E=\gamma m $ 为{\bf 能量}, $ p^{\alpha}=\gamma m u^{\alpha} $ 为 $ 3 $ {\bf 动量}.
+\end{definition}
+
+\begin{remark}
+    能量是依赖于观者的物理量.
+\end{remark}
+
+\begin{proposition}[质能方程]
+    记 $ p^2=p^\alpha p_\alpha $, 则
+    \[ E^2=m^2+p^2. \]
+\end{proposition}
+\begin{proof}\keepline
+    \begin{align*}
+    P^\alpha P_\alpha&=(EZ^\alpha+p^\alpha)(EZ_\alpha+p_\alpha)=-E^2+p^2,\\
+        P^\alpha P_\alpha&=mU^\alpha mU_\alpha=-m^2.\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{remark}
+    若不使用几何单位制, 则 $ E^2=m^2c^4+p^2c^2 $. 
+\end{remark}
+
+若瞬时观者 $ (p,Z) $ 与被观测质点的世界线相切, 则称 $ (p,Z) $ 为该质点的{\bf 瞬时静止观者}, 瞬时静止观者测得的能量也叫做静能量, 其数值与静质量相同.
+
+\begin{definition}[$ 4 $ 加速度]
+    设质点的 $ 4 $ {\bf 加速度}为
+    \[ A^\alpha:=U^\beta\partial_\beta U^{\alpha}. \]
+\end{definition}
+
+\begin{remark}
+    一个观者是惯性的当且仅当其 $4$ 加速度为 $0$.
+\end{remark}
+
+\begin{proposition}
+    质点世界线上各点处的 $ 4 $ 加速度与 $ 4 $ 速度正交, 即 $ A^\alpha U_\alpha=0$.
+\end{proposition}
+\begin{proof}\keepline
+    \[ A^\alpha U_\alpha=U^\beta(\partial_\beta U^\alpha)U_\alpha=\frac{1}{2}U^\beta\partial_\beta(U^\alpha U_\alpha)=0.\qedhere \]
+\end{proof}
+
+\begin{definition}[$ 3 $ 加速度]
+    设质点世界线 $ L(\tau) $ 在惯性系 $ \{t,x^i\} $ 中的参数表达式为 $ t=t(\tau) $, $ x^i=x^i(\tau) $, 则它相对于该坐标系的 $ 3 $ {\bf 加速度}为
+    \[ a^i:=\frac{\mathrm{d}^2 x^i(t)}{\mathrm{d}t^2}, \]
+    其中 $ x^i(t) $ 是 $ x^i=x^i(\tau) $ 与 $ t=t(\tau) $ 的结合.
+\end{definition}
+\begin{proposition}
+    \label{4 force}
+    质点的 $ 4 $ 加速度在惯性系中的分量为
+    \begin{align*}
+        A^0&=\gamma^4(\vec{u}\cdot \vec{a}),\\
+        A^i&=\gamma^2a^i+\gamma^4(\vec{u}\cdot \vec{a})u^i,
+    \end{align*}
+    其中 $ \vec{u} $ 和 $ \vec{a} $ 为 $ 3 $ 速度和 $ 3 $ 加速度, $ \cdot $ 为欧式内积.
+\end{proposition}
+\begin{remark}
+    自由质点相对于任意惯性系的 $ 3 $ 加速度为 $ 0 $.
+\end{remark}
+\begin{proof}
+    首先
+    \[ A^\alpha=\frac{\mathrm{d} U^\alpha}{\mathrm{d} \tau}=\frac{\mathrm{d} t}{\mathrm{d} \tau}\frac{\mathrm{d} U^\alpha}{\mathrm{d} t}=\gamma\frac{\mathrm{d} U^\alpha}{\mathrm{d} t}. \]
+    由于 $ U^0=\gamma $, $ U^i=\gamma u^i $, 我们有
+    \begin{align*}
+        A^0 &= \gamma\frac{\mathrm{d}U^0}{\mathrm{d}t}=\gamma\frac{\mathrm{d}\gamma}{\mathrm{d}t}\\ 
+        &=\gamma\frac{\mathrm{d}(1-u^2)^{-\frac{1}{2}}}{\mathrm{d}u^i}\cdot\frac{\mathrm{d}u^i}{\mathrm{d}t}=\gamma^4(\vec{u}\cdot \vec{a}),\\ 
+        A^i&=\gamma\frac{\mathrm{d}U^i}{\mathrm{d}t}=\gamma\frac{\mathrm{d}(\gamma u^i)}{\mathrm{d}t}\\ 
+        &=\gamma^2\frac{\mathrm{d}u^i}{\mathrm{d}t}+u^i\gamma\frac{\mathrm{d}\gamma}{\mathrm{d}t}=\gamma^2a^i+\gamma^4(\vec{u}\cdot \vec{a})u^i.\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{definition}[$ 4 $ 力]
+    质点所受的 $ 4 $ {\bf 力}为
+    \[ F^\alpha:=U^\beta\partial_\beta P^\alpha, \] 
+\end{definition}
+
+\begin{remark}
+    当质点的静质量为常数时, $ P=mU $ 蕴涵 $ F=mA $.
+\end{remark}
+
+\begin{definition}[$ 3 $ 力]
+    质点在惯性系中所受 $ 3 $ {\bf 力}为
+    \[ f^i:=\frac{\mathrm{d}p^i}{\mathrm{d}t}. \]
+\end{definition}
+
+\begin{proposition}
+    当质点的静质量为常数时, 质点所受 $ 4 $ 力在惯性系中的分量为
+    \begin{align*}
+        F^0&=\gamma(\vec{f}\cdot \vec{u}),\\ 
+        F^i&=\gamma f^i,
+    \end{align*}
+    且
+    \[ \frac{\mathrm{d}E}{\mathrm{d}t}=\vec{f}\cdot \vec{u}. \]
+\end{proposition}
+\begin{proof}
+    与命题 \ref{4 force} 的证明类似,
+    \begin{align*}
+        \frac{\mathrm{d}E}{\mathrm{d}t}&=\frac{\mathrm{d}\sqrt{m^2+p^2}}{\mathrm{d}p^i}\cdot\frac{\mathrm{d}p^i}{\mathrm{d}t}=\frac{\vec{p}}{E}\cdot \vec{f}=\vec{f}\cdot \vec{u},\\
+        F^0 &= U^\beta\partial_\beta P^0=U^\beta\partial_\beta E=\frac{\mathrm{d}E}{\mathrm{d}\tau}=\gamma\frac{\mathrm{d}E}{\mathrm{d}t}=\gamma(\vec{f}\cdot \vec{u}),\\
+        F^i &= U^\beta\partial_\beta P^i=\frac{\mathrm{d}p^i}{\mathrm{d}\tau}=\gamma f^i.\qedhere
+    \end{align*}
+\end{proof}
+
+\subsection{质量}
+接下来我们解释一下为什么前文一直在强调静质量中的``静''字.
+
+相对性原理要求物理定律的数学表达是有洛伦兹协变性, 即在洛伦兹变换下不变. 在 $ 2 $ 维时空中, 考虑两个静质量为 $ m $ 的小球的完全非弹性碰撞, 在惯性系 $ \mathcal{R} $ 看来, 碰撞前它们的 $ 3 $ 速率都为 $ v $, 速度方向相反, 碰撞后它们的 $ 3 $ 速率都是 $ 0 $. 在碰撞前, 两小球相对于 $ \mathcal{R} $ 的 $ 4 $ 速度分别为
+\[ Z^\alpha = \left( \frac{1}{\sqrt{1-v^2}},\frac{v}{\sqrt{1-v^2}} \right),\quad U^\alpha = \left( \frac{1}{\sqrt{1-v^2}},-\frac{v}{\sqrt{1-v^2}} \right). \]
+
+考虑另一个参考系 $ \mathcal{R}' $, 第一个小球相对于 $ \mathcal{R}' $ 静止. 则第二个小球相对于 $ \mathcal{R}' $ 的 $ 3 $ 速度为
+\[ u^\alpha=\frac{U^\alpha+Z^\alpha(Z_\beta U^\beta)}{-Z_\mu U^\mu}=\left( -\frac{2v^2}{(1+v^2)\sqrt{1-v^2}},-\frac{2v}{(1+v^2)\sqrt{1-v^2}} \right), \]
+$ 3 $ 速率为
+\[ u=\frac{2v}{1+v^2}. \]
+而碰撞后两小球相对于 $ \mathcal{R}' $ 的 $ 3 $ 速率都是 $ v $.
+
+从经典物理的角度来说, 动量等于质量乘速度, 这样的话, 在 $ \mathcal{R}' $ 中两小球碰撞前后总动量不同
+\[ \frac{2mv}{1+v^2} \neq 2mv, \]
+这说明经典的动量守恒定律不具备洛伦兹协变性. 鉴于动量守恒定律的重要性, 我们选择通过修改质量的定义, 来让动量守恒定律拥有洛伦兹协变性. 具体修改方法是: 认为质量不再是常数, 而是与 $ 3 $ 速率有关, 我们称这样的质量为动质量 $ m_u:=\gamma m_0$, 其中 $ m_0 $ 为静质量, 即质点静止时的质量. 此时动量 $ p^a=\gamma m_0 u^a $ 正是前文中定义的 $ 3 $ 动量, $ \mathcal{R}' $
+中两小球碰撞前后的总动量满足
+\[ \frac{2m_uv}{1+v^2}=(m_u+m_0)v, \]
+则在动质量守恒的前提下, 小球碰撞前后的 $ 3 $ 动量守恒. 
+\begin{remark}
+    已有大量实验验证了碰撞过程的动质量和 $ 3 $ 动量守恒.
+\end{remark}
+\begin{remark}
+    静质量不守恒.
+\end{remark}
+由于 
+\[ E^2=m_0^2+p^2=m_0(1+\gamma^2u^2)=m_u^2, \]
+动质量守恒就是能量守恒, 因此没有必要保留动质量概念.
+\begin{remark}
+    这里的能量是依赖于 $ 3 $ 速度的总能量.
+\end{remark}
+
+狭义相对论的原始表述存在静质量、动质量、静能量、总能量四个概念; 而现在我们只保留{\bf 静质量} $ m $ 和{\bf 总能量} $ E=\gamma m c^2 $\cite[上册 155 页]{梁灿彬2000微分几何入门与广义相对论}.
+
+综上, 狭义相对论仍有 $ 3 $ 动量守恒定律和能量守恒定律, 由于 $ 3 $ 动量和能量分别是 $ 4 $ 动量的时间和空间分量, $ 4 $ 动量也是守恒的. 由于动质量就是总能量, 动质量也是守恒的, 但静质量不守恒, 静质量在物理过程 (主要是核反应) 前后的变化叫做质量亏损 (mass defect).

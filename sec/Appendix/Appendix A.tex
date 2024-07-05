@@ -1,0 +1,102 @@
+\chapter{李群李代数及其表示}
+\label{lie}
+有关李群李代数及其表示的更详细的内容可参考 \cite[第 $ 16 $ 章]{hall2013quantum} 和 \cite{hall2013lie}.
+\begin{definition}[矩阵李群]
+    $ \mathrm{GL}(n,\mathbb{C}) $ 的闭子群 $ G $ 叫做{\bf 矩阵李群} (matrix lie group). 其中 $ \mathrm{GL}(n,\mathbb{C}) $ 叫做{\bf 一般线性群}, 是所有 $ n\times n $ 的可逆复矩阵按照矩阵乘法构成的群, 其上配有 $ \mathbb{R}^{n\times n} $ 的子空间拓扑.
+\end{definition}
+以下所有李群指的都是矩阵李群.
+\begin{definition}
+    连续的同态映射叫做{\bf 李群同态}, 可逆的李群同态叫做{\bf 李群同构}.
+\end{definition}
+
+
+\begin{definition}[李代数]
+    域 $ \mathbb{F} $ 上的一个{\bf 李代数}是 $ \mathbb{F} $ 上的一个线性空间 $ \mathfrak{g} $, 且配有运算{\bf 李括号} $ [\cdot,\cdot]:\mathfrak{g}\times\mathfrak{g}\to\mathfrak{g} $, 该运算满足以下性质:
+    \begin{enumerate}
+        \item $ [\cdot,\cdot] $ 是双线性的,
+        \item $ [X,Y]=-[Y,X] $, $ \forall X,Y\in\mathfrak{g} $,
+        \item $ [X,X]=0 $, $ \forall X\in\mathfrak{g} $,
+        \item 对于所有 $ X,Y,Z\in\mathfrak{g} $, 有雅克比恒等式
+        \[ [X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0. \]
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    {\bf 李代数同态} $ \phi $ 指的是满足
+    \[ \phi([X,Y])=[\phi(X),\phi(Y)] \]
+    的线性空间同态. 可逆的李代数同态叫做{\bf 李代数同构}.
+\end{definition}
+\begin{definition}
+    对于矩阵李群 $ G $, 定义对应的李代数 $ \mathfrak{g} $ 为
+    \[ \mathfrak{g}:=\left\{ X\in M_n(\mathbb{C}) \;\middle|\; e^{tX}\in G,\  \forall t\in\mathbb{R} \right\}, \]
+    其中 $ M_n(\mathbb{C}) $ 表示所有 $ n\times n $ 复矩阵. 其上的李括号为 $ [X,Y]:=XY-YX $.
+\end{definition}
+
+\begin{theorem}[{\cite[定理 16.23]{hall2013quantum}}]
+    \label{GGgg}
+    设 $ G_1 $ 和 $ G_2 $ 为矩阵李群, 它们对应的李代数为 $ \mathfrak{g}_1 $ 和 $ \mathfrak{g}_2 $, 并设 $ \Phi:G_1\to G_2 $ 为李群同态. 则存在唯一的线性映射 $ \phi:\mathfrak{g}_1\to\mathfrak{g}_2 $ 使得
+    \[ \Phi\left(e^{tX}\right)=e^{t\phi(X)},\quad\forall t\in\mathbb{R},\,\forall X\in\mathfrak{g}. \]
+    这个线性映射还满足:
+    \begin{enumerate}
+        \item $ \phi([X,Y]) = [\phi(X),\phi(Y)] $, $ \forall X,Y\in\mathfrak{g} $.
+        \item $ \phi(AXA^{-1})=\Phi(A)\phi(X)\Phi(A^{-1}) $, $ \forall A\in G $, $ \forall X\in\mathfrak{g} $.
+        \item \[ \phi(X)=\left.\frac{\mathrm{d}}{\mathrm{d}t}\Phi\left( e^{tX} \right)\right|_{t=0},\quad\forall X\in\mathfrak{g}. \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}[{\cite[推论 16.24]{hall2013quantum}}]
+    李群同构诱导李代数同构.
+\end{corollary}
+
+\begin{theorem}[{\cite[定理 16.30]{hall2013quantum}}]
+    \label{ggGG}
+    设 $ G_1 $ 和 $ G_2 $ 为矩阵李群, 它们对应的李代数为 $ \mathfrak{g}_1 $ 和 $ \mathfrak{g}_2 $, 并设 $ \phi:\mathfrak{g}_1\to\mathfrak{g}_2 $ 为李代数同态. 若 $ G_1 $ 是连通且单连通的, 则存在唯一的李群同态 $ \Phi:G_1\to G_2 $ 满足定理 \ref{GGgg} 中的条件.
+\end{theorem}
+
+\begin{definition}[李群表示]
+    对于矩阵李群 $ G $, 它的一个{\bf 有限维表示}指的是一个连续同态 $ G\to\mathrm{GL}(V) $, 其中 $ V $ 是有限维线性空间, $ \mathrm{GL}(V) $ 是 $ V $ 所有上的可逆线性变换构成的群.
+\end{definition}
+\begin{definition}[李代数表示]
+    对于李代数 $ \mathfrak{g} $, 它的一个{\bf 有限维表示}指的是一个李代数同态 $ \mathfrak{g}\to\mathfrak{gl}(V) $, 其中 $ \mathfrak{gl}(V) $ 所有有限维空间 $ V $ 上的线性变换配以 $ [X,Y]=XY-YX $ 所得的李代数.
+\end{definition}
+
+\begin{definition}
+    给定 $ G $ 的两个李群表示 $ (\Pi,V_1) $ 和 $ (\Sigma,V_2) $, 若线性映射 $ \Phi:V_1\to V_2 $ 满足 
+    \[ \Phi(\Pi(g)v)=\Sigma(g)\Phi(v),\quad\forall g\in G,\,\forall v\in V_1, \] 
+    则称它是{\bf 等变映射} (equivariant map). 可逆的等变映射叫做两个表示间的{\bf 同构}.
+\end{definition}
+
+\begin{definition}[不变子空间]
+    设 $ \Pi:G\to\mathrm{GL}(V) $ 是矩阵李群 $ G $ 的一个表示, $ W $ 是 $ V $ 的子空间. 若
+    \[ \Pi(g)w\in W,\quad\forall g\in G,\,\forall w\in W, \]
+    则称 $ W $ 是 $ \Pi(G) $ 的{\bf 不变子空间}. 类似地可对李代数表示定义不变子空间.
+\end{definition}
+\begin{definition}[不可约表示]
+    对于李群和李代数表示, 若不变子空间只有 $ \{0\} $ 和 $ V $, 则称该表示为{\bf 不可约表示}.
+\end{definition}
+
+\begin{proposition}[{\cite[352 页]{hall2013quantum}}]
+    设 $ G $ 为连通的矩阵李群, $ \mathfrak{g} $ 为其对应的李代数. 若 $ \Pi:G\to\mathrm{GL}(V) $ 是一个有限维表示, 则可由定理 \ref{GGgg} 诱导得到有限维表示 $ \pi:\mathfrak{g}\to\mathfrak{gl}(V) $.
+
+    子空间 $ W\subset V $ 是 $ \Pi(G) $ 的不变子空间当且仅当它是 $ \pi(\mathfrak{g}) $ 的不变子空间. 特别地, $ \Pi $ 是不可约的当且仅当 $ \pi $ 是不可约的. 两个李群表示是同构的当且仅当对应的李代数表示是同构的.
+\end{proposition}
+
+\begin{definition}[酉表示]
+    \label{unitary representation 1}
+    对于矩阵李群 $ G $, 它的一个{\bf 酉表示} (unitary representation) 指的是一个强连续 (strongly continuous) 的同态 $ \Pi:G\to\mathrm{U}(H) $, 其中 $ H $ 是一个可分希尔伯特空间, $ \mathrm{U}(H) $ 是其上的所有酉算子构成的群. 强连续指的是对于 $ G $ 中序列 $ A_m $, 若 $ A_m\to A\in G $, 则
+    \[ \lim_{m\to\infty}\|\Pi(A_m)\psi-\Pi(A)\psi\|=0,\quad\forall \psi\in H. \]
+\end{definition}
+
+\begin{theorem}[Stone 定理{\cite[定义 10.13, 定理 10.15]{hall2013quantum}}]
+    设 $ U(\cdot) $ 为 $ H $ 上的强连续单参酉群, 则 $ U(\cdot) $ 的无穷小生成元 $ A $ 是稠定的自伴算子, 且 $ U(t)=e^{\mathrm{i}tA} $, $ \forall t\in\mathbb{R} $. 其中{\bf 无穷小生成元} (infinitesimal generator) 的定义为
+    \[ A\psi:=\lim_{t\to 0}\frac{1}{\mathrm{i}}\frac{U(t)\psi-\psi}{t}, \]
+    $ A $ 的定义域为使得上述极限存在的 $ \psi $ 构成的集合.
+\end{theorem}
+
+\begin{proposition}[{\cite[定义 16.53, 命题 16.54]{hall2013quantum}}]
+    \label{unitary representation 2}
+    设 $ G $ 为矩阵李群, $ \Pi:G\to\mathrm{U}(H) $ 是 $ G $ 的一个酉表示. 对任意 $ X\in\mathfrak{g} $, 映射 $ t\mapsto\Pi(e^{tX}) $ 是一个强连续单参酉群, 由 Stone 定理, 存在唯一的自伴算子 $ A $ 使得 $ \Pi(e^{tX})=e^{\mathrm{i}tA} $. 记 $ \pi(X) $ 为反自伴算子 $ \mathrm{i}A $, 则 $\Pi(e^{tX})=e^{t\pi(X)}$.
+
+    若 $ V\subset H $ 是 $ \Pi(G) $ 的有限维不变子空间, 则 $ V $ 是 $ \pi(\mathfrak{g}) $ 的不变子空间且对每个 $ X\in\mathfrak{g} $, 有 $ V\subset\mathrm{Dom}(\pi(X)) $ 且
+    \[ \pi([X,Y])v=[\pi(X),\pi(Y)]v,\quad\forall v\in V. \]
+    反之, 若 $ G $ 是连通的, 且有限维子空间 $ V\subset H $ 对于每个 $ X\in\mathfrak{g} $ 都有 $ V\subset\mathrm{Dom}(\pi(X)) $ 以及 $ V $ 是 $ \pi(X) $ 的不变子空间, 则 $ V $ 是 $ \Pi(G) $ 的不变子空间. 
+\end{proposition}

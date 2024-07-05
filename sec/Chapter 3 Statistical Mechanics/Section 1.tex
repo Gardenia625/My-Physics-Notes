@@ -1,0 +1,61 @@
+假设一个系统由 $ N $ 个粒子组成, 则其对应的相空间是 $ 6N $ 维的, 取坐标
+\begin{align*}
+    q&=(q_1,\dots,q_{3N}),\\
+    p&=(p_1,\dots,p_{3N}).    
+\end{align*}
+用字母 $ U $ 表示势能, 则哈密顿量为
+\[ H(q,p)=\sum_{\alpha}\frac{p_\alpha^2}{2m_\alpha}+U(q_1,\dots,q_{3N}). \]
+
+考虑一个房间中的空气或一桶水, 这样的系统包含非常非常多的粒子, 因此对应的相空间维数非常之大. 此时, 具体去解哈密顿方程
+\begin{align*}
+    \dot{q}_{\alpha}&=\frac{\partial H}{\partial p_\alpha},\\ 
+    \dot{p}_{\alpha}&=-\frac{\partial H}{\partial q_\alpha},
+\end{align*}
+是非常不现实的. 
+
+虽然我们无法分析某个具体的系统, 但可以通过研究一族系统 (我们称其为系综, ensemble) 的性质, 来了解大量粒子构成的系统所拥有的独特运动规律, 这就是统计力学.
+
+统计力学的内容非常多, 而我在这一章里只是粗略地介绍一些我比较关心的概念. 
+
+\textbf{在这一章我要极大地放弃严谨性.}
+\section{平衡态}
+{\bf 平衡态}指的是不受外界影响, 其能量、体积、粒子数均不随时间变化的状态. 
+\subsection{微正则系综}
+考虑一个处于平衡态的系统: 一个体积为 $ V $ 的盒子中的 $ N $ 个粒子. 
+
+一般来说, 相空间中所有{\bf 能量} (也就是{\bf 哈密顿量}) 为 $ E $ 的点构成了一个 $ 6N-1 $ 维超曲面, 我们称其为能量 $ E $ 对应的{\bf 微正则系综} (microcanonical ensemble), 并设其面积为 $ \Omega(E) $. 而能量在 $ [E,E+\Delta E] $ 内的所有点形如一个``壳'', 这个壳的体积为
+\[ \Omega(E)\Delta E = \int_{E\leqslant H(q,p)\leqslant E+\Delta E}\mathrm{d}q\,\mathrm{d}p. \]
+\begin{remark}
+    为了简洁, 我们用 $\mathrm{d}q$ 表示 $\mathrm{d}q_1\cdots\mathrm{d}q_{3N}$, 用 $\mathrm{d}p$ 表示 $\mathrm{d}p_1\cdots\mathrm{d}p_{3N}$.
+\end{remark}
+令 $ \Delta E $ 趋于 $ 0 $, 则有
+\begin{align*}
+    \Omega(E) &= \lim_{\Delta E\to 0}\frac{1}{\Delta E}\int_{E\leqslant H(q,p)\leqslant E+\Delta E}\mathrm{d}q\,\mathrm{d}p\\ 
+    &=\lim_{\Delta E\to 0}\frac{1}{\Delta E}\int[\theta(E+\Delta E-H)-\theta(E-H)]\,\mathrm{d}q\,\mathrm{d}p\\ 
+    &=\frac{\partial}{\partial E}\int\theta(E-H)\,\mathrm{d}q\,\mathrm{d}p\\ 
+    &= \int\delta(E-H)\,\mathrm{d}q\,\mathrm{d}p,
+\end{align*}
+其中
+\[ \theta(x)=\begin{cases}
+    1, & x>0,\\
+    0, & x\leqslant 0. \end{cases} \]
+为{\bf 阶跃函数}(Heaviside step function).
+
+\subsection{遍历性假设}
+考虑一个可观测量 $ O $ 的系综平均
+\begin{align*}
+    \langle O\rangle:&=\lim_{\Delta E\to\infty}\int[\theta(E+\Delta E-H)-\theta(E-H)]O(q,p)\,\mathrm{d}q\,\mathrm{d}p\\ 
+    &=\frac{1}{\Omega(E)}\frac{\partial}{\partial E}\int\theta(E-H)O(q,p)\,\mathrm{d}q\,\mathrm{d}p\\ 
+    &=\frac{1}{\Omega(E)}\int\delta(E-H(q,p))O(q,p)\,\mathrm{d}q\,\mathrm{d}p
+\end{align*}
+和时间平均
+\[ \overline{O(q,p)}:=\lim_{T\to\infty}\frac{1}{T}\int_{0}^{T}O(q(t),p(t))\,\mathrm{d}t. \]
+如果时间平均和系综平均是相等的, 我们就可以通过研究系综的性质来得到单个系统的性质.
+
+简单地说, {\bf 遍历性假设}指的是在充分长的时间后, 系统状态取微正则系综中每一点的概率相同, 进而有时间平均等于系综平均.
+
+\begin{remark}
+    由刘维尔定理, 相空间中的区域的体积在哈密顿相流下保持不变, 特别地, 微正则系综不随时间变化. 但是, 给定微正则系综中的一小块区域, 它如何在保持体积不变的情况下按照遍历性假设充满整个相空间呢? 直观地说, 这块区域可以变得``很细很长'', 又或是像分形图形一样, 逐渐趋近于在微正则系综中稠密.
+\end{remark}
+
+包含的粒子充分多的系统很多时候是满足遍历性假设的, 在遍历性假设下所得到的结论也确实在现实中得到了大量验证. 但是, 现实中也存在反例, 比如玻璃就不满足遍历性假设.

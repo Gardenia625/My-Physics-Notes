@@ -1,0 +1,158 @@
+\section{自由能}
+微正则系综是在我们固定 $ E,V,N $ 后得到的, 如果只固定 $ V,N $, 允许系统与外界交换能量, 则会得到{\bf 正则系综}. 如果还允许系统与外界交换粒子 (但要固定化学势), 则会得到{\bf 巨正则系综}.
+
+\subsection{正则系综}
+假设系统可以和一个{\bf 热库} (heat bath) 交换能量. 分别记系统和热库为子系统 $ 1 $ 和子系统 $ 2 $, 将它们视作一个总能量为 $ E $ 的整体, 在遍历性假设下, 系统 $ 1 $ 处于能量为 $ E(s) $ 的状态 $ s $ 的概率为
+\[ P(E(s))=\frac{\Omega_1(E(s))\Omega_2(E-E(s))}{\Omega(E)}. \]
+设系统状态所服从分布的概率密度函数为 $ \rho(s) $, 则
+\[ \rho(s)\propto\Omega_2(E-E(s))=e^{S_2(E-E(s))/k_B}. \]
+
+设两个子系统总是保持热平衡, 即温度相等, 再假设热库足够大, 能保持自己的温度一直不变. 对于两个状态 $ s_A $ 和 $ s_B $ 有
+\begin{align*}
+    \frac{\rho(s_B)}{\rho(s_A)} &= \frac{\Omega_2(E-E(s_B))}{\Omega_2(E-E(s_A))}\\ 
+    &= e^{[S_2(E-E(s_B))-S_2(E-E(s_A))]/k_B}\\ 
+    &= e^{(E(s_A)-E(s_B))/(k_BT_2)}.
+\end{align*}
+因此
+\[ \rho(s)\propto e^{-E(s)/(k_BT)}. \]
+
+为方便讨论, 我们假设能量只能取至多可数多个值, 并记 
+\[ \beta:=\frac{1}{k_BT}, \] 
+则
+\[ \rho(s)=\frac{e^{-\beta E(s)}}{\sum_{s}e^{-\beta E(s)}}=\frac{e^{-\beta E(s)}}{Z}, \]
+其中
+\[ Z(T,V,N):=\sum_{s}e^{-\beta E(s)} \]
+为{\bf 配分函数} (partition function). 配有概率密度函数 $ \rho(s) $ 的相空间叫做{\bf 正则系综} (canonical ensemble).
+\begin{remark}
+    注意这里的求和是对系统的所有状态 $s$ 求的, 如果用 $E_n$ 表示能级, 则
+    \[ Z(T,V,N)=\sum_{n}\Omega(E_n)e^{-\beta E_n}. \] 
+\end{remark}
+\begin{remark}
+    若能量的取值是连续的, 则配分函数为
+    \[ Z(T,V,N):=\frac{1}{h^{3N_1}}\int e^{-\beta H(q,p)}\,\mathrm{d}q\,\mathrm{d}p, \]
+    其中 $ h $ 被用来保证 $ Z $ 是无量纲的, 如果没有除以它, $ Z $ 会因为积分中的 $ \mathrm{d}q\,\mathrm{d}p $ 拥有位置乘动量的量纲. 一般取 $ h $ 为普朗克常数, 这样可以得到量子力学的半经典对应.
+\end{remark}
+
+\begin{proposition}[内能]
+    \label{internal energy}
+    {\bf 内能} (internal energy) 即系统能量, 其均值满足
+    \[ \langle E\rangle=-\frac{\partial\log Z}{\partial\beta}. \]
+\end{proposition}
+\begin{proposition}[比热容]
+    \label{specific heat}
+    {\bf 比热容} (specific heat) 指的是体积固定时, 提升一单位温度所需的能量, 定义单个粒子的比热容 $ c_v $ 为比热容除以粒子数, 即
+    \[ c_v:=\frac{1}{N}\frac{\partial \langle E\rangle}{\partial T}, \] 
+    则
+    \[ Nc_v=\frac{1}{k_BT^2}\frac{\partial^2\log Z}{\partial\beta^2}. \]
+\end{proposition}
+\vspace{1ex}
+\begin{proposition}[熵]\keepline
+    \label{entropy}
+    \[ S=\frac{\langle E\rangle}{T}+k_B\log Z. \]
+\end{proposition}
+\vspace{1ex}
+\begin{proof}[上述三个命题的证明]
+    命题 \ref{internal energy}:
+    \[ \langle E\rangle =\sum_s E_s P(E(s))=\frac{\sum_s E_se^{-\beta E(s)}}{Z}=-\frac{1}{Z}\frac{\partial Z}{\partial\beta}=-\frac{\partial\log Z}{\partial\beta}. \]
+    命题 \ref{specific heat}:
+    \[ Nc_v=\frac{\partial\langle E\rangle}{\partial T}=\frac{\partial\langle E\rangle}{\partial\beta}\frac{\mathrm{d}\beta}{\mathrm{d}T}=-\frac{1}{k_BT^2}\frac{\partial^2\log Z}{\partial\beta^2}. \]
+    命题 \ref{entropy}:
+    \begin{align*}
+        S&=-k_B\sum_s P(E(s))\log P(E(s))=-k_B\sum_s\frac{e^{-\beta E(s)}}{Z}\log\left( \frac{e^{-\beta E(s)}}{Z} \right)\\
+        &=-k_B\frac{\sum_s e^{-\beta E(s)}(-\beta E(s)-\log Z)}{Z}\\ 
+        &= \frac{\langle E\rangle}{T}+k_B\log Z.\qedhere
+    \end{align*}
+\end{proof}
+最后, 我们为正则系综定义{\bf 亥姆霍兹自由能} (Helmholtz free energy):
+\[ A(T,V,N):=-k_BT\log Z=\langle E\rangle-TS.\vspace{2ex} \]
+\begin{proposition}\keepline
+    \[ \left.\frac{\partial A}{\partial T}\right|_{N,V}=-S. \]
+\end{proposition}
+\vspace{0ex}
+\begin{proof}\keepline
+    \begin{align*}
+        \left.\frac{\partial A}{\partial T}\right|_{N,V}&=-\frac{\partial k_BT\log Z}{\partial T}=-k_B\log Z-k_BT\frac{\partial\log Z}{\partial\beta}\frac{\mathrm{d}\beta}{\mathrm{d}T}\\ 
+        &=-k_B\log Z-\frac{\langle E\rangle}{T}=-S.\qedhere
+    \end{align*}
+\end{proof}
+\begin{example}[理想气体]
+    \label{ideal gas}
+    假设边长为 $ L $ 的正方体盒子中有 $ N $ 个质量为 $ m $ 的 (可区分的) {\bf 理想气体粒子} (即粒子无体积, 粒子间无相互作用), 则配分函数为
+    \begin{align*}
+        Z&=\prod_{\alpha=1}^{3N}\frac{1}{h}\int_0^L\mathrm{d}q_\alpha\int_{-\infty}^{\infty}e^{-\beta\frac{p_\alpha^2}{2m}}\,\mathrm{d}p_\alpha=\left( \frac{L}{h}\sqrt{\frac{2\pi m}{\beta}} \right)^{3N}=\left( \frac{L}{\lambda} \right)^{3N},
+    \end{align*}
+    其中 
+    \[ \lambda=\frac{h}{\sqrt{2\pi mk_BT}}=\sqrt{\frac{2\pi\hbar^2}{mk_BT}} \]
+    为{\bf 德布罗意热波长} (thermal de Broglie wavelength).
+
+    理想气体的平均内能为
+    \[ \langle E\rangle=-\frac{\partial\log Z}{\partial\beta}=-\frac{\partial}{\partial\beta}\log\left( \beta^{-\frac{3N}{2}} \right)=\frac{3N}{2\beta}=\frac{3}{2}Nk_BT. \]
+    因此理想气体单个粒子的平均动能为 $ 3k_BT/2 $, 这一结论叫做{\bf 能量均分定理} (equipartition theorem).
+\end{example}
+\subsection{巨正则系综}
+假设系统不仅可以和热库交换能量, 还可以交换粒子, 沿用前文的记号, 系统状态所服从的概率密度函数满足:
+\begin{align*}
+    \rho(s) &\propto \Omega_2(E-E(s),N-N(s))=e^{S_2(E-E(s),N-N(s))/k_B}\\ 
+    &\propto \exp\left( \frac{1}{k_B}\left( -E(s)\frac{\partial S_2}{\partial E}-N(s)\frac{\partial S_2}{\partial N} \right) \right)= \exp\left( -\frac{E(s)}{k_BT}+\frac{N(s)\mu}{k_BT} \right)\\ 
+    &=e^{-\beta(E(s)-\mu N(s))}.
+\end{align*}
+由 $ T\mathrm{d}S=\mathrm{d}E+P\,\mathrm{d}V-\mu\,\mathrm{d}N $ 可知
+\[ \mu=\left.\frac{\partial E}{\partial N}\right|_{S,V}, \]
+因此化学势就是增加一个粒子所需要的能量.
+
+继续假设能量只能取至多可数个值, 固定化学势 $ \mu $, 则
+\[ \rho(s)=\frac{e^{-\beta(E(s)-\mu N(s))}}{\Xi}, \]
+其中
+\[ \Xi(T,V,\mu):=\sum_{s}e^{-\beta(E(s)-\mu N(s))} \]
+叫做{\bf 巨配分函数} (grand partition function). 配有概率密度函数 $ \rho(s) $ 的相空间叫做{\bf 巨正则系综} (grand canonical ensemble).
+\begin{remark}
+    此时相空间不再是 $\mathbb{R}^{6N}$.
+\end{remark}
+\begin{remark}
+    若记 $E_n$ 为能级, 则
+    \[ \Xi(T,V,\mu):=\sum_{N=0}^{\infty}\sum_n \Omega(E_n,N)e^{-\beta(E_n-\mu N)}. \]
+\end{remark}
+
+类似亥姆霍兹自由能, 我们可以为巨正则系综定义巨自由能 (grand free energy):
+\[ \Phi(T,V,\mu)=-k_B T\log(\Xi)=\langle E\rangle-TS-\mu N.\vspace{1.5ex}\]
+\begin{proposition}\keepline
+    \begin{align*}
+        \langle N\rangle &=-\frac{\partial\Phi}{\partial\mu},\\ 
+        \frac{\partial\langle N\rangle}{\partial\mu}&=\beta(\langle N^2\rangle-\langle N\rangle^2)=\beta\langle(N-\langle N\rangle)^2\rangle.
+    \end{align*}
+\end{proposition}
+\vspace{0ex}
+\begin{proof}\keepline
+    \begin{align*}
+        \langle N\rangle&=\frac{\sum_s N(s)e^{-\beta(E(s)-\mu N(s))}}{\sum_se^{-\beta(E(s)-\mu N(s))}}=\frac{k_BT}{\Xi}\frac{\partial\Xi}{\partial\mu}=-\frac{\partial\Phi}{\partial\mu},\\
+        \frac{\partial\langle N\rangle}{\partial\mu}&=\frac{\beta\sum_s N(s)^2e^{-\beta(E(s)-\mu N(s))}}{\sum_se^{-\beta(E(s)-\mu N(s))}}-\frac{\beta\left[\sum_sN(s)e^{-\beta(E(s)-\mu N(s))}\right]^2}{\left[ \sum_se^{-\beta(E(s)-\mu N(s))} \right]^2}\\
+        &=\beta(\langle N^2\rangle-\langle N\rangle^2).\qedhere
+    \end{align*}
+\end{proof}
+\subsection{热力学}
+可以将热力学视为统计力学中粒子数 $ N\to\infty $ 时的极限理论, 因此极限 $ N\to\infty $ 也叫做热力学极限.
+
+也可以将热力学视为基于以下四条公理的理论体系:
+\begin{enumerate}
+    \item[(0)] {\bf 热平衡} (两系统间不断交换能量直至温度相同后的状态) 具有传递性.
+    \item[(1)] 孤立系统的总能量不随时间变化.
+    \item[(2)] 孤立系统的熵随时间单调增加.
+    \item[(3)] 当温度趋于绝对零度时, 熵趋于 $ 0 $.
+\end{enumerate}
+
+现在我们暂时不考虑系综, 但仍要求 $ \mathrm{d}E=T\,\mathrm{d}S-P\,\mathrm{d}V+\mu\,\mathrm{d}N $ 成立. 考虑一个可以与温度为 $ T_b $ 的热库交换能量的系统, 可定义其赫尔霍兹自由能为
+\[ A(T,V,N,E):=E-T_bS(E,V,N), \]
+固定 $ V $ 和 $ N $, 设系统处于状态 $ s $, 则
+\[ \frac{\partial A}{\partial E_s}=1-T_b\frac{\partial S_s}{\partial E_s}=1-\frac{T_b}{T_s}. \]
+这说明系统会不断地与热库交换能量, 直至 $ A $ 被极小化, 因此当我们只考虑系统处于热平衡的情况时, $ A $ 不再是 $ E $ 的函数. 
+\begin{remark}
+    前文中我们定义的 $ A $ 也不是 $ E $ 的函数.
+\end{remark}
+
+类似地, 若只考虑热平衡的情况: 
+\begin{enumerate}
+    \item[$ \bullet $] 对于可以与外界交换 $ E $ 的系统, 固定 $ T,V,N $, 则{\bf 赫尔霍兹自由能} $ A(T,V,E):=E-TS $ 会被极小化.
+    \item[$ \bullet $] 对于可以与外界交换 $ E,V $ 的系统, 固定 $ T,P,N $, 则{\bf 吉布斯自由能} (Gibbs free energy) $ G(T,P,N):=E-TS+PV $ 会被极小化.
+    \item[$ \bullet $] 对于可以与外界交换 $ V $ 的系统, 固定 $ S,P,N $, 则{\bf 焓} (enthalpy) $ H(S,P,N):=E+PV $ 会被极小化.
+    \item[$ \bullet $] 对于可以与外界交换 $ E,N $ 的系统, 固定 $ T,V,\mu $, 则{\bf 巨自由能} $ \Phi(T,V,\mu):=E-TS-\mu N $ 会被极小化. 
+\end{enumerate} 

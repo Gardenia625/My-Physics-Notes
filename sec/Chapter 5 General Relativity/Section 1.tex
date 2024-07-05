@@ -1,0 +1,222 @@
+\renewcommand{\textflush}{flushright}
+\epigraph{
+	宇宙虽有起源~却没有终结~无限\\
+	星辰也有起源~但却会毁灭于自身的力量~有限\\
+	拥有智慧的生物才最为愚蠢~这从历史上也可得知\\
+	海中的鱼不知道陆地的存在~若它们拥有智慧~也终将走向灭亡\\
+	人类想要超越光速~比鱼想在陆地上生活还滑稽\\
+	这就是~与神明下达的最后通牒所抗争的人们~执念的碑文\vspace{1ex}
+}{---Steins;Gate 0}
+\renewcommand{\textflush}{flushleft}
+引力公式和库仑力公式很像, 看似可以仿照电磁理论, 构造一个狭义相对论框架下的引力理论. 但电荷有正负两种, 同性相斥, 异性相吸; 而质量没有负的, 同性且只相吸. 在狭义相对论框架中讨论引力总会遇到各种困难, 到目前为止, 没有成功在狭义相对论框架下讨论引力的理论.
+
+为了讨论引力, 爱因斯坦修改了狭义相对论的框架, 于 $1915$ 年创立了具有划时代意义的广义相对论. 
+
+简单地说, 从狭义相对论到广义相对论, 需要做以下 $3$ 条修改:
+\begin{enumerate}
+	\item 狭义相对论在闵氏时空 $(\mathbb{R}^4,\eta_{\alpha\beta})$ 中进行讨论, 而广义相对论在更一般的伪黎曼时空 $(M,g_{\alpha\beta})$ 中进行讨论, 其中 $M$ 为某个连通的 $4$ 维流形, $g_{\alpha\beta}$ 为洛伦兹度量.
+	\item 狭义相对论中的度量 $\eta_{\alpha\beta}$ 是平直的, 即克氏符(Christoffel  symbols)为 $0$, 而广义相对论中的度量 $g_{\alpha\beta}$ 不一定是平直的. 因此, 狭义相对论中的导数 $\partial_\alpha$ 在广义相对论中要换为更一般的联络 $\nabla_\alpha$.
+	\item 引力的本质是时空的弯曲. 时空的弯曲程度受物质分布的影响, 具体关系由爱因斯坦方程描述.
+\end{enumerate}
+本章使用几何单位制 $c=G=\varepsilon_0=1$, 并假设时空 $(M,g_{\alpha\beta})$ 为伪黎曼流形, 联络 $\nabla_\alpha$ 为相应的 Levi-Civita 联络.
+
+本章主要介绍广义相对论的基础理论, 和一些有关黑洞的内容. 所涉及的数学前置知识见附录 \ref{differential geometry}.
+
+\section{广义相对论基础概念}
+\subsection{广义相对性原理}
+由于广义相对论是狭义相对论的升级版, 我们有道理要求广义相对论中的物理定律服从以下两个原则:
+\begin{enumerate}
+	\item {\bf 广义协变性原理}: 只有时空度量及其派生量才允许以背景几何量的身份出现在物理定律的表达式中.
+	\item 当 $(M,g_{\alpha\beta})=(\mathbb{R}^4,\eta_{\alpha\beta})$ 时, 能得到狭义相对论的相应定律.
+\end{enumerate}
+
+通俗地说, 广义协变性原理要求物理定律的数学表达是在任意坐标变化下形式不变, 即物理定律不依赖于坐标选取. 这样的话, 导数 $\partial_\alpha$ 或克氏符 $\Gamma^\mu{}_{\alpha\beta}$ 这种依赖于具体坐标选取的概念不能出现在物理定律中.
+
+对于第二个原则, 我们一般只需将狭义相对论的物理定律中的 $\eta_{\alpha\beta}$ 和 $\partial_\partial$ 替换为 $g_{\alpha\beta}$ 和 $\nabla_\alpha$ 就能获得广义相对论中对应的物理定律. 这种做法叫做{\bf 最小替换法则}. 比如弯曲时空中质点的 $4$ 加速度应定义为
+\[A^\alpha:=U^\beta\nabla_\beta U^\alpha,\]
+质点所受 $4$ 力应定义为
+\[F^\alpha:=U^\alpha\nabla_\beta P^\alpha.\]
+对于{\bf 自由质点}, 即 $F^\alpha=0$ 的质点, 若其质量为常数, 则其世界线满足测地线方程 $U^\beta\nabla_\beta U^\alpha=0$.
+\begin{remark}
+	在狭义相对论中自由质点做惯性运动, 其世界线为直线. 但在广义相对论中, 我们将引力视作时空的几何性质, 不再将其视为一种力, 因此自由落体的小球没有 $4$ 加速度, 但``静止''在地面的小球却有 $4$ 加速度.
+\end{remark}
+又比如弯曲时空中的麦克斯韦方程为
+\begin{align*}
+	\nabla^\alpha F_{\alpha\beta} &= -4\pi J_\beta,\\
+	\nabla_{[\mu}F_{\alpha\beta]}&=0.
+\end{align*}
+\begin{proposition}
+	$4$ 维麦克斯韦方程可利用外微分算子等价地表达为
+	\begin{align*}
+	\mathrm{d}{}^{*}\!F&=4\pi{}^{*}\!J,\\
+	\mathrm{d}F&=0.
+	\end{align*}
+\end{proposition}
+\begin{proof}
+	第二个式子的等价性是显然的, 下证第一个式子的等价性. 由定义知
+	\begin{align*}
+		(\mathrm{d}{}^{*}\!F)_{\sigma\alpha\beta} &=\frac{3}{2}\nabla_{[\sigma}(\varepsilon_{\alpha\beta]\mu\nu}F^{\mu\nu}),
+	\end{align*}
+	用 $\varepsilon^{\rho\sigma\alpha\beta}$ 与上式缩并得
+	\begin{align*}
+		\varepsilon^{\rho\sigma\alpha\beta}(\mathrm{d}{}^{*}\!F)_{\sigma\alpha\beta}&=\frac{3}{2}\varepsilon^{\rho\sigma\alpha\beta}\varepsilon_{\mu\nu\alpha\beta}(\nabla_\sigma F^{\mu\nu})\\
+		&=-6\,\delta^{[\rho}{}_{\mu}\delta^{\sigma]}{}_{\nu}(\nabla_\sigma F^{\mu\nu})=-6\nabla_\sigma F^{\rho\sigma},
+	\end{align*}
+	再用 $\varepsilon_{\rho\mu\nu\zeta}$ 用上式缩并得
+	$$ (\mathrm{d}{}^{*}\!F)_{\mu\nu\zeta}=\varepsilon_{\rho \mu\nu\zeta}\nabla_\sigma F^{\sigma\rho}, $$
+	最后由定义式 ${}^{*}\!J_{\mu\nu\zeta}=J^\rho\varepsilon_{\rho\mu\nu\zeta}$ 即可得到等价性. 
+\end{proof}
+
+\begin{remark}
+	由于 $\nabla_\alpha$ 和 $\nabla_\beta$ 一般来说是不对易的, 因此一般来说由最小替换法则所推出的物理定律不唯一, 这种情况需要再加其他考虑.
+\end{remark}
+
+\subsection{无自转观者}
+\label{rotation}
+\begin{remark}
+	为避免因果关系上的困难, 本章只讨论世界线不自交的情况.
+\end{remark}
+
+在牛顿力学中, 设向量 $\vec{v}(t)$ 随时间变化, 但始终以点 $O$ 为起点. 若存在另一始终以点 $O$ 为起点的向量 $\vec{\omega}(t)$ 使得
+\[ \frac{\mathrm{d} \vec{w}(t)}{\mathrm{d} t}=\vec{\omega}(t)\times\vec{v}(t), \]
+则称 $\vec{\omega}(t)$ 为 $\vec{v}(t)$ 的 (瞬时) 转动 {\bf 角速度}.
+
+将其推广到闵氏时空上, 由于点 $O$ 相对于惯性系静止, 它可以充当惯性观者, 设其所在惯性系的坐标为 $(t,x^i)$, 则在该观者的世界线 $G(\tau)$ 上有 $t=\tau$. 对于 $G(\tau)$ 上的空间向量场 $v^i(\tau)$, 若存在另一 $G(\tau)$ 上的空间向量场 $\omega^i(\tau)$ 使得
+\[ \frac{\mathrm{d} v^i}{\mathrm{d} \tau}=\varepsilon^i{}_{jk}\omega^jv^k, \] 
+则称 $\omega^i(\tau)$ 为 $v^i(\tau)$ 的角速度. 并称角速度的对偶微分形式 $\Omega_{ij}:=({}^{*}\omega)_{ij}=\omega^k\varepsilon_{kij}$ 为角速度 $2$ 形式, 其中 $\varepsilon_{kij}$ 为与 $h_{ij}$ 相适配的体元. 利用 $\Omega_{ij}$ 可将角速度定义改写为
+\[ \frac{\mathrm{d} v^i}{\mathrm{d} \tau}=-\Omega^{ij}v_j. \] 
+
+接下来我们要进一步将其推广到任意时空、任意类时曲线、任意向量场的情形. 为此, 先定义一个记号: 给定 $(M,g_{\alpha\beta})$ 上的曲线 $G(\tau)$, 设其切向量场为 $w^a$, 记
+\[ \frac{\mathrm{D}}{\mathrm{d}\tau}:=w^\alpha\nabla_\alpha. \] 
+\begin{definition}[时空转动]
+	设 $G(\tau)$ 为时空 $(M,g_{ab})$ 中任意观者的世界线, $v^\alpha$ 为 $G(\tau)$ 上的向量场. 若 $G(\tau)$ 上存在 $2$ 形式场 $\Omega_{\alpha\beta}$ 使得
+	\[ \frac{\mathrm{D}v^\alpha}{\mathrm{d}\tau}=-\Omega^{\alpha\beta}v_\beta, \]
+	则称 $v^\alpha$ 以 $\Omega_{\alpha\beta}$ 为角速度进行{\bf 时空转动}. 或者称 $v^\alpha$ 的时空转动角速度 $2$ 形式为 $\Omega_{\alpha\beta}$. 特别地, 若
+	\[ \frac{\mathrm{D}v^\alpha}{\mathrm{d}\tau}=0, \]
+	则称 $v^\alpha$ 无时空转动.
+\end{definition}
+
+注意若 $\Omega^{\alpha\beta}$ 是 $v^\alpha$ 的角速度, 且 $2$ 形式 $\Lambda_{\alpha\beta}$ 满足 $\Lambda^{\alpha\beta}v_\beta=0$, 则 $\tilde{\Omega}_{\alpha\beta}=\Omega_{\alpha\beta}+\Lambda_{\alpha\beta}$ 也是 $v^\alpha$ 的角速度, 这体现了 $\Omega_{\alpha\beta}$ 的规范自由性. 若两个角速度只相差一个满足 $\Lambda^{\alpha\beta}v_\beta=0$ 的 $\Lambda_{\alpha\beta}$, 则我们将这两个角速度视为等同的. 于是我们可以说, 在至多相差一个规范变换的意义下, 无时空转动的充要条件为 $\Omega_{\alpha\beta}=0$. 如无特殊声明, 下文所说的有关 $\Omega_{\alpha\beta}$ 的等式均指在至多相差一个规范变换的意义下相等.
+
+\begin{remark}
+	$\Omega_{\alpha\beta}$ 的规范自由性的根本原因是: 一个向量以自身为轴转动相当于没有转动.
+\end{remark}
+
+时空转动保持内积, 即若类时线 $G(\tau)$ 上的向量场 $u^\alpha,v^\alpha$ 同时以 $\Omega_{\alpha\beta}$ 为角速度进行时空转动, 则
+\[ \frac{\mathrm{D} u^\alpha v_\alpha}{\mathrm{d} \tau}=0, \]
+这是因为 
+\begin{align*}
+	\frac{\mathrm{D} u^\alpha v_\alpha}{\mathrm{d} \tau}&=\frac{\mathrm{D} g_{\alpha\beta}u^\alpha v^\beta}{\mathrm{d} \tau}=v_\alpha\frac{\mathrm{D} u^\alpha}{\mathrm{d} \tau}+u_\alpha\frac{\mathrm{D} v^\alpha}{\mathrm{d} \tau}\\
+	&=v_\alpha(-\Omega^{\alpha\beta}u_\beta)+u_\alpha(-\Omega^{\alpha\beta}v_\beta)\\
+	&=0.
+\end{align*}
+反之, 任意类时线 $G(\tau)$ 上长度不变 (且非零) 的向量场 $u^\alpha$ 都在进行时空转动, 对此我们可以给出一个构造性的证明: 注意到
+\[ v^\alpha:=\frac{\mathrm{D}u^\alpha}{\mathrm{d}\tau},\quad u^{\alpha}v_{\alpha}=u_\alpha\frac{\mathrm{D}u^\alpha}{\mathrm{d}\tau}=\frac{1}{2}\frac{\mathrm{D}u^\alpha u_\alpha}{\mathrm{d}\tau}=0, \] 
+然后取 $w^\alpha$ 使得 $w^\alpha u_\alpha=1$ (由 $u^{\alpha}$ 长度非零知其存在非零分量, 所以这样的 $w^\alpha$ 总是存在的), 则 $u^{\alpha}$ 的时空转动角速度为 $\Omega_{\alpha\beta}=2w_{[\alpha}v_{\beta]}$, 容易验证
+\[ -2w^{[\alpha}v^{\beta]}u_\beta=v^{\alpha}w^{\beta}u_{\beta}-w^{\alpha}v^{\beta}u_{\beta}=v^{\alpha}=\frac{\mathrm{D}u^\alpha}{\mathrm{d}\tau}. \] 
+
+\begin{proposition}
+	\label{AZ}
+	设 $G(\tau)$ 为任意观者的世界线, 其 $4$ 速度为 $Z^\alpha$, $4$ 加速度为 $A^\alpha=Z^\beta\nabla_\beta Z^\alpha$. 则 $Z^\alpha$ 的时空转动角速度为 $\tilde{\Omega}_{\alpha\beta}=A_\alpha\wedge Z_\beta$.
+\end{proposition}
+\begin{proof}
+	注意到 $A^\alpha Z_\alpha=0$, 因此
+	\[ -(A^\alpha\wedge Z^\beta)Z_\beta = -(A^\alpha Z^\beta-Z^\alpha A^\beta)Z_\beta=A^\alpha=\frac{\mathrm{D}Z^\alpha}{\mathrm{d}\tau}.\qedhere \]
+\end{proof}
+
+由 $\tilde{\Omega}_{\alpha\beta}=A_\alpha\wedge Z_\beta$ 知 $Z^\alpha$ 的时空转动发生在 $Z_\alpha$ 与 $A^\alpha$ 张成的面内, 这会导致一些空间向量随之发生转动, 因此在讨论空间向量的转动情况时, 应减掉这部分由 $Z^a$ 的转动所导致的转动.
+
+\begin{proposition}
+	\label{space rotation}
+	设 $G(\tau)$ 为任意观者的世界线, 其 $4$ 速度的角速度为 $\tilde{\Omega}_{\alpha\beta}$. 若 $G(\tau)$ 上的空间向量场 $v^a$ 的时空转动角速度为 $\Omega_{\alpha\beta}$, 则 $\hat{\Omega}_{\alpha\beta}:=\Omega_{\alpha\beta}-\tilde{\Omega}_{\alpha\beta}$ 为纯空间转动, 即 $\hat{\Omega}_{\alpha\beta}$ 在以 $Z^\alpha$ 为 $(e_0)^\alpha$ 的标架下只有空间分量非零, 也即 $\hat{\Omega}_{0i}=0$, $i=1,2,3$.
+\end{proposition}
+
+\begin{proof}
+	取正交归一标架场 $(e_\alpha)$ 使得 $e_0=Z$, $e_1=Cv$, 其中 $Z$ 是观者的 $4$ 速度, $C$ 是归一化系数. 若二形式 $\Lambda$ 满足 $\Lambda^{\alpha\beta}v_\beta=0$ 的充要条件为 $\Lambda^{01}=\Lambda^{21}=\Lambda^{31}=0$, 而其他分量的值不受限制, 因此 $\hat{\Omega}_{02}$, $\hat{\Omega}_{03}$, $\hat{\Omega}_{23}$ 的值是任意的, 我们取这些分量为 $0$. 而对于 $\hat{\Omega}_{01}$, 计算得
+	\begin{align*}
+		0 &= \frac{\mathrm{D}Z^{\alpha}v_{\alpha}}{\mathrm{d}\tau}=v_\alpha\frac{\mathrm{D}Z^{\alpha}}{\mathrm{d}\tau}+Z_{\alpha}\frac{\mathrm{D}v^{\alpha}}{\mathrm{d}\tau}\\
+		&=-v_\alpha\tilde{\Omega}^{\alpha\beta}Z_{\beta}-Z_\alpha\Omega^{\alpha\beta}v_{\beta}\\
+		&=\frac{1}{C}(\tilde{\Omega}^{01}-\Omega^{01}),
+	\end{align*}
+	因此 $\hat{\Omega}_{01}=0$.
+\end{proof}
+根据命题 \ref{space rotation}, 我们称 $\hat{\Omega}_{\alpha\beta}$ 为 $v^\alpha$ 的{\bf 空间转动角速度}, 定义无空间自转为 $\hat{\Omega}_{\alpha\beta}=0$. 由命题 \ref{AZ} 可得无空间转动的充要条件如下.
+\begin{proposition}
+	观者世界线 $G(\tau)$ 上的空间向量场 $v^\alpha$ 无空间转动的充要条件是
+	\[ \frac{\mathrm{D}v^{\alpha}}{\mathrm{d}\tau}+(A^{\alpha}Z^{\beta}-Z^{\alpha}A^{\beta})v_{\beta}=0. \] 
+\end{proposition}
+\begin{remark}
+	类时线 $G(\tau)$ 上无空间自转的向量场叫做沿 $G(\tau)$ 费米-沃克移动的 (Fermi-Walker transported), 详见 \cite[\S\,7.3]{梁灿彬2000微分几何入门与广义相对论} 
+\end{remark}
+\begin{proposition}
+	对于观者世界线 $G(\tau)$ 上任意正交归一标架场 $(Z,e_i)$, 存在 $\hat{\Omega}_{\alpha\beta}$ 同时成为三个 $e_i$ 的空间转动角速度 (不具有规范自由性).
+\end{proposition}
+\begin{proof}
+	\label{frame rotation}
+	用 $(\hat{\Omega}_i)_{\alpha\beta}$ 来表示 $e_i$ 的空间转动角速度.
+	\[ \frac{\mathrm{D}(e_1)^{\alpha}(e_2)_{\alpha}}{\mathrm{d}\tau}=\frac{\mathrm{D}(e_2)^{\alpha}(e_3)_{\alpha}}{\mathrm{d}\tau}=\frac{\mathrm{D}(e_3)^{\alpha}(e_1)_{\alpha}}{\mathrm{d}\tau}=0 \]
+	知
+	\begin{align*}
+		(\hat{\Omega}_1)^{12} &= (\hat{\Omega}_2)^{12},\\
+		(\hat{\Omega}_2)^{23} &= (\hat{\Omega}_3)^{23},\\
+		(\hat{\Omega}_3)^{31} &= (\hat{\Omega}_1)^{31},
+	\end{align*}
+	根据命题 \ref{space rotation} 的证明中关于规范自由性的讨论, 恰有三个分量 $(\hat{\Omega}_1)^{23}$, $(\hat{\Omega}_2)^{31}$, $(\hat{\Omega}_3)^{12}$ 可以随意选取, 我们取 $(\hat{\Omega}_1)^{23}=(\hat{\Omega}_2)^{23}$, $(\hat{\Omega}_2)^{31}=(\hat{\Omega}_3)^{31}$, $(\hat{\Omega}_3)^{12}=(\hat{\Omega}_1)^{12}$, 于是
+	\begin{align*}
+		(\hat{\Omega}_1)^{12} &= (\hat{\Omega}_2)^{12}= (\hat{\Omega}_3)^{12},\\
+		(\hat{\Omega}_1)^{23} &= (\hat{\Omega}_2)^{23}= (\hat{\Omega}_3)^{23},\\
+		(\hat{\Omega}_1)^{31} &= (\hat{\Omega}_2)^{31}= (\hat{\Omega}_3)^{12},
+	\end{align*}
+	也就是说 $\hat{\Omega}_1=\hat{\Omega}_2=\hat{\Omega}_3$. 记这个相同的空间转动角速度为 $\hat{\Omega}_{\alpha\beta}$, 则 $\hat{\Omega}_{\alpha\beta}$ 不具有规范自由性.
+\end{proof}
+
+根据命题 \ref{frame rotation}, 我们终于可以定义无自转观者了.
+\begin{definition}[无自转观者]
+	对于任意观者, 设其配有的标架场为 $(Z,e_i)$, 且 $\hat{\Omega}$ 为 $e_i$ 共有的空间转动角速度. 若 $\hat{\Omega}=0$, 则称该观者为{\bf  无自转观者}.
+\end{definition}
+\begin{remark}
+	我们称 $(e_i)$ 为空间 $3$ 标架, 由于其元素共有的空间转动角速度 $\hat{\Omega}_{\alpha\beta}$ 只有空间分量, 我们也可以称满足 $\hat{\Omega}_{ij}=\omega^{k}\varepsilon_{kij}$ 的 $\omega^i$ 为空间 $3$ 标架场的{\bf 空间转动角速度}.
+\end{remark}
+\begin{remark}
+	观者本身的 $4$ 加速会导致惯性力, 而观者的自转 (即空间 $3$ 标架的空间转动) 会导致科氏力 (Coriolis force), 详见 \cite[\S\,7.4]{梁灿彬2000微分几何入门与广义相对论}.
+\end{remark}
+
+至今为止讨论的观者虽然只是配有正交归一标架场的类时曲线, 但我们可以 (局部地) 构造一个坐标型并将标架场延伸出去, 方法如下:
+\begin{enumerate}
+	\item 记观者世界线为 $G(\tau)$, 其上的标架场为 $(Z,e_i)$.
+	\item 任取 $p=G(\tau_0)$, 以及点 $p$ 处与 $Z$ 正交的类空向量 $T$, (局部) 存在唯一的测度线 $\gamma(s)$ 满足 $\gamma(0)=p$ 且在 $p$ 处切向量为 $T$.
+	\item 记 $T$ 的空间分量为 $w^i$, 则定义 $\gamma(s)$ 的坐标为 $(\tau_0,sw^1,sw^2,sw^3)$.
+\end{enumerate}
+\begin{remark}
+	这其实就是通过指数映射来得到 $G(\tau)$ 周围的坐标, 由于指数映射在充分小邻域内是微分同胚, 上述过程不会给同一个点指定两个不同的坐标. 
+\end{remark}
+\begin{remark}
+	被赋予坐标的点就是该观者在 $\tau_0$ 时刻感受到的``周围空间''.
+\end{remark}
+% \begin{remark}
+% 	由管状邻域定理, 我们可以在世界线的一个领域上获得坐标系; 由完备黎曼流形上一点到一个子流形的极小测地线正交于该子流形知这样的坐标系满足上面的要求.
+% \end{remark}
+对于每一点 $p$ 都进行上述操作, 就得到了一个 (局部坐标系), 我们称这样的坐标系为该观者的{\bf 固有坐标系}.
+\begin{remark}
+	我们假设这样的操作总能获取世界线的一个邻域上的坐标系.
+\end{remark}
+\subsection{等效原理}
+等效原理根据强度的不同分为三种: {\bf 弱等效原理}(weak equivalence principle, WEP)、{\bf 爱因斯坦等效原理}(Einstein equivalence principle, EEP)、{\bf 强等效原理}(strong equivalence principle, SEP). 我们简要地介绍这三种等效原理如下.
+\begin{itemize}
+	\item {\bf 弱等效原理}: $m_I=m_G$, 即惯性质量等于引力质量.
+	\begin{remark}
+		一个等价的描述为: 引力场中质点的世界线只由其初始位置和初始速度所决定, 与其质量无关.
+	\end{remark}
+	\item {\bf 爱因斯坦等效原理}: 弱等效原理成立, 且自由落体的电梯中的人, 无法通过任何 (非引力) 实验得知电梯到底在引力场中自由落体, 还是在闵氏空间中做惯性运动.
+	\begin{remark}
+		严谨地说, 我们要假设电梯中的人看不到外面, 且电梯内引力场变化很小, 且电梯内外不存在引力场以外的相互作用. 非引力实验指的是电梯内物体产生的引力可以忽略不计.
+	\end{remark}
+	\item {\bf 强等效原理}: 爱因斯坦等效原理中的人无法通过任何实验得知自己的处境.
+	\begin{remark}
+		即电梯内物体所产生的引力不能忽略不计时, 爱因斯坦等效原理依然成立.
+	\end{remark}
+\end{itemize}
+
+对于弯曲时空中的自由的 ($4$ 加速度为零的观者) 且无自转观者 , 设其世界线为 $G(\tau)$, 则由 \cite[命题 7-5-1]{梁灿彬2000微分几何入门与广义相对论} 知, 在该自由观者的固有坐标系下,
+\[ g_{\alpha\beta}|_p=\eta_{\alpha\beta},\quad \Gamma^{\mu}{}_{\alpha\beta}|_p=0,\quad \forall p\in G(\tau). \] 
+这一结论说明了这样的观者无法通过实验判断自己的处境, 于是我们也称自由的无自转观者的固有坐标系为{\bf 局部惯性系}或{\bf 局部洛伦兹系}. 注意, 在 $G(\tau)$ 之外, 上式未必成立, 进而会导致引力场中的潮汐现象, 详见 \cite[\S\,7.6]{梁灿彬2000微分几何入门与广义相对论}.

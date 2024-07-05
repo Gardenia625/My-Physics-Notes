@@ -1,0 +1,129 @@
+\section{位置与动量}
+\subsection{\texorpdfstring{$ \mathbb{R} $}{R} 中的位置与动量}
+考虑量子希尔伯特空间为 $ L^2(\mathbb{R}) $ 的情况. 经典相空间的两个投影函数
+\begin{align*}
+    (x,p)&\mapsto x,\\
+    (x,p)&\mapsto p,
+\end{align*}
+所对应的两个算子为
+\begin{enumerate}
+    \item[$ \bullet $] {\bf 位置算子} $ X:\psi(x)\mapsto x\cdot\psi(x) $.
+    \item[$ \bullet $] {\bf 动量算子} $ P:\psi(x)\mapsto-\mathrm{i}\hbar\dfrac{\mathrm{d}}{\mathrm{d}x}\psi(x) $.
+\end{enumerate}
+
+$ X $ 和 $ P $ 的谱都是 $ \mathbb{R} $, 且 $ X $ 的特征向量是所有形如 $ \delta(x-\lambda) $ 的函数, $ P $ 的特征向量是所有形如 $ e^{\mathrm{i}\lambda x} $ 的函数.
+
+\begin{remark}
+    $ \delta(x-\lambda) $ 是广义函数, 不是函数. $ e^{\mathrm{i}\lambda x} $ 虽然是函数, 但不属于 $ L^2(\mathbb{R}) $.
+\end{remark}
+
+测量一个状态为 $ \psi $ 的粒子的位置, 结果在 $ [a,b) $ 内的概率为
+\[ \int_{a}^{b}\mathrm{d}s\int\overline{\psi}(x)\delta(x-s)\psi(x)\,\mathrm{d}x=\int_{a}^{b}|\psi(s)|^2\,\mathrm{d}s. \]
+这说明波函数的模长平方 $ |\psi(x)|^2 $ 作为一个概率密度函数, 恰好表示了粒子出现在不同位置的概率. 这叫做波函数的统计诠释.
+
+在对状态 $ \psi $ 测量 $ A $ 时, 用以下记号表示测量结果期望与方差:
+\begin{align*}
+    \langle A\rangle_\psi&:=\langle\psi,A\psi\rangle,\\ 
+    (\Delta_\psi A)^2&:=\left\langle (A-\langle A\rangle_\psi I)^2 \right\rangle_\psi=\langle A^2\rangle_\psi-\left( \langle A\rangle_\psi \right)^2,
+\end{align*}
+并用 $ \Delta_\psi A $ 表示标准差.
+
+\begin{theorem}[不确定性原理]\keepline
+    \label{uncertainty}
+    \[ \Delta_\psi X\Delta_\psi P\geqslant\frac{\hbar}{2}. \]
+\end{theorem}
+\vspace{0ex}
+\begin{lemma}\keepline
+    \label{XP}
+    \[ [X,P]=XP-PX=\mathrm{i}\hbar I. \]
+\end{lemma}
+\begin{proof}[定理 \ref{uncertainty} 的证明]
+    变换
+    \begin{align*}
+        X&\mapsto X-\langle x\rangle_\psi I\\
+        P&\mapsto P-\langle P\rangle_\psi I
+    \end{align*}
+    可将期望变为零, 并保持标准差不变, 因此我们可以不失一般性地假设 
+    \[ \langle X\rangle_\psi=\langle P\rangle_\psi=0. \]
+    使用 Cauchy-Schwarz 不等式有
+    \begin{align*}
+        (\Delta_\psi X)^2(\Delta_\psi P)^2 &=\langle X\psi,X\psi\rangle\langle P\psi,P\psi\rangle\\ 
+        &\geqslant |\langle X\psi,P\psi\rangle|^2\\ 
+        &= |\mathrm{Im}\langle X\psi,P\psi\rangle|^2\\ 
+        &=\frac{1}{4}|\langle X\psi,P\psi\rangle-\langle P\psi,X\psi\rangle|^2\\ 
+        &=\frac{1}{4}|\langle\psi,[X,P]\psi\rangle|^2,
+    \end{align*}
+    根据引理 \ref{XP} 有
+    \[ \Delta_\psi X\Delta_\psi P=\frac{\hbar}{2}.\qedhere \]
+\end{proof}
+\begin{remark}
+    更一般地, 我们可以证明
+    \[ \Delta_\psi A\Delta_\psi B\geqslant\frac{1}{2}|\langle [A,B]\rangle|. \]
+\end{remark}
+
+不确定性原理说明我们不可能同时获得一个粒子的精确位置和精确速度, 因此也叫{\bf 测不准原理}. 若使用哥本哈根诠释, 则在我们测量 $ X $ 时, $ \psi $ 会瞬间变为一个 $ \delta $ 函数, 此时 $ \psi $ 动量的方差是发散的; 反之, 测量 $ P $ 会让 $ \psi $ 变为 $ e^{\mathrm{i}kx} $, 此时它的位置的方差是发散的. 因此我们可以认为测不准的原因是 $ X $ 和 $ P $ 没有共同的特征向量. 
+
+回忆线性代数, 两个可交换的可对角化矩阵拥有相同的特征向量, 而两个矩阵的对易子描述了它们``不可交换的程度'', 进而也描述了``特征向量不同的程度'', 这与哥本哈根诠释视角下的
+\[ \Delta_\psi A\Delta_\psi B\geqslant\frac{1}{2}|\langle [A,B]\rangle|. \]
+所表达的含义不谋而合.
+
+\subsection{\texorpdfstring{$ \mathbb{R}^n $}{Rn} 中的位置与动量}
+若量子希尔伯特空间为 $ L^2(\mathbb{R}^n) $, 我们定义位置算子和动量算子为
+\begin{align*}
+    X_j\psi(x) &:= x_j\psi(x),\\ 
+    P_j\psi(x) &:= -\mathrm{i}\hbar\frac{\partial}{\partial x_j}\psi(x),
+\end{align*}
+其中 $ j=1,\dots,n $. 不难验证它们满足下述对易关系.
+\begin{proposition}[正则对易关系]
+    位置 $X_j$ 和动量 $P_j$ 满足{\bf 正则对易关系}, 即
+    \[\begin{aligned}
+        [X_j,X_k] &= 0,\\ 
+        [P_j,P_k] &= 0,\\ 
+        [X_j,P_k] &= \mathrm{i}\hbar\delta_{jk} I.
+    \end{aligned}\]
+\end{proposition}
+
+\subsection{傅里叶变换}
+\begin{definition}[速降函数空间]
+    设 $ f:\mathbb{R}^n\to\mathbb{C} $ 为光滑函数, 若对所有 $ \alpha,\beta $ 满足
+    \[ \sup_{x\in\mathbb{R}^n}\left| x^\beta\partial^\alpha f(x) \right|<\infty, \]
+    则称 $ f $ 为{\bf 速降函数} (rapidly decreasing function). 所有速降函数构成的空间叫做{\bf 速降函数空间} (Schwartz space) $ \mathcal{S}(\mathbb{R}^n) $. 
+    
+    其中 $ \alpha=(\alpha_1,\dots,\alpha_n) $, $ \beta=(\beta_1,\dots,\beta_n) $ 是多重指标, 而
+    \begin{align*}
+        \partial^\alpha &= \left( \frac{\partial}{\partial x^1} \right)^{\alpha_1}\cdots\ \left( \frac{\partial}{\partial x^n} \right)^{\alpha_n},\\ 
+        x^\beta &= x^{\beta_1}\cdots\,x^{\beta_n}.
+    \end{align*}
+\end{definition}
+\begin{remark}
+    可等价地将速降函数定义为满足
+    \[ \lim_{x\to\pm\infty}\left| x^{\beta}\partial^{\alpha}f(x) \right|=0 \]
+    的光滑函数. 这样更能看出速降函数如何速降.
+\end{remark}
+\begin{definition}[傅里叶变换]
+    对于 $ f\in\mathcal{S}(\mathbb{R}^n) $, 定义其{\bf 傅里叶变换}为
+    \[ \hat{f}(k)=(2\pi)^{-\frac{n}{2}}\int_{\mathbb{R}^n}e^{-\mathrm{i}k\cdot x}f(x)\,\mathrm{d}x. \]
+\end{definition}
+\begin{proposition}
+    若 $ f\in\mathcal{S}(\mathbb{R}^n) $, 则 $ \hat{f}\in\mathcal{S}(\mathbb{R}^n) $.
+\end{proposition}
+\begin{proposition}[逆傅里叶变换]
+    若 $ f\in\mathcal{S}(\mathbb{R}^n) $, 则
+    \[ f(x)=(2\pi)^{-\frac{n}{2}}\int_{\mathbb{R}^n}e^{\mathrm{i}k\cdot x}f(k)\,\mathrm{d}k. \]
+\end{proposition}
+\begin{proposition}[帕塞瓦尔定理]
+    若 $ f\in\mathcal{S}(\mathbb{R}^n) $, 则
+    \[ \int_{\mathbb{R}^n}|f(x)|^2\,\mathrm{d}x=\int_{\mathbb{R}^n}|\hat{f}(k)|^2\,\mathrm{d}k. \]
+\end{proposition}
+
+\begin{proposition}
+    傅里叶变换可将位置算子与动量算子角色互换, 即若 $ \psi\in\mathcal{S}(\mathbb{R}^n) $, 则
+    \begin{align*}
+        \widehat{\frac{\partial\psi}{\partial x_j}}(p)&=\mathrm{i}p_j\hat{\psi}(p),\\ 
+        \widehat{x_j\psi}(p)&=\mathrm{i}\frac{\partial}{\partial p_j}\hat{\psi}(p).
+    \end{align*}
+\end{proposition}
+
+\begin{remark}
+    $ \mathcal{S}(\mathbb{R}^n) $ 在 $ L^2(\mathbb{R}^n) $ 中稠密, 傅里叶变换可延拓为 $ L^2 $ 到自身的等距同构, 以上几条命题也都可以推广到 $ L^2 $ 上.
+\end{remark}

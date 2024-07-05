@@ -1,0 +1,79 @@
+\section{流形上的拉格朗日力学}
+我们可以将拉格朗日力学推广到流形上, 即设位形空间 $ M $ 为光滑流形, 拉格朗日量为其切丛上的光滑函数 $ L(q,\dot{q}):TM\to\mathbb{R} $, 此时仍可推出拉格朗日方程, 但要注意 $ \frac{\partial L}{\partial q} $ 和 $ \frac{\partial L}{\partial\dot{q}} $ 是余切向量.
+
+\begin{remark}
+    对于黎曼流形, 可将动能定义为切丛上的二次型 $ \frac{m}{2}\langle \dot{q},\dot{q} \rangle $.
+\end{remark}
+
+本节的目的是介绍一个非常重要的定理, 即诺特定理, 它指出每个拉格朗日函数的对称性都有对应的守恒律, 其中守恒律指的是某个物理量不随时间变化.
+
+令 $ h:M\to M $ 为一光滑映射, 若 $ L(h(x),h_{*x}(v))=L(x,v) $, $ \forall(x,v)\in TM$, 其中 $ h_{*x} $ 是 $ h $ 在点 $ x $ 处的切映射 (推出), 则称拉格朗日系统 $ (M,L) $ 容许映射 $ h $.
+
+\begin{theorem}[诺特定理]
+    若系统 $ (M,L) $ 容许一个单参微分同胚群 $ h^s:M\to M $, $ s\in\mathbb{R} $, 则切丛上的函数
+    \[ I(q,\dot{q}):=\left.\frac{\partial L}{\partial\dot{q}}\frac{\mathrm{d}h^s(q)}{\mathrm{d}s}\right|_{s=0} \]
+    是守恒量, 即满足
+    \[ \frac{\mathrm{d}}{\mathrm{d}t}I(q,\dot{q})=0. \]
+\end{theorem}
+
+\begin{remark}
+    $ \dfrac{\partial L}{\partial\dot{q}} $ 是余切向量, $ \left.\dfrac{\mathrm{d}h^s(q)}{\mathrm{d}s}\right|_{s=0} $ 是切向量.
+\end{remark}
+
+\begin{proof}
+    若 $ h $ 是微分同胚且 $ L(h(x),h_{*x}(v))=L(x,v) $, $ \forall(x,v)\in TM$, 则两边同时求梯度有
+    \begin{align*}
+        \frac{\partial L(x,v)}{\partial x} &= h^*_x\frac{\partial L(h(x),h_{*x}(v))}{\partial q},\\
+        \frac{\partial L(x,v)}{\partial v} &= h^*_x\frac{\partial L(h(x),h_{*x}(v))}{\partial\dot{q}}.
+    \end{align*}
+    设 $ \varphi(t) $ 是拉格朗日方程的解, 即满足
+    \[ \frac{\partial L(\varphi,\dot{\varphi})}{\partial q}=\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L(\varphi,\dot{\varphi})}{\partial\dot{q}}. \]
+    由于 $ h $ 是微分同胚, 其诱导的拉回映射 $ h^* $ 是可逆的, 进而有
+    \[ \frac{\partial L(h(\varphi),h_{*\varphi}(\dot{\varphi}))}{\partial q}=\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L(h(\varphi),h_{*\varphi}(\dot{\varphi}))}{\partial\dot{q}}, \]
+    这说明 $ h $ 将拉格朗日方程的解映为解. (这也说明拉格朗日方程不依赖于坐标选取.)
+
+    记 $ \Phi(s,t)=h^s(\varphi(t)) $, 由前面的讨论有
+    \[ \frac{\partial L(\Phi,\dot{\Phi})}{\partial q}=\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L(\Phi,\dot{\Phi})}{\partial\dot{q}}. \]
+    用 $ ' $ 表示对 $ s $ 求导, 由于 $ h^s $ 保持 $ L $,
+    \begin{align*}
+        0 &= \frac{\partial L(\Phi,\dot{\Phi})}{\partial s}=\frac{\partial L(\Phi,\dot{\Phi})}{\partial q}\Phi'+\frac{\partial L(\Phi,\dot{\Phi})}{\partial\dot{q}}\dot{\Phi}'\\ 
+        &= \left( \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L(\Phi,\dot{\Phi})}{\partial\dot{q}} \right)\Phi'+\frac{\partial L(\Phi,\dot{\Phi})}{\partial\dot{q}}\left( \frac{\mathrm{d}}{\mathrm{d}t}\Phi' \right)\\ 
+        &= \frac{\mathrm{d}}{\mathrm{d}t}\left( \frac{\partial L(\Phi,\dot{\Phi})}{\partial\dot{q}}\Phi' \right),
+    \end{align*}
+    其中由于单参微分同胚群是光滑的, $ \Phi $ 对 $ s $ 和对 $ t $ 求导可换序. 当固定 $ s=0 $ 时有
+    \[ \frac{\partial L(\varphi,\dot{\varphi})}{\partial\dot{q}}\left.\frac{\mathrm{d}h^s(q)}{\mathrm{d}s}\right|_{s=0}, \]
+    这正是我们想找的 $ I $. 
+\end{proof}
+接下来, 我们计算两个关于 $ \mathbb{R}^3 $ 上拉格朗日函数 $ L(q,\dot{q})=\frac{1}{2}m\dot{q}^2-V(q) $ 的例子.
+\begin{example}[动量守恒]
+    若 $ L $ 容许沿空间向量 $ r $ 平移, 即 $ h^s(q)=q+sr $, 则
+    \[ I(q,\dot{q})=m\dot{q}\cdot r, \]
+    这是{\bf 动量} $ p=m\dot{q} $ 在方向 $ r $ 上的分量.
+\end{example}
+\begin{example}[角动量守恒]
+    若 $ L $ 容许绕单位向量 $ \omega $ 所在直线旋转, 使用 Rodrigues' rotation formula:
+    \begin{align*}
+        h^\theta(q) &= q_{\perp}\cos\theta+(\omega\times q)\sin\theta+q_{\parallel}\\ 
+        &=[q-(\omega\cdot q)\omega]\cos\theta+(\omega\times q)\sin\theta+(\omega\cdot q)\omega.
+    \end{align*}
+    则
+    \[ I(q,\dot{q})=p\cdot(\omega\times q)=\omega\cdot(q\times p), \]
+    这是{\bf 角动量} $ q\times p $ 在 $ \omega $ 上的分量. 若该系统正是绕 $ \omega $ 所在直线旋转的, 则 $ q\times p $ 与 $ \omega $ 共线, 进而有角动量 $ q\times p $ 守恒.
+\end{example}
+\begin{remark}
+    由于
+    \[ u\times v=\left( \begin{matrix}
+        u_yv_z-u_zv_y \\ u_zv_x-u_xv_z \\ u_xv_y-u_yv_x
+    \end{matrix} \right)=\left( \begin{matrix}
+        0 & -u_z & u_y \\ 
+        u_z & 0 & -u_x \\ 
+        -u_y & u_x & 0
+    \end{matrix} \right)v \]
+    和
+    \[ (u\cdot v)u=\left( \begin{matrix}
+        u_x^2 & u_xu_y & u_xu_z \\ 
+        u_xu_y & u_y^2 & u_yu_z \\ 
+        u_xu_z & u_yu_z & u_z^2
+    \end{matrix} \right)v, \]
+    还可将 $ h^\theta(q) $ 写成矩阵形式 $ h^\theta(q)=Rq $.
+\end{remark}

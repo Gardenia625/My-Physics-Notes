@@ -1,0 +1,50 @@
+\section{熵}
+我们希望用一个函数 $ H(p_1,\dots,p_n) $ 来描述有限状态的概率分布有多么随机, 或者说, 描述其无序程度. 设事件空间为 $ A=\{A_1,\dots,A_n\} $, 考虑其上的概率分布 $ p_i=P(A_i) $, $ i=1,\dots,n $. 我们有理由要求 $ H $ 满足以下性质:
+\begin{enumerate}
+    \item $ H $ 关于每个 $ p_i $ 都是连续的.
+    \item 若所有 $ p_i $ 相等, 即 $ p_i=1/n $, 则 $ H $ 是关于 $ n $ 的单增函数.
+    \item 将 $ A $ 划分为 $ B=\{B_1,\dots,B_r\} $, 其中 $ B_j=\{A_{j_1},\dots,A_{j_k}\} $. 给定 $ B $ 上的概率分布 $ w_j=P(B_j) $, 则
+    \[ H(p_1,\dots,p_n)=H(w_1,\dots,w_r)+\sum_{j=1}^{r}w_j H\left( \frac{p_{j_1}}{w_j},\dots,\frac{p_{j_k}}{w_j} \right). \]
+\end{enumerate}
+\begin{theorem}[香农 {\cite[第 6 节]{shannon1948mathematical}}]
+    满足上述三个条件的函数一定形如
+    \[ H(p_1,\dots,p_n)=-K\sum_{i=1}^{n}p_i\log p_i, \]
+    其中 $ K>0 $ 为任意常数.
+\end{theorem}
+
+\begin{definition}[熵]
+    分别定义离散和连续情况的{\bf 熵} (entropy) 为
+    \[ S:=-k_B\sum_{i}p_i\log p_i, \quad S:=k_B\int p\log p, \]
+    其中 $ k_B $ 为{\bf 玻尔兹曼常数}, 值约为 $ 1.38064852\times 10^{-23}\mathrm{J}/\mathrm{K} $ 其中 $ J $ 为能量单位, $ K $ 为温度单位.
+\end{definition}
+\begin{remark}
+    遍历性假设蕴涵熵随时间单增.
+\end{remark}
+
+在遍历性假设下, 给定能量 $ E $、体积 $ V $、粒子数 $ N $ 后, 系统状态的分布是微正则系综上的均匀分布, 因此可将熵视为 $ E,V,N $ 三个变量的函数 $ S(E,V,N) $. 利用熵, 我们可以严格定义其他很多热力学中的概念.
+\begin{definition}
+    通过关系
+    \begin{align*}
+        \left.\frac{\partial S}{\partial E}\right|_{V,N}=\frac{1}{T},\quad \left.\frac{\partial S}{\partial V}\right|_{E,N}=\frac{P}{T},\quad \left.\frac{\partial S}{\partial N}\right|_{E,V}=-\frac{\mu}{T}
+    \end{align*}
+    来分别定义定义{\bf 温度} $ T $、{\bf 压强} (pressure) $ P $、{\bf 化学势} (chemical potential) $ \mu $. 
+    
+    也就是说, 我们有 
+    \[ \mathrm{d}S=\frac{1}{T}\,\mathrm{d}E+\frac{P}{T}\,\mathrm{d}V-\frac{\mu}{T}\,\mathrm{d}N. \]
+\end{definition}
+
+考虑一个包含两个子系统的系统, 设子系统的体积和粒子数均不变, 系统总能量 $ E $ 不变, 但两个子系统间可以交换能量. 用下角标 $ 1 $ 和 $ 2 $ 来区分两个子系统, 第一个子系统的能量等于 $ E_1 $ 的概率为
+\[ P(E_1)=\frac{\Omega_1(E_1)\Omega_2(E-E_1)}{\Omega(E)}. \]
+$ p(E_1) $ 应在最大值点 $ E_1^* $ 处导数为 $ 0 $, 即
+\[ \frac{\Omega_2(E-E_1^*)}{\Omega(E)}\frac{\mathrm{d}\Omega_1(E_1^*)}{\mathrm{d}E_1}+\frac{\Omega_1(E_1^*)}{\Omega(E)}\frac{\mathrm{d}\Omega_2(E-E_1^*)}{\mathrm{d}E_1}=0. \]
+令 $ E_2=E-E_1 $, 不难看出 $ p(E_2) $ 的最大值点 $ E_2^* $ 应等于 $ E-E_1^* $, 因此整理上式可得
+\[ \frac{1}{\Omega_1(E_1)}\frac{\mathrm{d}\Omega_1(E_1^*)}{\mathrm{d}E_1}=\frac{1}{\Omega_2(E_2^*)}\frac{\mathrm{d}\Omega_2(E_2^*)}{\mathrm{d}E_2}. \]
+在粒子数相当大时, 上述概率密度函数``几乎完全聚集在最大值点附近'', 因此可以直观地认为
+\[ \frac{1}{\Omega(E)}\frac{\mathrm{d}\Omega(E)}{\mathrm{d}E} \]
+是在能量传递达到平衡时应取等的值. 
+
+微正则系综上的均匀分布所对应的熵为
+\[ S(E)=k_B\log(\Omega(E)), \]
+其对应的温度为
+\[ \frac{1}{T}=\frac{\mathrm{d}S}{\mathrm{d}E}=k_B\frac{1}{\Omega(E)}\frac{\mathrm{d}\Omega(E)}{\mathrm{d}E}. \]
+这说明我们前文中定义的温度, 是在能量传递达到平衡时应取等的值, 这与我们先前对温度概念的理解一致.

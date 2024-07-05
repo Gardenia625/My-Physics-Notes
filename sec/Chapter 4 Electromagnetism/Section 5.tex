@@ -1,0 +1,272 @@
+\section{电动力学}
+\begin{proposition}
+    $ (\mathbb{R}^3,\delta_{ij}) $ 中的{\bf 叉乘} $ \times $ 可表达为 $ \times=\star\circ\wedge $, 即先做楔积再求其对偶形式. 利用体元可将叉乘和旋度表达为
+    \begin{align*}
+        (\vec{A}\times \vec{B})_k&=\varepsilon_{ijk}A^iB^j,\\ 
+        (\nabla\times \vec{A})_k&=\varepsilon^{ijk}\partial_iA_j.
+    \end{align*}
+    在 $(\mathbb{R}^4,\eta_{\alpha\beta})$ 中, 给定一个惯性系, 再记该惯性系的等 $t$ 面上的诱导度量为 $\delta_{ij}$, 则 $\hat{\varepsilon}_{ijk}:=\varepsilon_{0ijk}$ 就是与 $\delta_{ij}$ 相适配的体元.
+\end{proposition}
+\begin{remark}
+    在 $(\mathbb{R}^3,\delta_{ij})$ 中指标的上下位置不会影响系数的值.
+\end{remark}
+\begin{remark}
+    更多向量场运算的表达式见 \cite[123 页]{梁灿彬2000微分几何入门与广义相对论}. 设流形 $M$ 的体元 $\varepsilon_{a_1\cdots a_n}$, 则其边界 $\partial M$ 上的诱导体元为 $\hat{\varepsilon}_{a_1\cdots a_{n-1}}:= n^b\varepsilon_{ba_1\cdots a_{n-1}}$, 其中 $n^b$ 是 $\partial N$ 上指向外侧的法向量, 详见 \cite[120 页]{梁灿彬2000微分几何入门与广义相对论}. 这里惯性系诱导的标架上的类时向量 $e_0$ 就是 $t$ 面的法向量, 但此时没有内外之分, 因此我们选取能保持右手系的 $\hat{\varepsilon}_{ijk}:=\varepsilon_{0ijk}=(e_0)^\alpha\varepsilon_{\alpha ijk}$. 
+\end{remark}
+\subsection{电磁场张量}
+电磁场可由一个 $ 2 $ 形式场 $ F_{\alpha\beta} $来描述, 这样的 $F_{\alpha\beta}$ 叫做 {\bf 电磁场张量}.
+\begin{definition}
+    瞬时观者 $ (p,Z) $ 测得的{\bf 电场} $ E^\alpha $ 和{\bf 磁场} $ B^\alpha $ 为 
+    \[ E_\alpha:=F_{\alpha 0},\quad B_\alpha:=-{}^{*}\!F_{\alpha 0} \] 
+\end{definition}
+\begin{remark}
+    也可以等价地定义为
+    \[ E_\alpha:=F_{\alpha\beta}Z^\beta,\quad B_\alpha:=-{}^{*}\!F_{\alpha\beta}Z^\beta. \]
+\end{remark}
+\begin{proposition}
+    $ E^\alpha $ 和 $ B^\alpha $ 是瞬时观者 $ (p,(Z,e_i)) $ 的空间向量, 且
+    \[ (F_{\alpha\beta})=\left(\begin{matrix}
+        0 & -E_1 & -E_2 & -E_3\\ 
+        E_1 & 0 & B_3 & -B_2\\ 
+        E_2 & -B_3 & 0 & B_1\\ 
+        E_3 & B_2 & -B_1 & 0
+    \end{matrix}\right). \]
+\end{proposition}
+\begin{proof}
+    由反对称性知
+    \[ E_0=F_{00}=0,\\\quad B_0=F_{00}=0,\]
+    因此 $ E^\alpha $ 和 $ E^\alpha $ 是空间向量.
+    对于其他分量, 有
+    \begin{align*}
+        E_i &= F_{i0},\\
+        B_i &= -{}^{*}\!F_{i0}=-\frac{1}{2}\varepsilon_{i0jk}F^{jk}=\frac{1}{2}\varepsilon_{0ijk}F^{jk},
+    \end{align*}
+    再利用反对称性就得到了 $F_{\alpha\beta}$ 的全部元素.
+\end{proof}
+\begin{proposition}
+    设惯性系 $ \mathcal{R} $ 和 $ \mathcal{R}' $ 由洛伦兹变换
+    \begin{align*}
+        t&=\gamma(t'+vx'), \\
+        x&=\gamma(x'+vt'), \\ 
+        y&=y',\\ 
+        z&=z',
+    \end{align*}
+    相联系, 则两者测量同一电磁场 $ F_{\alpha\beta} $ 所得的 $ (\vec{E},\vec{B}) $ 和 $ (\vec{E}',\vec{B}') $ 满足 
+    \begin{align*}
+        E_1'&=E_1, & E_2'&=\gamma(E_2-vB_3), & E_3'&=\gamma(E_3+vB_2), \\ 
+        B_1'&= B_1, & B_2'&=\gamma(B_2+vE_3), & B_3'&=\gamma(B_3-vE_2).
+    \end{align*}
+\end{proposition}
+\begin{proof}
+    使用定理 \ref{coordinate transform}.
+\end{proof}
+
+\begin{remark}
+    通过电磁场张量可以构造两个洛伦兹不变量
+\begin{align*}
+    F_{\alpha\beta}F^{\alpha\beta}&=2(B^2-E^2),\\
+    F_{\alpha\beta}{}^{*}\!F^{\alpha\beta}&=4\vec{E}\cdot\vec{B},
+\end{align*}
+其中 $E^2=E^iE_i$, $B^2=B^iB_i$. 第一式所定义的标量不依赖于标架的选取; 而第二式所定义的标量在不同手性的标架下, 会相差一个正负号, 这种标量在物理中被称为{\bf 赝标量} (pseudoscalar). 类似地可以定义 {\bf 赝矢量}, 基于叉乘和旋度定义的向量都是赝矢量.
+\end{remark}
+
+电磁场的源是电荷与电流, 连续分布的电荷与电流可被视为大量带电质点组成的{\bf 尘埃} (dust, 压强为零的理想流体). 为了方便讨论, 我们假设所有带电质点都是同一类粒子 (如电子), 其电荷为 $ e $, 用 $ U^a $ 表示这一带电尘埃的 $ 4 $ 速度场. 
+
+设共动观者 $ (p,U^a) $ 的局部同时面的小体积 $ V_0 $ 中有 $ N $ 个质点, 则 $ n_0:=N/V_0 $ 为其测得的质点数密度, 叫做固有数密度. 对于另一观者 $ (p,Z^a) $, 由尺缩效应, 上述 $ N $ 个质点在局部同时面上所占体积 $ V $ 满足 $ V_0=\gamma V $, 其中 $ \gamma=-Z^aU_a $, 因此这个观者测得的质点数密度为 $ n=N/V=\gamma n_0 $.
+
+\begin{definition}[电荷密度与电流密度]
+    设 $ n $ 为观者 $ (p,Z) $ 测得的质点数密度, 则 $ \rho:=en $ 为该观者测得的{\bf 电荷密度}. 设 $ u^\alpha $ 为质点相对于该观者的 $ 3 $ 速度, 则 $ j^\alpha:=\rho u^\alpha $ 为该观者测得的 $ 3 $ {\bf 电流密度}.
+\end{definition}
+\begin{definition}[$ 4 $ 电流密度]
+    带电粒子流的 $ 4 $ {\bf 电流密度}为
+    \[ J^a:=\rho_0U^a, \]
+    其中 $ \rho_0:=en $ 为共动观者测得的电荷密度.
+\end{definition}
+\begin{proposition}
+    $ J^\alpha $ 可借由瞬时观者 $ (p,Z) $ 做 $ 3+1 $ 分解
+    \[ J^\alpha=\rho Z^\alpha+j^\alpha. \]
+\end{proposition}
+\begin{proof}
+    由于 $ \rho=en=e\gamma n_0=\gamma\rho_0 $, 我们有
+    \[ J^\alpha=\rho_0U^\alpha=\rho_0\gamma(Z^\alpha+u^\alpha)=\rho Z^\alpha+\rho u^\alpha=\rho Z^\alpha+j^\alpha.\qedhere \]
+\end{proof}
+\begin{remark}
+    电荷守恒定律
+    \[ \frac{\partial\rho}{\partial t}+\nabla\cdot\vec{j}=0 \]
+    可重新表达为 
+    \[ \partial_\alpha J^\alpha=0. \]
+\end{remark}
+
+在 $3$ 维形式的电动力学中, 电磁场的能量密度、动量密度、应力张量均已有明确定义\cite[上册 178 页]{梁灿彬2000微分几何入门与广义相对论}, 这里我们直接指出电磁场 $ F_{\alpha\beta} $ 的{\bf 能动张量}为
+\begin{align*}
+    T_{\alpha\beta}&=\frac{1}{4\pi}\left( F_{\alpha\mu}F_\beta{}^\mu-\frac{1}{4}\eta_{\alpha\beta}F_{\mu\nu}F^{\mu\nu} \right)\\
+    &=\frac{1}{8\pi}(F_{\alpha\mu}F_\beta{}^\mu+{}^{*} F_{\alpha\mu}{}^{*}F_{\beta}{}^\mu).
+\end{align*}
+
+\subsection{麦克斯韦方程}
+接下来我们采用几何单位制 $ \varepsilon_0=1 $.
+\begin{remark}
+    不同单位制下麦克斯韦方程的系数略有区别.
+\end{remark} 
+\begin{definition}[$4$ 维麦克斯韦方程]
+    $ 4 $ 维形式的{\bf 麦克斯韦方程}为
+    \begin{align*}
+        \partial^\alpha F_{\alpha\beta}&=-4\pi J_\beta\tag{$M_1$},\\ 
+        \partial_{[\mu}F_{\alpha\beta]}&=0\tag{$M_2$}.
+    \end{align*}
+\end{definition}
+
+\begin{theorem}
+    对于任意惯性系 $ \{t,x,y,z\} $, $ 3 $ 维形式的麦克斯韦方程 
+    \begin{align*}
+        \nabla\cdot\vec{E}&=4\pi\rho,\tag{a}\\ 
+        \nabla\times\vec{E}&=-\frac{\partial\vec{B}}{\partial t},\tag{b}\\ 
+        \nabla\cdot\vec{B}&=0,\tag{c}\\ 
+        \nabla\times\vec{B}&=4\pi\vec{j}+\frac{\partial\vec{E}}{\partial t}.\tag{d}
+    \end{align*}
+    等价于 $4$ 维麦克斯韦方程. 其中 $ (a), (d) $ 与 $ (M_1) $ 对应, $ (b), (c) $ 与 $ (M_2) $ 对应.
+\end{theorem}
+\begin{proof}
+    先从 $ 4 $ 维形式推导 $ 3 $ 维形式.
+    记 $ \delta_{\alpha\beta} $ 为 $ \eta_{\alpha\beta} $ 在所选惯性系的等 $ t $ 面上诱导的欧氏度量, 分别用 $\hat{\varepsilon}_{\alpha\beta\mu}$ 表示与 $\delta_{\alpha\beta}$ 相适配的体元.\vspace{1ex}\\
+    $\textcolor{red}{(M_1)\implies(a):}$\keepline
+    \[ \nabla\cdot\vec{E}=\partial^\alpha E_\alpha=\partial^\alpha F_{\alpha 0}=-4\pi J_0=4\pi\rho. \]
+    $\textcolor{red}{(M_2)\implies(b):}$ 利用 $F$ 的反对称性得\vspace{1.5ex}
+    \begin{align*}
+        (\nabla\times\vec{E})_k&=\hat{\varepsilon}_{ijk}\partial^iE^j=\hat{\varepsilon}_{ijk}\partial^iF^{j0}\\
+        &=-\hat{\varepsilon}_{ijk}\partial^jF^{0i}-\hat{\varepsilon}_{ijk}\partial^0F^{ij}\\
+        &=-\hat{\varepsilon}_{jik}\partial^jE^i-\varepsilon_{0ijk}\partial^0F^{ij}\\
+        &=-(\nabla\times\vec{E})_k-2\partial^0({}^{*}\!F_{0k})
+    \end{align*}
+    即
+    \[ (\nabla\times\vec{E})_k=-\frac{\partial B_k}{\partial t}.\vspace{1ex} \] 
+    $\textcolor{red}{(M_2)\implies(c):}$\keepline
+    \begin{align*}
+        \nabla\cdot\vec{B} &= \partial^i B_i = -\partial^i({}^{*}\!F_{i0})\\
+        &=-\varepsilon_{i0jk}\partial^iF^{jk}= \varepsilon_{0ijk}\partial^i F^{jk} \\
+        &= \varepsilon_{0[ijk]}\partial^{i}F^{jk}=\varepsilon_{0ijk}\partial^{[i}F^{jk]}=0.
+    \end{align*}
+    $\textcolor{red}{(M_1)\implies(d):}$ 仿照前面的证明有\vspace{1.5ex}
+    \begin{align*}
+        (\nabla\times\vec{B})_k&=\hat{\varepsilon}_{ijk}\partial^iB^j=-\hat{\varepsilon}_{ijk}\partial^i({}^{*}\!F^{j0})\\
+        &=-\frac{1}{2}\hat{\varepsilon}_{ijk}\varepsilon^{lmj0}\partial^iF_{lm}=-\frac{1}{2}\hat{\varepsilon}_{jik}\hat{\varepsilon}^{jlm}\partial^iF_{lm}\\
+        &=-\frac{2!}{2}\delta^{[l}{}_{i}\delta^{m]}{}_{k}\partial^i F_{lm}=-\partial^iF_{[ik]}=-\partial^i F_{ik}\\
+        &=-\partial^\alpha F_{\alpha k}-\partial^0F_{0k}\\
+        &=4\pi j_k+\frac{\partial E_k}{\partial t}.
+    \end{align*}
+
+    接下来从 $3$ 维形式推导 $4$ 维形式.\\
+    $\textcolor{blue}{(a)+(d)\implies(M_1):}$ 对 $\partial^\alpha F_{\alpha\beta}$ 的分量进行计算.
+
+    首先由 $(a)$ 可以算出
+    \[ \partial^\alpha F_{\alpha0}=\partial^\alpha E_\alpha=\nabla\cdot\vec{E}=4\pi\rho, \]
+
+    其次对于 $k=1,2,3$ 有
+    \begin{align*}
+        \partial^\alpha F_{\alpha k}&=\partial^0F_{0k}+\partial^iF_{ik}\\
+        &=-\frac{\partial E_k}{\partial t}-\frac{1}{2}\varepsilon_{ik\alpha\beta}\partial^iF^{\alpha\beta}
+    \end{align*}
+    注意等式最右侧的 $\alpha,\beta$ 必有一个为 $0$, 利用体元和电磁场张量的反对称性以及 $(d)$, 我们有
+    \[ \frac{1}{2}\varepsilon_{ik\alpha\beta}\partial^iF^{\alpha\beta}=\varepsilon_{ikj0}\partial^iF^{j0}=\hat{\varepsilon}_{ijk}\partial^iB^j=(\nabla\times \vec{B})_k, \]
+    于是
+    \[\partial^\alpha F_{\alpha k}=-\frac{\partial E_k}{\partial t}+(\nabla\times\vec{B})_k=4\pi j_k.\]
+    最后根据 $J_b$ 的定义就可以得到 $(M_1)$.\\
+    $\textcolor{blue}{(b)+(c)\implies(M_2):}$ 首先根据电磁场张量的反对称性有
+    \begin{align*}
+        \partial_{[\mu}F_{\alpha\beta]} &=\frac{1}{6}\left( \partial_\mu F_{\alpha\beta}-\partial_\mu F_{\beta\alpha} +\partial_\alpha F_{\beta\mu}-\partial_\alpha F_{\mu\beta}+\partial_\beta F_{\mu\alpha}-\partial_\beta F_{\alpha\mu}\right)\\
+        &=\frac{1}{3}\left( \partial_\mu F_{\alpha\beta} +\partial_\alpha F_{\beta\mu}+\partial_\beta F_{\mu\alpha}\right).
+    \end{align*}
+    然后对 $\alpha, \beta, \mu$ 均不取 $0$ 和会取到 $0$ 两种情况分别进行计算.
+
+    对于 $\alpha, \beta, \mu$ 均不取 $0$ 的项, 利用 $(c)$ 可算得
+    \[ \partial_1F_{23}+\partial_2F_{31}+\partial_3F_{12}=\partial_1B_1+\partial_2B_2+\partial_3B_3=\nabla\cdot\vec{B}=0. \]
+
+    对于 $\alpha, \beta, \mu$ 会取到 $0$ 的项, 利用 $(b)$ 可算得
+    \begin{align*}
+        \partial_0F_{12}+\partial_1F_{20}+\partial_2F_{01} &= \frac{\partial B_3}{\partial t}+\partial_1E_2-\partial_2E_1=\frac{\partial B_3}{\partial t}+(\nabla\times\vec{E})_3=0,\\
+        \partial_0F_{23}+\partial_2F_{30}+\partial_3F_{02} &= \frac{\partial B_1}{\partial t}+\partial_2E_3-\partial_3E_2=\frac{\partial B_1}{\partial t}+(\nabla\times\vec{E})_1=0,\\
+        \partial_0F_{31}+\partial_3F_{10}+\partial_1F_{03} &=\frac{\partial B_2}{\partial t}+\partial_3E_1-\partial_1E_3=\frac{\partial B_2}{\partial t}+(\nabla\times\vec{E})_2=0.
+    \end{align*}
+
+    综上, 结合电磁场张量的反对称性知对于 $\alpha, \beta, \mu$ 的任意一组选取, 我们都有
+    \[ \partial_{[\mu}F_{\alpha\beta]}=0, \]
+    进而可以得到 $(M_2)$.
+\end{proof}
+
+\subsection{电磁 \texorpdfstring{$4$}{4} 势、电磁波}
+接下来我们观察 $4$ 维麦克斯韦方程.
+
+$ (M_1) $ 蕴涵电荷守恒, 这是因为
+\[ \partial^\beta J_\beta=-\frac{1}{4\pi}\partial^\beta\partial^\alpha F_{\alpha\beta}=-\frac{1}{4\pi}\partial^{(\beta}\partial^{\alpha)}F_{[\alpha\beta]}=0, \]
+而这正是连续性方程
+\[ \frac{\partial\rho}{\partial t}+\nabla\cdot\vec{j}=0. \]
+
+$ (M_1) $ 还给出了带电质点对电磁场的影响, 反过来, 带电质点也会受到电磁场的作用力, 即 $ 3 $ 洛伦兹力
+\[ \vec{f}:=q(\vec{E}+\vec{u}\times\vec{B}), \]
+其中 $ q $ 为质点的电荷, 电荷是不变量 (不依赖于观者的物理量), $ \vec{u} $ 为质点的 $ 3 $ 速度. 洛伦兹力也可被推广到 $ 4 $ 维.
+\begin{proposition}[$ 4 $ 洛伦兹力{\cite[命题 6-6-6]{梁灿彬2000微分几何入门与广义相对论}}]
+    设质点的电荷为 $ q $, $ 4 $ 速度为 $ U^\alpha $, $ 4 $ 动量为 $ P^\alpha $, 则电磁场 $ F_{\alpha\beta} $ 对它的 $ 4 $ 力为
+    \[ F^\alpha=qF^\alpha{}_\beta U^\beta, \]
+    这个力叫做 $ 4 $ {\bf 洛伦兹力}. 只受电磁力的质点的 $ 4 $ 为运动方程为
+    \[ qF^\alpha{}_\beta U^\beta=U^\beta\partial_\beta P^\alpha. \]
+\end{proposition}
+
+$ (M_2) $ 可以写成外微分形式 $ \mathrm{d}F=0 $, 而 $ \mathbb{R}^4 $ 上的闭形式都是恰当形式, 因此可以将 $ F $ 定义为某个 $ 1 $ 形式场 $ A $ 的外微分, 即 $ F:=\mathrm{d}A $, 或写成 
+\[ F_{\alpha\beta}:=\partial_\alpha A_\beta-\partial_\beta A_\alpha, \]
+这样定义的 $ F_{\alpha\beta} $ 自动满足 $ (M_2) $.
+\begin{definition}[电磁 $ 4 $ 势]
+    满足 $ F=\mathrm{d}A $ 的 $ A_\alpha $ 叫做电磁场 $ F_{\alpha\beta} $ 的 $ 4 $ {\bf 势}.
+\end{definition}
+注意若 $A$ 是 $F$ 的 $4$ 势, $\rchi\in C^2(\mathbb{R}^4)$, 则 $\tilde{A}=A+\mathrm{d}\rchi$ 也是 $F$ 的 $4$ 势, 这叫做电磁 $4$ 势的 {\bf 规范自由性}. 基于规范自由性, 我们希望 $4$ 势满足洛伦兹规范条件 $\partial^\alpha A_\alpha=0$. 也就是说, 我们希望选取一个函数 $\rchi$ 使得 $\partial^\alpha\partial_\alpha\rchi=-\partial^\alpha A_\alpha$, 由于
+\[ \partial^\alpha\partial_\alpha\rchi=\eta^{\alpha\beta}\partial_\beta\partial_\alpha\rchi=-\frac{\partial^2\rchi}{\partial t^2}+\frac{\partial^2\rchi}{\partial x^2}+\frac{\partial^2\rchi}{\partial y^2}+\frac{\partial^2\rchi}{\partial z^2}, \]
+方程 $\partial^\alpha\partial_\alpha\rchi=-\partial^\alpha A_\alpha$ 为非齐次波动方程, 其解总是存在的. 于是我们总能找到 $\rchi$ 使得 $\tilde{A}=A+\mathrm{d}\rchi$ 满足 $\partial^a\tilde{A}=0$.
+
+\begin{proposition}
+    将 $A_\alpha$ 在任意惯性系 $\{x,t^i\}$ 中分解为
+    \[ A_\alpha=-\phi(\mathrm{d}t)_\alpha +a_\alpha, \]
+    则 $\phi$ 和 $a_\alpha$ 为别是电磁场 $F$ 的{\bf 标势}和 $3$ {\bf 矢势}, 即
+    \[ \vec{E}=-\nabla\phi-\frac{\partial \vec{a}}{\partial t},\quad \vec{B}=\nabla\times \vec{a}. \]
+\end{proposition}
+\begin{proof} 直接比较 $F_{\alpha\beta}$ 和 $\partial_\alpha A_\beta-\partial_\beta A_\alpha$ 即可.
+\end{proof}
+
+当洛伦兹规范条件成立时, 可利用 $A_\alpha$ 将 $(M_1)$ 重写为
+\[ \partial^\alpha \partial_\alpha A_\beta=-4\pi J_\beta.\tag{\textrm{达朗贝尔方程}} \]
+特别地, 对于无源电磁场 ($J_\beta=0$ 的电磁场), $(M_1)$ 可重写为
+\[ \partial^\alpha\partial_\alpha A_\beta=0.\tag{波方程}\]
+
+对于波方程 $\partial^\alpha\partial_\alpha A_\beta=0$, 我们关心形如 $A_\beta=C_\beta\cos\theta$ 的解, 其中
+\begin{enumerate}
+    \item $\theta$ 是实标量场, 叫做\textbf{相位}(phase);
+    \item $C^\beta$ 是非零的常向量场 ($\partial_\alpha C^\beta=0$), 叫做\textbf{偏振向量}(polarization vector).
+\end{enumerate}
+将 $A_\beta=C_\beta\cos\theta$ 带入波方程得
+\[ \cos\theta(\partial^\alpha\theta)\partial_\alpha\theta+\sin\theta(\partial^\alpha\partial_\alpha\theta)=0. \]
+显然只要 $\theta$ 满足
+\[ (\partial^\alpha\theta)\partial_\alpha\theta=\partial^\alpha\partial_\alpha\theta=0, \]
+$A_\beta=C_\beta\cos\theta$ 就是波方程 $\partial^\alpha\partial_\alpha A_\beta=0$ 的解, 我们十分关心这种解, 接下来对其进行讨论.
+
+令 $K^\alpha=\partial^\alpha\theta$, 我们最关心 $K^\alpha$ 为常向量场的情况. 若 $K^\alpha$ 是常值的, 对于任意惯性系 $\{x^\alpha\}$ 有
+\[ \mathrm{d}\theta=\partial_\alpha\theta\,\mathrm{d}x^\alpha=K_\alpha\,\mathrm{d}x^\alpha, \]
+上式两侧同时积分得
+\[ \theta=K_\alpha x^\alpha+\theta_0. \]
+\begin{remark}    
+    这里稍有记号滥用, $x^\alpha$ 是坐标, 不是向量场; $\theta_0$ 是常数, 不是坐标分量.
+\end{remark}
+对 $K^\alpha$ 做 $3+1$ 分解
+\[K^\alpha=\omega\left( \frac{\partial}{\partial t} \right)^\alpha+k^\alpha, \]
+并取 $\theta_0=0$, 则
+\[\theta=-\omega t+k_ix^i.\]
+此时 $A_\beta=C_\beta\cos\theta$ 可表示为
+\[ A_\beta=C_\beta\cos(\omega t-k_ix^i). \]
+这与单色平面波的表达式一致, 因此被叫做\textbf{单色平面电磁波}(monochromatic plane wave), 其中的 $\omega$ 和 $k^i$ 分别叫做角频率和 $3$ 维波向量, 因此 $K^\alpha$ 叫做 $4$ 维波向量.
+
+由于我们选取的 $K^\alpha$ 满足 $K^\alpha K_\alpha=0$, 所以 $K^\alpha$ 是类光向量场, 其上的积分曲线 (微分方程的解) 为光子世界线, 因此可以将单色平面电磁波想象成一族平行的光线, 或一大群光子组成的光子流. 注意电磁波不都是可见光, 这种用光线代替波动概念描述单色平面电磁波的方法叫做几何光学方法.
+
+\begin{remark}
+    $A_\beta$ 以单色平面电磁波的方式传播时, $\vec{E}$ 和 $\vec{B}$ 也以单色平面电磁波的方式传播\cite[182页, 选读 6-6-3]{梁灿彬2000微分几何入门与广义相对论}.
+\end{remark}
+
+\begin{remark}
+    $\omega$ 和 $k^i$ 是依赖于观者的, 不同观测测量统一束光会得到不同的频率, 这导致了光波的多普勒效应\cite[184--185页]{梁灿彬2000微分几何入门与广义相对论}
+\end{remark}

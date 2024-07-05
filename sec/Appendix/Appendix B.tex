@@ -1,0 +1,539 @@
+\chapter{微分几何}
+\label{differential geometry}
+\section{张量}
+\begin{remark}
+    以下用 $ V $ 表示有限维向量空间.
+\end{remark}
+\begin{definition}[张量]
+    $ V $ 上的一个 $ (r,s) $ 型{\bf 张量} (tensor) 是一个多重线性映射
+    \[ T:\underbrace{V^*\times\cdots\times V^*}_{k\,\textrm{个}}\times \underbrace{V\times\cdots\times V}_{l\,\textrm{个}}\to\mathbb{R}, \]
+    其中上角标 $ * $ 表示对偶空间. 
+\end{definition}
+
+\begin{remark}
+    $ (r,s) $ 型张量也叫作 $ r $ 阶反变, $ s $ 阶协变张量.
+\end{remark}
+
+\begin{definition}[张量积]
+    $ V $ 上的 $ (r,s) $ 型张量 $ T $ 和 $ (r',s') $ 型张量的{\bf 张量积} (tensor product) $ T\otimes T' $ 是一个 $ (r+r',s+s') $ 型张量, 其定义为
+    \begin{align*}
+        &T\otimes T' (w_1,\dots,w_r,w_{r+1},\dots,w_{r+r'};v^1,\dots,v^l,v^{s+1},\dots,v^{s+s'})\\
+        :=\;&T(\omega_1,\dots,\omega_r;v^1,\dots,v^s)\,T'(\omega_{r+1},\dots\omega_{r+r'};v^{s+1},\dots,v^{s+s'}).
+    \end{align*}
+\end{definition}
+\begin{remark}
+    在不会产生混淆时省略张量积符号 $ \otimes $.
+\end{remark}
+给定 $V$ 上的基 $\{e_i\}$, 则 $V^*$ 上存在唯一的基 $\{e^i\}$ 满足
+\[ e^je_i=\begin{cases}
+        0, & i\neq j,\\ 1, & i=j.
+    \end{cases} \]
+我们称这样的 $\{e^i\}$ 为 $\{e_i\}$ 的对偶基. 在给定 $V$ 的一组基后, 我们总是取其对偶基来作为对偶空间的基.
+
+\begin{definition}
+	$(r,s)$ 型张量 $T$ 在基 $\{e_i\}$ 下的分量为
+\[ T^{i_1\cdots i_r}{}_{j_1\cdots j_s}:=T(e^{i_1},\dots,e^{i_r};e_{j_1},\dots,e_{j_s}), \]
+换句话说
+\[ T=T^{i_1\cdots i_r}{}_{j_1\cdots j_s}e_{i_1}\otimes\cdots\otimes e_{i_r}\otimes e^{j_1}\otimes\cdots\otimes e^{j_s}. \] 
+\end{definition}
+
+\begin{theorem}[{\cite[定理 2-4-2]{梁灿彬2000微分几何入门与广义相对论}}]
+\label{coordinate transform}
+    $ (r,s) $ 型张量在坐标变换 $\{x^i\}\mapsto\{\tilde{x}^{\tilde{i}}\}$ 下满足
+    \[ \tilde{T}^{\tilde{i}_1\cdots\tilde{i}_r}{}_{\tilde{j}_1\cdots\tilde{j}_s}=\frac{\partial \tilde{x}^{i_1}}{\partial x^{i_1}}\cdots\frac{\partial x^{j_s}}{\partial \tilde{x}^{\tilde{j}_s}}T^{i_1\cdots i_r}{}_{j_1\cdots j_s}. \]
+\end{theorem}
+
+\begin{definition}[度量]
+\label{metric}
+    $ V $ 上的一个{\bf 度量} (metric) $ g $ 指的是一个非退化的 $ (0,2) $ 型对称张量, 其中
+    \begin{enumerate}
+		\item 非退化指的是 $ g(u,v)=0, \forall v\in V \implies u=0$;
+        \item 对称指的是 $ g(u,v)=g(v,u) $, $ \forall u,v\in V $.
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+    这与数学中常用的度量概念稍有不同, 我们允许度量不是正定的.
+\end{remark}
+
+\begin{definition}[正规正交基]
+    给定 $ V $ 上的度量 $ g $, 则
+	\begin{enumerate}
+		\item 向量 $ v\in V $ 的{\bf 长度}为 $ |v|=\sqrt{|g(v,v)|} $;
+		\item 若 $u,v\in V$ 满足 $ g(u,v)=0 $, 则称它们相互{\bf 正交}.
+	\end{enumerate}
+	对于 $ V $ 的一组基 $ \{e_i\} $, 若任意两个基向量正交且每一基向量满足 $ g(e_i,e_i)=\pm 1 $, 则称这组基为{\bf 正交归一基}.
+\end{definition}
+
+\textcolor{blue}{我们总是假设 $M$ 为 $n$ 维流形, 且提到的坐标系等概念都应理解为是局部的.}
+
+对于流形 $M$ 上的一点 $p$, 其上的切空间 $T_pM$ 是有限维线性空间, 于是可以定义点 $p$ 处的张量. 若给流形上每一点都指定一个 $(r,s)$ 型张量, 就得到一个 $(r,s)$ 型{\bf 张量场}. 流形上处处非退化的 $ (0,2) $ 型对称张量场叫做{\bf 度量张量场}.
+\begin{remark}
+	在不会产生混淆时将张量场简称为张量, 将度量张量场简称为度量.
+\end{remark}
+
+$M$ 上的标架场指的是 $n$ 组向量场 $V^1,\dots,V^n$, 且满足 $V^1|_p,\dots,V^n|_p$ 线性无关 (也就是在每点处能构成切空间的一组基的一组向量场), 类似地可以定义余标架场. 给定流形上的坐标系 $\{x^i\}$, 则自然地有标架场 $\displaystyle \left\{ \frac{\partial}{\partial x^i} \right\}$, 并记与之对偶的余标架场为 $\{\mathrm{d}x^i\}$. 因此, 在给定流形的坐标系的同时, 我们也拥有了切空间和余切空间的基. 
+
+\section{记号说明}
+\textcolor{blue}{我们总是假设流形 $M$ 上配有度量 $g_{ab}$, 且所提到的张量均指张量场.}
+\label{notation}
+\begin{itemize}
+    \item 使用 {\bf 爱因斯坦求和约定}: 一对相同的上下指标表示对该指标求和. 若 $(r,s)$ 型张量的系数中一对上下指标进行了求和, 则所得结果相当于一个 $(r-1,s-1)$ 型张量的系数, 由张量的变换规律知这一从 $(r,s)$ 型张量得到 $(r-1,s-1)$ 型张量的过程是不依赖于坐标选取的, 我们称这种操作为{\bf 缩并}.
+    \item 给定坐标系 $\{x^i\}$ 后, 将标架场 $\{e_i\}$ 取为 $\displaystyle\left\{ \frac{\partial }{\partial x^i} \right\}$, 将余标架场 $\{e^i\}$ 取为 $\{\mathrm{d}x^i\}$.
+    \item 基于张量分量在坐标变换下的规律, 在给定坐标系 $\{x^i\}$ 后, 我们经常使用其全部分量 $T^{i_1\cdots i_k}{}_{j_1\cdots j_l}$ 来代指张量 $T$ 本身. 换句话说, 我们省略
+	\[ T=T^{i_1\cdots i_k}{}_{j_1\cdots j_l}e_{i_1}\otimes\cdots\otimes e_{i_k}\otimes e^{j_1}\otimes\cdots\otimes e^{j_l} \]
+	中的基向量. 这样做便于看出张量类型, 且容易落实计算.
+	\begin{remark}
+		特别地, 对于标架场 $\{e_i\}$ 中的向量 $e_{i}$, 我们记其第 $a$ 个分量为 $ (e_{i})^{a} $ (余标架场情况类似), 于是
+		\[ T^{i_1\cdots i_k}{}_{j_1\cdots j_l}=T^{a\cdots a_k}{}_{b_1\cdots b_l}(e^{i_1})_{a_1}\cdots(e^{i_k})_{a_k}(e_{j_1})^{b_1}\cdots(e_{j_l})^{b_l}. \] 
+	\end{remark}
+	\item 定义 $(1,1)$ 型张量 $\delta$ 为
+    \[ \delta^{i}{}_{j}:=\begin{cases}
+            0, & i\neq j,\\ 1, & i=j,
+        \end{cases}  \]
+    可以利用它来将张量的指标替换成其他字母, 比如 $\delta^{i}{}_{j}v^{j}=v^{i}$.
+    \item 给定坐标系后, 用 $g$ 的分量构成矩阵 $(g_{ij})$, 用 $g^{ij}$ 表示逆矩阵 $(g_{ij})^{-1}$ 的分量. 于是我们可以利用 $g$ 对任意张量中的任意指标进行升降, 比如给定向量 $v^i$, 定义 $ v_i:=g_{ij}v^j $. 升降指标前后要保持指标的顺序.
+    \begin{remark}
+		对偶向量 $w_i$ 是切空间上的线性映射 $v^i\mapsto w_i v^i$, 借助升降指标可以重新表达为 $v^i\mapsto g_{ij}w^j v^i$.
+	\end{remark}
+	\begin{remark}
+		对标架场 $\{e_i\}$ 中的 $(e_i)^{a}$ 进行降指标, 得到余切向量 $(e_i)_{a}=g_{ab}(e_i)^{b}$, 将其作用在 $(e_j)^{a}$ 上得
+		\[ (e_i)_a(e_j)^{a}=g_{ab}(e_i)^{b}a(e_j)^{a}=g_{ij}, \] 
+		而 $(e^i)_a$ 作用在 $(e_j)^{a}$ 上得 
+		\[ (e^i)_a(e_j)^{a}=\delta^i{}_{j}, \]
+		这说明对标架场降指标得到的一般不是余标架场.
+	\end{remark}
+	\item 将指标写出来后一切都是数之间的计算, 可以任意调换张量顺序, 比如 
+	\[ g_{ik}g^{kj}=g^{kj}g_{ik}=\delta^{j}{}_{i}. \]
+	这也说明对某个指标先降再升 (或先升再降) 不会改变系数的值, 因此用 $g$ 来升降指标的操作是良定的; 且一组相同的上下指标可以同时改变上下位置 (但要保持左右位置).
+	\begin{remark}
+		$ \delta_{i}{}^{j}:=g_{ik}g^{lj}\delta^{k}{}_{l}=g_{ik}g^{kj}=\delta^{j}{}_{i}$, 因此调换 $\delta$ 的指标顺序 (保持一上一下, 调换左右顺序) 不会改变系数值, 但不是所有张量在调换顺序后系数值都不变.
+	\end{remark}
+	\begin{remark}
+		实际上 $g^i{}_j=\delta^{i}{}_j$, 但我们不用这个记号, 我们只让度量的指标同上同下.
+	\end{remark}
+	\item 用 $ \partial_i $ 来表示对第 $i$ 个分量求导, 并记 $\partial^i:=g^{ij}\partial_j$.
+	\begin{remark}
+	由于 $ \partial_i $ 作用于坐标基或对偶坐标基结果为 $ 0 $, 即 
+    \[ \partial_i \left( \frac{\partial}{\partial x^{j}} \right) =\partial_i(\mathrm{d}x^j)=0,\]
+    我们省略基向量的做法在涉及 $\partial_i$ 时也是没问题的.
+\end{remark}
+\end{itemize}
+
+\section{微分形式}
+\textcolor{blue}{注意我们使用张量的坐标分量来代指张量本身 (详见 \S\,\ref{notation}).}
+\begin{definition}[对称化与反对称化]
+    对于 $ (0,s) $ 型张量 $ T_{i_1\cdots i_s} $, 其{\bf 对称化} $ T_{(i_1\cdots i_s)} $ 和{\bf 反对称化} $ T_{[i_1\cdots i_s]} $ 为 
+    \begin{align*}
+        T_{(i_1\cdots i_s)} &:= \frac{1}{s!}\sum_{\sigma} T_{i_{\sigma(1)}\cdots i_{\sigma(s)}},\\
+        T_{[i_1\cdots i_s]} &:= \frac{1}{s!}\sum_{\sigma}(-1)^{\sigma} T_{i_{\sigma(1)}\cdots i_{\sigma(s)}},
+    \end{align*}
+    其中 $ \sigma $ 要取遍 $ (i_1,\dots,i_s) $ 的所有排列, 
+    \[ (-1)^\sigma=\begin{cases}
+        -1, & \sigma\text{ 为奇排列},\\
+        1, & \sigma\text{ 为偶排列}.
+    \end{cases} \]
+\end{definition}
+\begin{definition}[对称与反对称]
+    设 $ T_{i_1\cdots i_s} $ 为 $ (0,s) $ 型张量.
+    \begin{enumerate}
+        \item 若 $T_{i_1\cdots i_s}=T_{(i_1\cdots i_s)}$, 则称它是{\bf 对称}的.
+        \item 若 $ T_{i_1\cdots i_s}=T_{(i_1\cdots i_s)}$, 则称它是{\bf 反对称}的. 
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+    以上两条定义也适用于 $ (r,0) $ 型张量.
+\end{remark}
+
+\begin{theorem}[{\cite[定理 2-6-1]{梁灿彬2000微分几何入门与广义相对论}}]
+    设 $ T_{i_1\cdots i_s} $ 为 $ (0,s) $ 型张量.
+    \begin{enumerate}
+        \item 若它是对称的, 则 $T_{i_{\sigma(1)}\cdots i_{\sigma(l)}}=T_{i_1\cdots i_s}$.
+        \item 若它是反对称的, 则 $T_{i_{\sigma(1)}\cdots i_{\sigma(s)}}=(-1)^{\sigma}T_{i_1\cdots i_s}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[{\cite[定理 2-6-2]{梁灿彬2000微分几何入门与广义相对论}}]
+    圆括号和方括号有如下性质:
+    \begin{enumerate}
+        \item 缩并时括号有传染性, 如 
+        \[ T_{[i_1\cdots i_k]}S^{i_1\cdots i_k} = T_{[i_1\cdots i_k]}S^{[i_1\cdots i_k]}=T_{i_1\cdots i_k}S^{[i_1\cdots i_k]}. \]
+        \item 括号内同种子括号可随意增删, 如 
+        \[ T_{[[ab]c]}:=\frac{1}{2}(T_{[abc]}-T_{[bac]})=T_{[abc]}. \]
+        \item 括号内加异种子括号等于零, 如 
+        \[ T_{[(ab)c]}=0. \]
+        \item 异种括号缩并等于零, 如 
+        \[ T^{(abc)}S_{[abc]}=0. \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}[微分形式]
+    $ (0,s) $ 型反对称张量也叫做 $ s $ {\bf 形式} ($ s $-form). 流形 $ M $ 上的$ (0,s) $ 型光滑反对称张量场也叫做 $ s $ 形式场, 或简称为 $ s $ 形式. 我们用 $ \Lambda(s) $ 表示全体 $ s $ 形式构成的集合.
+\end{definition}
+
+\begin{definition}[楔积]
+    设 $ \omega $ 和 $ \mu $ 分别为 $ s $ 形式和 $ t $ 形式, 它们的 {\bf 楔积} $\omega\wedge\mu$ 为
+    \[ (\omega\wedge\mu)_{i_1\cdots i_sj_1\cdots j_t}:=\frac{(s+t)!}{s!t!}\omega_{[i_1\cdots i_s}\mu_{j_1\cdots j_t]}, \]
+    我们也称上式所定义的映射 $ \wedge:\Lambda(s)\times\Lambda(t)\to\Lambda(s+t) $ 为{\bf 楔积}.
+\end{definition}
+\begin{remark}
+	我们也记
+	\[ \omega_{i_1\cdots i_s}\wedge\mu_{j_1\cdots j_t=}:=(\omega\wedge\mu)_{i_1\cdots i_sj_1\cdots j_t}. \] 
+\end{remark}
+\begin{remark}
+    楔积 (wedge product) 也叫做{\bf 外积} (exterior product).
+\end{remark}
+
+楔积有结合律与分配率, 但没有交换律, 若 $ \omega $ 和 $ \mu $ 分别为 $ s $ 形式和 $ t $ 形式, 则 
+\[ \omega\wedge\mu=(-1)^{st}\mu\wedge\omega. \]
+
+
+\begin{definition}[外微分]
+	设 $\omega$ 为 $s$ 形式, 给定联络 $\nabla_i$ (联络的定义见 \S\,\ref{connection}), 则 $\omega$ 的 {\bf 外微分} $\mathrm{d}\omega$ 为
+	\[ (\mathrm{d}\omega)_{ji_1\cdots i_s}:=(s+1)\nabla_{[j}\omega_{i_1\cdots i_s]}. \]
+	我们称上式所定义的映射 $ \mathrm{d}:\Lambda(l)\to\Lambda(l+1) $ 为 {\bf 外微分算子}.
+\end{definition}
+
+\begin{definition}
+    对于 $ l $ 形式 $ \omega $,
+    \begin{enumerate}
+        \item 若 $ \mathrm{d}\omega=0 $, 则称 $ \omega $ 为{\bf 闭}的 (closed);
+        \item 若存在 $ l-1 $ 形式 $ \mu $ 使得 $ \omega=\mathrm{d}\mu $, 则称 $ \omega $ 为{\bf 恰当}的 (exact).
+    \end{enumerate}
+\end{definition}
+\begin{definition}[可定向流形]
+	若 $n$ 维流形 $M$ 上存在一个处处非零的 $n$ 形式场, 则称其为{\bf 可定向}流形.
+\end{definition}
+\begin{definition}[体元]
+    $ n $ 维可定向流形上的一个连续的处处非零的连续 $ n $ 形式场 $ \varepsilon $ 叫做一个{\bf 体元} (volume element). 我们使用体元来指定流形的定向, 对于坐标系 $\{x^i\}$, 若存在处处为正的函数 $h$ (标量场) 使得
+	\[ \varepsilon=h(e^1)\wedge\cdots\wedge(e^n)_, \] 
+	则称该坐标系为{\bf 右手系} (否则称为{\bf 左手系}). 
+\end{definition}
+\begin{definition}
+	给定坐标系 $\{x^i\}$, 定义度量 $g_{ij}$ 的符号为 
+	\[ \mathrm{Sign}(g):=\mathrm{sign}(\det(g_{ij})). \]
+	并称满足
+	\[ \varepsilon^{i_1\cdots i_n}\varepsilon_{i_1\cdots i_n}=\mathrm{Sign}(g)\cdot n! \]
+	的 $\varepsilon_{i_1\cdots i_n}$ 为与度量 $g_{ij}$ 相适配的体元.
+\end{definition}
+\textcolor{blue}{我们总是选取与度量相适配的体元.}
+\begin{theorem}[{\cite[定理 5-4-1]{梁灿彬2000微分几何入门与广义相对论}}]
+    给定坐标系 $\{x^i\}$, 则与 $g_{ab}$ 相适配的体元为
+    \[ \varepsilon=\pm\sqrt{|\det(g_{ij})|}\,(e^1)\wedge\cdots\wedge(e^n), \]
+    其中等式右侧的正号和负号分别对应右手系和左手系. 
+\end{theorem}
+\begin{remark}
+    可以通过调整 $\varepsilon$ 的符号来得到我们想要的手性, 本书总是使用\textcolor{blue}{右手系}.
+\end{remark}
+\begin{proof}
+	利用 $\varepsilon$ 的反对称性可得
+	\begin{align*}
+		\mathrm{Sign}(g)\cdot n!&=\varepsilon^{i_1\cdots i_n}\varepsilon_{i_1\cdots i_n}\\
+		&=g^{i_1j_1}\cdots g^{i_nj_n}\varepsilon_{i_1\cdots i_n}\varepsilon_{j_1\cdots j_n}\\
+		&=\det(g^{ij})\cdot n!\cdot(\varepsilon_{1\cdots n})^2,
+	\end{align*}
+	即
+	\[ |\det(g_{ij})|=(\varepsilon_{1\cdots n})^2.\qedhere \] 
+\end{proof}
+上述定理说明适配体元的分量为
+\[ \varepsilon_{i_1\cdots i_n}=\begin{cases}
+	0, & (i_1,\dots, i_n) \text{ 不是 }\ (1,\dots,n) \text{ 的一个排列,}\\
+	-1, & (i_1,\dots, i_n) \text{ 是 }\ (1,\dots,n) \text{ 的一个奇排列,}\\
+	1, & (i_1,\dots, i_n) \text{ 是 }\ (1,\dots,n) \text{ 的一个偶排列.}
+\end{cases} \] 
+
+\begin{theorem}[{\cite[定理 5-4-2, 定理 5-4-4]{梁灿彬2000微分几何入门与广义相对论}}]
+	\ 
+    \begin{enumerate}
+        \item $\nabla_j\varepsilon_{i_1\cdots i_n}=0$.
+        \item $\varepsilon^{i_1\cdots i_n}\varepsilon_{j_1\cdots j_n}=\mathrm{Sign}(g)\cdot n!\cdot\delta^{[i_1}{}_{j_1}\cdots\delta^{i_n]}{}_{j_n}$.
+        \item $\varepsilon^{i_1\cdots i_k a_{k+1}\cdots a_n}\varepsilon_{i_1\cdots i_k j_{k+1}\cdots j_n}=\mathrm{Sign}(g)\cdot (n-k)!k!\cdot\delta^{[a_{k+1}}{}_{b_{k+1}}\cdots\delta^{a_n]}{}_{b_n}.$
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}[对偶微分形式]
+    $ \omega\in\Lambda(s) $ 的{\bf 对偶微分形式} (dual form) $ {}^{*}\omega\in\Lambda(n-s) $ 为 
+    \[ {}^{*}\omega_{i_1\cdots i_{n-s}}:=\frac{1}{s!}\omega^{j_1\cdots j_s}\varepsilon_{j_1\cdots j_si_1\cdots i_{n-s}}. \]
+    我们称上式所定义的映射
+    \begin{align*}
+        \star:{}\Lambda(s)&\to\Lambda(n-s)\\
+        \omega&\mapsto{}^{*}\omega
+    \end{align*}
+    为{\bf 霍奇星算子} (Hodge star operator), 它是一个同构映射.
+\end{definition}
+
+\begin{theorem}[{\cite[定理 5-6-1]{梁灿彬2000微分几何入门与广义相对论}}]
+    $ {}^{**}\omega=\mathrm{Sign}(g)\cdot(-1)^{s(n-s)}\omega. $
+\end{theorem}
+
+\section{联络}
+\label{connection}
+我们用 $\mathcal{F}_M(r,s)$ 表示流形 $M$ 上全体 $C^\infty$ 的 $(r,s)$ 型张量场构成的集合. 特别地, 函数可视作 $(0,0)$ 型张量场 (标量场), 并记 $\mathcal{F}_M:=\mathcal{F}_M(0,0)$.
+\begin{definition}[向量场的联络]
+	流形 $M$ 上的一个{\bf 联络}指的是一个映射 
+	\[\nabla:\mathcal{F}_M(1,0)\times\mathcal{F}_M(1,0)\to \mathcal{F}_M(1,0),\] 
+	它对于任意 $X,X_1,Y,Y_1\in\mathcal{F}_M(1,0)$, $\lambda\in\mathbb{R}$, $f\in\mathcal{F}_M$ 满足
+	\begin{enumerate}
+		\item $\nabla_Y(X+\lambda X_1)=\nabla_YX+\lambda \nabla_YX_1$,
+		\item $\nabla_Y(f\cdot X)=Y(f)\cdot X+f\cdot \nabla_YX$,
+		\item $\nabla_{Y+\lambda Y_1}X=\nabla_YX+\lambda\nabla_{Y_1}X$,
+		\item $\nabla_{f\cdot Y}X=f\cdot\nabla_YX$.
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	$\mathcal{F}_M(1,0)$ 就是向量场, $\nabla_YX$ 可以理解为向量场 $X$ 关于方向 $Y$ 求导 (每一点的求导方向不同). 实际上只要 $X$ 在点 $p$ 的一个邻域上有定义, $Y$ 在点 $p$ 处有定义, 就可以计算点 $p$ 处的 $\nabla_YX$.
+\end{remark}
+\begin{theorem}[{\cite[定理 6.1.3]{陈维桓2013微分几何引论}}]
+	给定坐标系 $\{x^i\}$, 则
+	\[ \nabla_Y X=Y^i(\partial_i X^k+\Gamma^{k}{}_{ij}X^{j})\frac{\partial }{\partial x^k}, \]
+	其中 $\Gamma^{k}{}_{ij}$ 为{\bf 克氏符} (Christoffel symbol), 其定义为
+	$$ \nabla_{\frac{\partial }{\partial x^i}}\frac{\partial }{\partial x^j}=\Gamma^{k}{}_{ij}\frac{\partial }{\partial x^k}. $$
+\end{theorem}
+基于上面展开, 我们定义
+\[ \nabla_iX:=(\partial_iX^k+\Gamma^{k}{}_{ij}X^j)\frac{\partial }{\partial x^k}, \] 
+于是
+\[ \nabla_YX=Y^i\nabla_iX, \] 
+本书用记号 $\nabla_i$ 代替 $\nabla$; 我们还可以进一步将 $\nabla_iX$ 的表达式简记为
+\[ \nabla_iX^k:=\partial_iX^k+\Gamma^{k}{}_{ij}X^j, \]
+但要注意: \textcolor{red}{联络不是对 $X$ 的分量分别求的, 而是对 $X$ 整体求的!}
+
+\begin{remark}
+	$\nabla_i X^k$ 是 $(1,1)$ 型张量场.
+\end{remark}
+
+\begin{remark}
+	由于联络本身不依赖于坐标选取, 我们省略基向量的做法在涉及 $\nabla_i$ 时也不会有问题. 但要注意联络的系数 (克氏符) 不满足张量的变换规律.
+\end{remark}
+我们可以将向量场的联络推广到张量场上 \cite[\S 6.2.2]{陈维桓2013微分几何引论}. 为此, 只需规定 $D_Y$ 满足以下几个条件:
+\begin{enumerate}
+	\item $\nabla_Y$ 保持张量类型不变,
+	\item $\nabla_Y$ 与缩并可换序,
+	\item $\nabla_Y(f)=Y(f)$,
+	\item $\nabla_Y(T\otimes S)=(\nabla_YT)\otimes S+T\otimes(\nabla_YS)$.
+\end{enumerate}
+\begin{remark}
+	这几条定义不影响我们将联络 $\nabla$ 记为 $\nabla_i$, 因此继续使用记号 $\nabla_i$.
+\end{remark}
+另外, 我们只关心{\bf 无挠}联络, 即要求 $\nabla_i$ 还要满足
+\[ \nabla_i\nabla_j f=\nabla_j\nabla_i f,\quad \forall f\in\mathcal{F}_M. \] 
+
+\begin{theorem}
+\label{torsion} 
+	$\nabla_i$ 的无挠性等价于
+	\[ [X,Y]^i=X^j\nabla_jY^i-Y^j\nabla_jX^i,\quad \forall X^i,Y^i. \]
+\end{theorem}
+\begin{proof}
+	由无挠性知对任意的 $X^i,Y^i$ 有
+	\[ X^iY^j\nabla_i\nabla_j f=Y^jX^i\nabla_j\nabla_i f, \]
+	进而有
+	\[ X^i\nabla_i(Y^j\nabla_j f)-(X^i\nabla_iY^j)(\nabla_j f)=Y^j\nabla_j(X^i\nabla_i f)-(Y^j\nabla_jX^i)(\nabla_if), \]
+	移项得
+	\[ [X,Y]^i=X^j\nabla_jY^i-Y^j\nabla_jX^i. \] 
+	另一个方向的证明类似.
+\end{proof}
+
+\begin{remark}
+	若定义 $\nabla_i$ 的挠率 $T$ 为
+	\[ T(X,Y):=\nabla_XY-\nabla_YX-[X,Y], \] 
+	则 $T$ 是一个 $(1,2)$ 型张量, 且无挠性等价于 $T=0$.
+\end{remark}
+
+\textcolor{blue}{我们总是假设联络为无挠的.}
+
+\begin{remark}
+	若我们将缩并记作 $C$, 则联络与缩并可交换指的是 $\nabla\circ C=C\circ\nabla$, 这一条街等价于 $\nabla_a\delta^b{}_c=0$. 推导
+	\begin{align*}
+		\nabla_i(v^jw_j)&=\nabla_i(C^k_{j}v^jw_k)=C^k_{j}(v^j\nabla_i w_k+w_k\nabla_iv^j)=v^j\nabla_i w_j+w_j\nabla_iv^j
+	\end{align*}
+	时就需要用到这个条件.
+\end{remark}
+
+\begin{theorem}
+	克氏符在坐标变换 $(x^i)\mapsto(\tilde{x}^{\tilde{i}})$ 下的变换规律为
+	\[ \frac{\partial x^k}{\partial \tilde{x}^{\tilde{k}}}\tilde{\Gamma}^{\tilde{k}}{}_{\tilde{i}\tilde{j}}=\frac{\partial x^{i}}{\partial \tilde{x}^{\tilde{i}}}\frac{\partial x^{j}}{\partial \tilde{x}^{\tilde{j}}} \Gamma^{k}{}_{ij}+\frac{\partial^2 x^{i}}{\partial \tilde{x}^{\tilde{i}}\partial \tilde{x}^{\tilde{j}}}, \]
+\end{theorem}
+\begin{remark}
+	这与张量的变换规律 (定理 \ref{coordinate transform}) 相比多了一项, 因此只能将 $\Gamma^{k}{}_{ij}$ 视作 $n^3$ (在 $n$ 维流形上) 个函数 (标量场), 不能将其视作 $(2,1)$ 型张量场. 然而, 梁灿彬将张量场定义为每一点处都是多重线性映射的场, 于是也将克氏符视为张量场, 只不过是依赖于坐标选取的张量场 \cite[59 页, 注 3]{梁灿彬2000微分几何入门与广义相对论}.
+\end{remark}
+
+
+
+\begin{theorem}[{\cite[定理 3-1-4]{梁灿彬2000微分几何入门与广义相对论}}]
+	联络的无挠性蕴涵 $\Gamma^{k}{}_{ij}=\Gamma^{k}{}_{ji}$.
+\end{theorem}
+
+\begin{theorem}[{\cite[定理 3-1-6]{梁灿彬2000微分几何入门与广义相对论}}]
+	对任意 $T\in\mathcal{F}_M(r,s)$ 有
+	\begin{align*}
+		\nabla_k &T^{i_1\cdots i_r}{}_{j_1\cdots j_s}\\
+		=\partial_k &T^{i_1\cdots i_r}{}_{j_1\cdots j_s}+\sum_{t=1}^{r}\Gamma^{i_t}{}_{kl}T^{i_1\cdots l\cdots i_r}{}_{j_1\cdots j_s}-\sum_{t=1}^{s}\Gamma^m{}_{kj_t}T^{i_1\cdots i_r}{}_{j_1\cdots m\cdots j_s}.
+	\end{align*}
+	% \begin{align*}
+	% 	\nabla_c &T^{a_1\cdots a_k}{}_{b_1\cdots b_l}\\
+	% 	=\partial_c &T^{a_1\cdots a_k}{}_{b_1\cdots b_l}+\sum_i\Gamma^{a_i}{}_{cd}T^{a_1\cdots d\cdots a_k}{}_{b_1\cdots b_l}-\sum_j\Gamma^e{}_{cb_j}T^{a_1\cdots a_k}{}_{b_1\cdots e\cdots b_l}.
+	% \end{align*}
+\end{theorem}
+
+\begin{theorem}[Levi-Civita 联络 {\cite[定理 3-2-3]{梁灿彬2000微分几何入门与广义相对论}}]
+	设 $g$ 为 (伪) 黎曼度量, 则存在唯一的 $\nabla_i$ 使得 $\nabla_i g_{jk}=0$. 我们称这个联络为 {\bf Levi-Civita 联络}或与 $g$ 适配的联络.
+\end{theorem}
+\begin{remark}
+	Levi-Civita 联络就是保持黎曼度量 (或伪黎曼度量) 不变且无挠的唯一联络.
+\end{remark}
+
+\textcolor{blue}{我们总是取 $\nabla_i$ 为 Levi-Civita 联络.}
+
+\begin{theorem}[{\cite[65 页]{梁灿彬2000微分几何入门与广义相对论}}]
+\label{Gamma-g}
+	克氏符可以借由度量表达为
+	\[ \Gamma^{k}{}_{ij}=\frac{1}{2}g^{kl}\left( \partial_i g_{jl}+\partial_j g_{li}-\partial_l g_{ij} \right). \]
+	% \[ \Gamma^{k}{}_{ij}=\frac{1}{2}g^{kl}\left( \frac{\partial g_{li}}{\partial x^j}+\frac{\partial g_{jl}}{\partial x^i}-\frac{\partial g_{ij}}{\partial x^l} \right). \]
+\end{theorem}
+
+\begin{definition}[平移]
+	设 $C(t)$ 为 $M$ 上的曲线, $T^i$ 为 $C(t)$ 的切向量场. 任给 $C(t)$ 上的向量场 $v^i$, 若
+	\[ T^j\nabla_jv^i=0, \]
+	则对于 $C(t)$ 上任意两点 $p,q$ 可称 $v^i|_q$ 为 $v^i|_p$ 沿 $C(t)$ {\bf 平移}至 $q$ 点所得的结果.
+\end{definition}
+设 $C(t)$ 在坐标 $(x^i)$ 中的参数表达式为 $(x^i(t))$, 则 $\displaystyle T^i=\frac{\mathrm{d} x^i}{\mathrm{d} t}$, 且 $T^j\nabla_jv^i=0$ 可重新表达为
+\[ \frac{\mathrm{d} v^k}{\mathrm{d} t}+\Gamma^k{}_{ij}\frac{\mathrm{d} x^i}{\mathrm{d} t}v^j=0, \quad k=1,\dots,n.\]
+若 $\gamma(0)=(x^i(0))$, 则初值 $x^i(0)=v^i|_p$ 对应的解就是将 $v^i|_p$ 沿 $C(t)$ 平移所得到的向量场. 由于上述方程是形如
+\[ \frac{\mathrm{d}\mathbf{x}(t)}{\mathrm{d}t}=\mathbf{A}(t)\mathbf{x}(t) \] 
+的常微分方程组, 其中 $\mathbf{A}$ 为矩阵值函数, $\mathbf{x},\mathbf{f}$ 为向量值函数. 由 Picard-Lindel\"{o}f 定理\cite[64 页, 定理 3.1]{丁同仁2004常微分方程} 知, 若 $\mathbf{A}(t)$ 的所有分量都在 $[a,b]$ 上连续, 则对于任意初值条件 
+\[ \mathbf{x}(t_0)=\mathbf{x}_0,\quad t_0\in(a,b), \] 
+该方程在 $[a,b]$ 上的解存在且唯一.
+
+这也就是说, 向量沿某一曲线平移总是能做到的.
+\begin{definition}[测地线]
+	\label{geodesic}
+	若曲线 $\gamma(t)$ 的切向量 $T^i$ 满足
+	\[ T^j\nabla_jT^i=0, \tag{测地线方程}\] 
+	则称其为{\bf 测地线}(geodesic).
+\end{definition}
+\begin{remark}
+	测地线等价于切向量沿线平移的曲线.
+\end{remark}
+设 $\gamma(t)$ 的参数表达式为 $(x^i(t))$, 则测地线方程可重新表达为
+\[ \frac{\mathrm{d}^2 x^k}{\mathrm{d} t^2}+\Gamma^k{}_{ij}\frac{\mathrm{d} x^i}{\mathrm{d} t}\frac{\mathrm{d} x^j}{\mathrm{d} t}=0,\quad k=1,\dots,n. \] 
+由 Picard-Lindel\"{o}f 定理\cite[64 页, 定理 3.1]{丁同仁2004常微分方程} 知, 给定一点 $p$ 和其上的向量 $v^i$, 存在 $\varepsilon>0$, 使得 $[-\varepsilon,\varepsilon]$ 上存在唯一的测地线 $\gamma(t)$ 满足
+\begin{enumerate}
+	\item $\gamma(0)=0$,
+	\item $\gamma(0)$ 处的切向量为 $v^i$.
+\end{enumerate}
+
+注意曲线的参数会影响 $T^j\nabla_jT^i$ 的值, 我们将能使曲线成为测地线的参数称作该曲线的{\bf 仿射参数}.
+
+
+\begin{remark}
+	还使用以下记号
+	\begin{align*}
+		v^\nu{}_{,\mu} &:= \partial_\mu x^\nu=\frac{\partial v^\nu}{\partial x^\mu},\\
+		v^\nu{}_{;\mu} &:= \nabla_\mu v^\nu.
+	\end{align*}
+\end{remark}
+
+\section{曲率}
+\begin{proposition}[黎曼曲率张量]
+	联络 $\nabla_i$ 的{\bf 黎曼曲率张量} (Riemann curvature tensor)是由
+	\[ (\nabla_i\nabla_j-\nabla_j\nabla_i)\omega_k=:R_{ijk}{}^{l} \omega_l \] 
+	定义的 $(1,3)$ 型张量场 $R_{ijk}{}^{l}$.
+\end{proposition}
+\begin{remark}
+	上述定义对任意的联络都成立, 但此处我们要求 $\nabla_i$ 为 Levi-Civita 联络, 进而保证指标可以随意地升降.
+\end{remark}
+\begin{theorem}\keepline
+	\[ (\nabla_i\nabla_j-\nabla_j\nabla_i)v^l=-R_{ijk}{}^{l}v^k. \] 
+\end{theorem}
+\begin{proof}
+	由 $\nabla_i$ 的无挠性得
+	\begin{align*}
+		0 &= (\nabla_i\nabla_j-\nabla_j\nabla_i)(v^lw_l)\\
+		&= \nabla_i(v^l\nabla_j w_l+w_l\nabla_j v^l)-\nabla_j(v^l\nabla_i w_l+w_l\nabla_i v^l)\\
+		&= v^l\nabla_i\nabla_j w_l+w_l\nabla_i\nabla_j v^l-v^l\nabla_j\nabla_i w_l-w_l\nabla_j\nabla_i v^l,
+	\end{align*}
+	于是
+	\begin{align*}
+		w_l(\nabla_i\nabla_j-\nabla_j\nabla_i)v^l&=-v^l(\nabla_i\nabla_j-\nabla_j\nabla_i)w_l\\
+		&=-v^lR_{ijl}{}^{k}w_k\\
+		&=-w_lR_{ijk}{}^{l}v^k.\qedhere
+	\end{align*}
+\end{proof}
+\begin{remark}
+	微分几何教材 \cite{陈维桓2013微分几何引论} 将 (黎曼) 曲率张量定义为
+	\[ R(X,Y)Z:=\nabla_X\nabla_Y Z-\nabla_Y\nabla_X Z-\nabla_{[X,Y]}Z, \] 
+	由于我们只考虑无挠联络, 利用定理 \ref{torsion} 计算得
+	\begin{align*}
+		(R(X,Y)Z)^k &= X^i\nabla_i (Y^j\nabla_j Z^k)-Y^i\nabla_i(X^j\nabla_j Z^k)-[X,Y]^i\nabla_i Z^k\\
+		&=X^i\nabla_i (Y^j\nabla_j Z^k)-Y^j\nabla_j(X^i\nabla_i Z^k)-(X^i\nabla_i Y^j-Y^i\nabla_i X^j)(\nabla_j Z^k)\\
+		&=Y^jX^i\nabla_i\nabla_j Z^k-X^iY^j\nabla_j\nabla_i Z^k
+	\end{align*}
+	因此
+	\[ R(e_i,e_j)Z=(\nabla_i\nabla_j-\nabla_j\nabla_i)Z. \]
+	这与我们定义的曲率张量相差一个正负号, 笔者认为, 这一差异源自于黎曼流形和伪黎曼流形的区别.
+\end{remark}
+\begin{theorem}[{\cite[定理 3-4-5]{梁灿彬2000微分几何入门与广义相对论}}]
+	对任意 $T\in\mathcal{F}_M(r,s)$ 有
+	\begin{align*}
+		&\phantom{{}={}}(\nabla_i\nabla_j-\nabla_j\nabla_i)T^{k_1\cdots k_r}{}_{l_1\cdots l_s} \\
+		&=-\sum_{t=1}^{r}R_{ijm}{}^{k_t}T^{k_1\cdots m\cdots k_r}{}_{d_1\cdots d_l}+\sum_{t=1}^{s}R_{ijl_t}{}^{m}T^{k_1\cdots k_r}{}_{l_1\cdots m\cdots l_s}.
+	\end{align*}
+	% \begin{align*}
+	% 	&\phantom{{}={}}(\nabla_a\nabla_b-\nabla_b\nabla_a)T^{c_1\cdots c_k}{}_{c_1\cdots c_l} \\
+	% 	&=-\sum_{i=1}^{k}R_{ace}{}^{c_i}T^{c_1\cdots e\cdots c_k}{}_{d_1\cdots d_l}+\sum_{j=1}^{l}R_{abd_j}{}^{e}T^{c_1\cdots c_k}{}_{d_1\cdots e\cdots d_k}.
+	% \end{align*}
+\end{theorem}
+\begin{theorem}[{\cite[定理 3-4-6]{梁灿彬2000微分几何入门与广义相对论}}]
+\label{prop of R}
+	黎曼曲率张量有以下性质:
+	\begin{enumerate}
+		\item $R_{ijkl}=-R_{jikl}=-R_{ijlk}$.
+		\item $R_{ijkl}=R_{klij}$.
+		\item $R_{[ijk]l}=0$.
+		\item $\nabla_{[m}R_{ij]kl}=0$, 这个式子叫做比安基 (Bianchi) 恒等式.
+	\end{enumerate}
+\end{theorem}
+
+
+\begin{definition}
+\label{curvature}
+	基于黎曼曲率张量, 我们可以定义其他几种曲率如下:
+	\begin{enumerate}
+		\item {\bf 里奇曲率张量} (Ricci curvature tensor):
+		\[ R_{ik}:=R_{ijk}{}^{j}=g^{jl}R_{ijkl}. \] 
+		\item {\bf 标量曲率} (scalar curvature):
+		\[ R=g^{ik}R_{ik}. \] 
+		% \item {\bf 外尔曲率张量} (Weyl curvature tensor): 当 $n\geq 3$ 时, 
+		% \[ C_{ijkl}:=R_{ijkl}-\frac{2}{n-2}(g_{i[k}R_{l]j}-g_{j[k}R_{l]i})+\frac{2}{(n-1)(n-2)}Rg_{i[k}g_{l]j}. \] 
+	\end{enumerate}
+\end{definition}
+\begin{theorem}
+\label{prop of Ri}
+	里奇曲率张量是对称的, 即 $ R_{ik}=R_{ki} $. 
+\end{theorem}
+\begin{proof}
+	由定理 \ref{prop of R} 中的第二条立即得到.
+\end{proof}
+\begin{theorem}[{\cite[\S\,3.4.2]{梁灿彬2000微分几何入门与广义相对论}}]
+\label{R-Gamma}
+	黎曼曲率张量可以表达为
+	\begin{align*}
+		R_{ijk}{}^{l}&=-2\partial_{[i}\Gamma^{l}{}_{j]k}+2\Gamma^{m}{}_{k[i}\Gamma^{l}{}_{j]m}\\
+		&=\partial_j\Gamma^{l}{}_{ik}-\partial_i\Gamma^{l}{}_{jk}+\Gamma^{m}{}_{ki}\Gamma^{l}{}_{jm}-\Gamma^{m}{}_{ik}\Gamma^{l}{}_{mj}.
+	\end{align*}
+\end{theorem}
+\begin{theorem}[{\cite[\S\,3.4.2]{梁灿彬2000微分几何入门与广义相对论}}]
+\label{Ri-Gamma}
+	里奇曲率张量可以表达为
+	\begin{align*}
+		R_{ik}&=-2\partial_{[i}\Gamma^{j}{}_{j]k}+2\Gamma^{m}{}_{k[i}\Gamma^{j}{}_{j]m}\\
+		&=\partial_j\Gamma^{j}{}_{ik}-\partial_i\Gamma^{j}{}_{jk}+\Gamma^{m}{}_{ki}\Gamma^{j}{}_{jm}-\Gamma^{m}{}_{kj}\Gamma^{j}{}_{im}.
+	\end{align*}
+\end{theorem}
+% \begin{proposition}[{\cite[定理 3-4-7]{梁灿彬2000微分几何入门与广义相对论}	}]
+% 	外尔张量有以下性质:
+% 	\begin{enumerate}
+% 		\item $C_{ijkl}=-C_{jikl}=-C_{ijlk}$.
+% 		\item $C_{ijkl}=C_{klij}$.
+% 		\item $C_{[ijk]l}=0$.
+% 		\item $C_{ijkl}$ 的所以迹都是零, 如 $g^{ij}C_{ijkl}=0$.
+% 	\end{enumerate}
+% \end{proposition}

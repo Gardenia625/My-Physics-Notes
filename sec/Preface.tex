@@ -1,0 +1,47 @@
+\section*{前言}
+\addcontentsline{toc}{section}{前言}
+这是我的物理笔记. 
+
+出于兴趣, 我自学了一些物理. 很多物理书都通过物理实验来引入要讲的内容, 物理系学生或许会觉得这种讲法十分亲切, 但我却觉得这种书阅读起来十分困难. 我对物理领域最感兴趣的是公理化之后的理论体系, 并不关心具体问题的计算, 因此本书极少涉及具体算例.
+
+本书内容整理自众多教材和网上的讲义.
+\begin{itemize}
+    \item 经典力学部分主要参考 \cite{arnol2013mathematical}.
+    \item 量子力学部分主要参考 \cite{griffiths_schroeter_2018,hall2013quantum}.
+    \item 统计力学部分主要参考 \cite{sethna2021statistical}.
+    \item 电动力学和广义相对论部分主要参考 \cite{梁灿彬2000微分几何入门与广义相对论}, 但我没有使用梁灿彬在 \cite{梁灿彬2000微分几何入门与广义相对论} 中极为推崇的抽象指标记号.
+    \item 量子场论部分主要参考 \cite{lancaster2014quantum}?
+\end{itemize}
+
+我想把自己学过的物理中有趣的东西都记录一下. 由于野心太大, 必然记录的十分粗略. 因此我将此文稿定义为笔记.
+
+这里写致谢.
+
+\newpage
+\section*{记号}
+\addcontentsline{toc}{section}{符号说明}
+\begin{itemize}
+    \item 上标 $ \dot{ } $ 表示对时间求导.
+    \item 上角标 $ { }^\mathsf{T} $ 表示矩阵转置.
+    
+    \item 罗马体的 $ \mathrm{i} $ 表示虚数单位.
+
+    \item $ \delta_{ij} $ 表示克罗内克符号 (Kronecker delta).
+    \item $ \delta(x) $ 表示狄拉克 $ \delta $ 函数.
+    
+    \item $ \mathrm{Dom} $ 表示定义域, $ \mathrm{Ran} $ 表示值域.
+    \item $ \langle \cdot,\cdot \rangle $ 表示内积. 
+    \item $ [A,B] $ 表示对易子 $ AB-BA $.
+    \item $ I $ 表示恒等算子.
+
+    \item 定义向量对向量的求导为
+    \[ \left(\frac{\mathrm{\partial u}}{\partial v}\right)_{ij}= \frac{\partial u_i}{\partial v_j} .\]
+但当 $ u $ 是标量, $ v $ 是向量时, 我们要额外做一个转置
+    \[ \frac{\partial u}{\partial v}=\left( \begin{matrix}
+        \frac{\partial u}{\partial v_1} \\ 
+        \vdots\\ 
+        \frac{\partial u}{\partial v_n}
+    \end{matrix} \right), \]
+这是为了迎合我们将梯度写为列向量的习惯.
+    \item \textbf{如无特殊声明, 所有东西都是光滑的!}
+\end{itemize}

@@ -1,0 +1,57 @@
+\section{哈密顿量}
+继续考虑量子希尔伯特空间为 $ L^2(\mathbb{R}) $ 的情况, 此时哈密顿量 
+\[ H(x,p)=\frac{p^2}{2m}+V(x) \] 
+对应的{\bf 哈密顿算子}为
+\[ \hat{H}=\frac{P^2}{2m}+V(x), \]
+其中 $ V(x) $ 是乘性算子 $ \psi(x)\mapsto V(x)\psi(x) $. 因为哈密顿量就是能量, 测量哈密顿算子会得到能量的大小.
+
+根据薛定谔方程
+\[ \frac{\mathrm{d}}{\mathrm{d}t}\psi=\frac{1}{\mathrm{i}\hbar}\hat{H}\psi, \]
+状态 $ \psi $ 随时间变化, 而 $ \hat{H} $ 是保持不变的, 这种视角叫做{\bf 薛定谔绘景} (Schr\"{o}dinger picture). 薛定谔方程的解为 
+\[ \psi(x,t)=e^{-\mathrm{i}t\hat{H}/\hbar}\psi(x). \]
+
+\begin{remark}
+    无界算子的指数函数需要用谱定理来定义.
+\end{remark}
+
+转变一下视角, 放弃薛定谔方程, 然后我们可以认为 $ \psi $ 是不变的, 并定义算子随时间的演化服从方程
+\[ \frac{\mathrm{d}}{\mathrm{d}t}A(t)=\frac{1}{\mathrm{i}\hbar}[A(t),\hat{H}]. \]
+这种视角叫做{\bf 海森堡绘景}(Heisenberg picture), 这个方程叫做{\bf 海森堡方程}. 
+
+\begin{remark}
+    海森堡方程与经典力学中的 $ \dot{f}=\{f,H\} $ 非常相似. 不过前者是我们作为定义引入的, 后者是可以证明的结论. 基于这种相似, 我们有理由在量子化时保证对应关系
+    \[ \{f,g\}\longleftrightarrow \frac{1}{\mathrm{i}\hbar}[\hat{f},\hat{g}]. \] 
+    满足这种对应关系的量子化叫做几何量子化 (geometric quantization).
+\end{remark}
+
+海森堡方程的解为
+\[ A(t)=e^{\mathrm{i}t\hat{H}/\hbar}Ae^{-\mathrm{i}t\hat{H}/\hbar}, \]
+直接计算有
+\begin{align*}
+    \langle \psi,A(t)\psi\rangle &= \left\langle \psi,e^{\mathrm{i}t\hat{H}/\hbar}Ae^{-\mathrm{i}t\hat{H}/\hbar}\psi \right\rangle\\ 
+    &= \left\langle e^{-\mathrm{i}t\hat{H}/\hbar}\psi ,Ae^{-\mathrm{i}t\hat{H}/\hbar}\psi  \right\rangle\\ 
+    &= \langle \psi(t), A\psi(t)\rangle,
+\end{align*}
+这说明了薛定谔绘景与海森堡绘景是等价的.
+
+回到薛定谔绘景, 我们通常说的``解薛定谔方程''指的是寻找特征方程 $ \hat{H}\psi=E\psi $ 的解. 若 $ (E,\psi) $ 是一组解, 则 $ \psi $ 对应的 (含时) 薛定谔方程的解为
+\[ \psi(t)=e^{-\mathrm{i}tE/\hbar}\psi. \]
+因为 $ \psi(t) $ 只与 $ \psi $ 相差一个常系数, 它们代表相同的物理状态, 这说明 $ \psi $ 对应的状态不随时间发生改变. 若进一步地, $ \hat{H} $ 的所有特征向量构成了量子希尔伯特空间的一组基, 则通过坐标分解我们可以求得所有状态随时间演化方式.
+
+\begin{remark}
+    根据哥本哈根诠释, 观测一个状态后, 它会变成一个特征向量, 但这说明观测后的该状态再也不会发生改变了! 现实中, 间隔很短地测量同一个物理量两次确实会得到一样的值, 但因为所测量的系统会受到外界的扰动 , 观测后的状态并不能真的一直保持不变 (也可能因为哥本哈根诠释是错的).
+\end{remark}
+
+有了 $\hat{H}$ 的表达式, 我们可以计算 $\langle X \rangle_{\psi(t)}$ 关于时间的导数 (以下假设 $\psi(t)$ 在 $X$ 和 $P$ 的定义域中)
+\begin{align*}
+    \frac{\mathrm{d} }{\mathrm{d} t}\langle X \rangle_{\psi(t)}&=\frac{\mathrm{d} }{\mathrm{d} t}\langle \psi(t),X\psi(t) \rangle\\
+    &= -\frac{1}{\mathrm{i}\hbar}\langle \hat{H}\psi(t),X\psi(t) \rangle+\frac{1}{\mathrm{i}\hbar}\langle \psi(t),X\hat{H}\psi(t) \rangle \\
+    &= \frac{1}{\mathrm{i}\hbar}\langle \psi(t),[X,\hat{H}]\psi(t) \rangle\\
+    &= \frac{1}{m}\langle P \rangle_{\psi(t)}.
+\end{align*}
+类似地, 当 $V(x)$ 的性质充分好 (比如 $V$ 是速降函数) 时有
+\[ \frac{\mathrm{d} }{\mathrm{d} t}\langle P \rangle_{\psi(t)}=-\langle V'(X) \rangle_{\psi(t)}, \] 
+这是量子力学版的 $F=ma$.
+\begin{remark}
+    一般来说 $\langle V'(x) \rangle_\psi\neq V'(\langle X \rangle_\psi)$.
+\end{remark}

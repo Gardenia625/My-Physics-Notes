@@ -1,0 +1,17 @@
+\section{氢原子模型}
+我个人认为氢原子是非相对性量子力学的最高成就, 但由于其过于复杂, 在此只做简要介绍, 详细推导见 \cite{hall2013quantum,griffiths_schroeter_2018}.
+
+氢原子由一个质子和一个电子构成, 假设质点在原点处, 则它的哈密顿量在球坐标下为
+\[ \hat{H}=-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2}{\mathrm{d}r^2}-\frac{e^2}{4\pi\varepsilon_0}\frac{1}{r}+\frac{\hbar^2l(l+1)}{2mr^2}, \]
+其中 $ e $ 是单位电荷.
+
+$ \hat{H} $ 的特征值为
+\[ E_n=-\left[\frac{m}{2\hbar^2}\left(\frac{e^2}{4\pi\varepsilon_0}\right)^2\right]\frac{1}{n^2}, \]
+这些特征值也被叫做氢原子的{\bf 能级}, $ E_n $ 对应的特征向量为 
+\[ \psi_{n,l,m}(r,\theta,\phi)=\sqrt{\left(\frac{\rho_n}{r}\right)^3\frac{(n-l-1)!}{2n[(n+l)!]^3}}\,\rho_n^le^{-\rho_n/2}L^{2l+1}_{n-l-1}(\rho_n)Y^m_l(\theta,\phi), \]
+\[ n=1,2,3,\dots;\ \ l=0,1,\dots,n-1;\ \ m=-l,-l+1,\dots,l-1,l. \]
+其中 $Y^m_l$ 为{\bf 球谐函数}, $ L_q(x) $ 为 {\bf Laguerre 多项式}, $ \rho_n=\frac{2r}{na} $, $ a=\frac{4\pi\varepsilon_0\hbar^2}{me^2} $ 为{\bf 玻尔半径}.
+
+对于这样的双粒子系统, 我们尚且可以求得其对应的微分方程的解析解, 但对于一般的多粒子系统, 我们则需要使用场论的方法来对其进行分析. 另外, 非相对性量子力学只是现实微观世界的一个低能量近似, 想要讨论粒子相互碰撞时的情况则需要考虑到相对论, 而量子场论正是量子力学与狭义相对论的结合.
+
+非相对性量子力学的内容就只介绍到这里.

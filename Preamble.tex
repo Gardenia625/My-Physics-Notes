@@ -1,0 +1,97 @@
+\usepackage{geometry}
+\geometry{
+    top=2.25cm,
+    bottom=2.25cm,
+    inner=2cm, % left
+    outer=2cm, % right
+		headheight=5ex, % 页眉高度
+		headsep=5ex, % 页眉和正文间距
+}
+\raggedbottom % 防止 vbox underfull 警告
+
+\usepackage{fancyhdr} % 用来设置页眉页脚
+\renewcommand{\sectionmark}[1]{\markright{\S\,\thesection\quad#1}}
+% 正文格式
+\fancypagestyle{fancy}{
+  \fancyhf{} % 清除页眉页脚格式
+  \fancyhead[LE,RO]{\thepage} % 页码显示
+  \fancyhead[CE]{\leftmark} % 偶页页眉中心 
+  \fancyhead[CO]{\rightmark} % 奇页页眉中心
+}
+% 目录第一页及 chapter 第一页格式
+\fancypagestyle{plain}{\fancyhf{}}
+% 目录与前言格式
+\fancypagestyle{toc}{ 
+  \fancyhf{}
+  \fancyhead[LE,RO]{\thepage\vspace{1mm}}
+}
+\renewcommand{\headrulewidth}{0pt} % 去掉页眉横线
+
+\pagestyle{plain}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\numberwithin{figure}{chapter}
+\usepackage{graphicx}
+\usepackage{enumerate} % 多种样式的 enumerate 编号
+%\usepackage{enumitem} % 多种样式的 enumerate 编号
+\usepackage{bm} %希腊字母加粗
+\usepackage{xcolor} % \textcolor{red}{123}
+\usepackage{amsthm}
+% 让定理的标题变为粗体
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{axiom}[theorem]{公理}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{definition}[theorem]{定义} 
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
+\newtheorem*{remark}{注}
+
+\newtheorem{quantumaxiom}{量子力学公理}
+
+\usepackage{hyperref} % 文档内跳转
+\usepackage{xpatch}
+% 去掉定理编号后面的点
+%\makeatletter
+%\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+%\makeatother
+
+% 证明粗体
+\xpatchcmd{\proof}{\itshape}{\normalfont\proofnamefont}{}{}
+\newcommand{\proofnamefont}{\bfseries}
+% 提升 chi 的高度
+\usepackage{mathtools}
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}}
+% 优化 forall 和 exists 后面的缩进
+\let\oldforall\forall
+\let\forall\undefined
+\DeclareMathOperator{\forall}{\oldforall}
+\let\oldexists\exists
+\let\exists\undefined
+\DeclareMathOperator{\exists}{\oldexists}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{2em} %首行缩进
+\usepackage{setspace} % 调整行间距
+% 用来调整行间距, 不要与 setspace 混用
+% \renewcommand{\baselinestretch}{1.25} 
+
+% \keepline 可以用来让以行间公式开头的定理或证明不另起一行
+% 使用方法:
+% \begin{theorem}[title]\keepline
+% ...
+% \end{theorem}
+\newcommand{\keepline}{\leavevmode\setlength{\abovedisplayskip}{0pt}\vspace{-\baselineskip}}

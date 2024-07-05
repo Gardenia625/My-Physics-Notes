@@ -1,0 +1,81 @@
+\documentclass[b5paper,openany]{ctexbook}
+% openany 表示每一章第一页既可以在左也可以在右
+\input{Preamble}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{epigraph}
+\setlength\epigraphwidth{.7\textwidth}
+% \renewcommand{\textflush}{flushright}
+\setlength{\epigraphrule}{0pt}
+
+\title{我的物理笔记}
+\author{周子涵}
+\date{\today}
+\begin{document}
+\maketitle
+% 调整上下角标高度
+\fontdimen17\textfont2=2.5pt 
+\fontdimen16\textfont2=2.5pt
+\fontdimen15\textfont2=4.5pt
+\fontdimen14\textfont2=4.5pt
+\fontdimen13\textfont2=4.5pt
+
+\vspace*{7cm}
+\begin{center}
+    {\large 献给刘昱伯, 感谢他在我学习物理时所提供的帮助.}
+\end{center}
+\frontmatter
+\pagestyle{toc} % 目录和前言页眉只有罗马数字页码
+\include{sec/preface}
+\tableofcontents
+\pagestyle{plain} % 防止空白页出现页码
+% \cleardoublepage
+\mainmatter
+\pagestyle{fancy} % 正文页眉格式
+% \part{四大力学}
+\chapter{经典力学}
+\input{sec/Chapter 1 Classical Mechanics/Section 1}
+\input{sec/Chapter 1 Classical Mechanics/Section 2}
+\input{sec/Chapter 1 Classical Mechanics/Section 3}
+\input{sec/Chapter 1 Classical Mechanics/Section 4}
+\chapter{量子力学}
+\input{sec/Chapter 2 Quantum Mechanics/Section 0}
+\input{sec/Chapter 2 Quantum Mechanics/Section 1}
+\input{sec/Chapter 2 Quantum Mechanics/Section 2}
+\input{sec/Chapter 2 Quantum Mechanics/Section 3}
+\input{sec/Chapter 2 Quantum Mechanics/Section 4}
+\input{sec/Chapter 2 Quantum Mechanics/Section 5}
+\input{sec/Chapter 2 Quantum Mechanics/Section 6}
+
+\chapter{统计力学}
+\input{sec/Chapter 3 Statistical Mechanics/Section 1}
+\input{sec/Chapter 3 Statistical Mechanics/Section 2}
+\input{sec/Chapter 3 Statistical Mechanics/Section 3}
+\input{sec/Chapter 3 Statistical Mechanics/Section 4}
+
+\chapter{电动力学}
+\input{sec/Chapter 4 Electromagnetism/Section 1}
+\input{sec/Chapter 4 Electromagnetism/Section 2}
+\input{sec/Chapter 4 Electromagnetism/Section 3}
+\input{sec/Chapter 4 Electromagnetism/Section 4}
+\input{sec/Chapter 4 Electromagnetism/Section 5}
+
+\chapter{广义相对论}
+\input{sec/Chapter 5 General Relativity/Section 1}
+\input{sec/Chapter 5 General Relativity/Section 2}
+\input{sec/Chapter 5 General Relativity/Section 3}
+
+\chapter{量子场论}
+量子场论作为 quantum field theorem 的直译确实很帅, 但从表达含义的角度来说, 不如日文翻译場の量子論.
+
+
+\appendix
+\input{sec/Appendix/Appendix A}
+\input{sec/Appendix/Appendix B}
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{References}
+
+\end{document}

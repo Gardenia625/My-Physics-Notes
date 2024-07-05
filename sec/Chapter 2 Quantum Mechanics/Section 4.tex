@@ -1,0 +1,89 @@
+\section{简谐振子}
+\label{harmonic oscillator}
+{\bf 简谐振子} (harmonic oscillator) 是一个非常重要的例子. 一方面, 我们可以将晶体中粒子想象成一个被无形的弹簧系在晶格上的小球, 我们将要讨论的正是后者的量子版本; 另一方面, 接下来我们将要展现的处理哈密顿量的手段被广泛使用于量子力学和量子场论.
+
+取量子希尔伯特空间为 $ L^2(\mathbb{R}) $. 考虑经典相空间上的简谐振子
+\[ H(x,p)=\frac{p^2}{2m}+\frac{k}{2}x^2, \]
+其中 $ k>0 $. 它对应的哈密顿算子为
+
+\[ \hat{H}=\frac{P^2}{2m}+\frac{k}{2}X^2. \]
+
+首先用``频率'' $ \omega=\sqrt{k/m} $ 替换掉``弹性系数'' $ k $, 得到
+\[ \hat{H}=\frac{1}{2m}\left[ P^2+(m\omega X)^2 \right]. \]
+然后利用 $ (A-\mathrm{i}B)(A+\mathrm{i}B)=A^2+B^2+\mathrm{i}[A,B] $ 可将其化为
+\[ \hat{H}=\hbar\omega\left(a^*a+\frac{1}{2}I\right), \]
+其中
+\begin{enumerate}
+    \item[$ \bullet $] $ a\phantom{{}^*}:=\dfrac{m\omega X+\mathrm{i}P}{\sqrt{2\hbar m\omega}} $ 为{\bf 湮灭算子}(annihilating operator),
+    \item[$ \bullet $] $ a^*:=\dfrac{m\omega X-\mathrm{i}P}{\sqrt{2\hbar m\omega}} $ 为{\bf 创生算子}(creation operator).
+\end{enumerate}
+
+\begin{remark}
+    $ a $ 和 $ a^* $ 不是自伴算子, 因此不是可观测量.
+\end{remark}
+
+\begin{proposition}\keepline
+    \[\begin{aligned}
+        [a,a^*] &= I,\\ 
+        [a,a^*a] &= a,\\ 
+        [a^*,a^*a] &= -a^*.
+    \end{aligned}\]
+\end{proposition}
+\begin{proposition}
+    设 $ \psi $ 为 $ a^*a $ 的特征向量, $ \lambda $ 为其对应的特征值, 则
+    \begin{align*}
+        a^*a(a\psi)&=(\lambda-1)a\psi,\\ 
+        a^*a(a^*\psi)&=(\lambda+1)a^*\psi.
+    \end{align*}
+\end{proposition}
+
+$ a $ 作用到特征向量上会将其降为特征值减一的特征向量, 因此也叫{\bf 降阶算子} (lowering operator), 而 $ a^* $ 会将其升为特征值加一的特征向量, 因此也叫{\bf 升阶算子} (raising operator), 它们并称{\bf 阶梯算子} (ladder operators). 
+    
+我们说 $ a $ 的效果是湮灭一个量子, 而 $ a^* $ 则是创生一个量子, 可以将这里的{\bf 量子} (quantum) 理解为一种单位.
+
+\begin{corollary}
+    若 $ a^*a $ 有一个非零特征值, 则其特征值为所有非负整数.
+\end{corollary}
+\begin{proof}[提示]\keepline
+    \[ \lambda\langle \psi,\psi \rangle=\langle \psi,a^*a\psi \rangle=\langle a\psi,a\psi \rangle\geqslant 0.\qedhere \]
+\end{proof}
+我们称 $ a^*a $ 的特征值 $ 0 $ 对应的特征向量 $ \psi_0 $ 为基态 (ground state). 若 $ \psi $ 是 $ a^*a $ 的特征向量, 则存在 $ N\geqslant 0 $ 使得 $ a^N\psi $ 为基态, 即 $ a^N\psi\neq 0 $, $ a^{N+1}\psi=0 $.
+\begin{proposition}
+    若单位向量 $ \psi_0 $ 满足 $ a\psi_0=0 $. 则
+    \[ \psi_n:=(a^*)^n\psi_0 \]
+    对所有 $ m,n\geqslant 0 $ 满足 
+    \begin{align*}
+        a^*\psi_n &= \psi_{n+1},\\ 
+        a^*a\psi_n &= n\psi_n,\\ 
+        \langle \psi_n,\psi_m \rangle &= n!\delta_{nm},\\ 
+        a\psi_{n+1} &= (n+1)\psi_n.
+    \end{align*}
+\end{proposition}
+
+至此, 我们已经用代数手段分析了很多简谐振子的性质, 接下来我们通过分析的方法给出 $ \psi_n $ 的具体表达式. 做标量替换
+\[ \tilde{x}=\frac{x}{D},\quad D=\sqrt{\frac{\hbar}{m\omega}}, \]
+可将创生和湮灭算子简化为
+\begin{align*}
+    a &= \frac{1}{\sqrt{2}}\left( \tilde{x}+\frac{\mathrm{d}}{\mathrm{d}\tilde{x}} \right),\\ 
+    a^* &= \frac{1}{\sqrt{2}}\left( \tilde{x}-\frac{\mathrm{d}}{\mathrm{d}\tilde{x}} \right).
+\end{align*}
+解 $ a\psi_0=0 $ 得
+\[ \psi_0(\tilde{x})=Ce^{-\frac{\tilde{x}^2}{2}}, \]
+取 $ C=\sqrt{\pi}/D $, 则得到单位向量
+\[ \psi_0(x)=\sqrt{\frac{\pi m\omega}{\hbar}}\exp\left\{ -\frac{m\omega}{2\hbar}x^2 \right\}. \]
+进一步, 可归纳地证明
+\[ \psi_n=(a^*)n\psi_0=H_n\psi_0, \]
+其中
+\begin{align*}
+    H_0(\tilde{x}) &= 1\\ 
+    H_{n+1}(\tilde{x}) &= \frac{1}{\sqrt{2}}\left( 2\tilde{x}-\frac{\mathrm{d}}{\mathrm{d}\tilde{x}} \right)H_n(\tilde{x}).
+\end{align*}
+
+\begin{remark}
+    $ 2^{n/2}H_n(\tilde{x}) $ 是埃尔米特多项式.
+\end{remark}
+
+这里我们指出以上 $ \{\psi_n\}_{n=0}^{\infty} $ 构成了 $ L^2(\mathbb{R}) $ 的一组正规正交基\cite[定理 11.4]{hall2013quantum}, 因此这就是 $ a^*a $ 所有的特征向量. 它们也是 $ \hat{H} $ 的向量:
+\[ \hat{H}\psi_n=E_n\psi,\quad E_n=\hbar\omega\left( n+\frac{1}{2} \right). \]
+
+至此, 我们知道了简谐振子的能量只能处于 $ E_n $, 或是它们的叠加. 这说明此时能量的最小单位是 $ \hbar\omega $, 我们称其为{\bf 量子}. 这种能量只能一份一份地变化的现象正是量子力学中``量子''一词的由来.

@@ -1,0 +1,58 @@
+剧透: 量子力学很大程度上是在研究 $ L^2 $ 空间上的无界自伴算子. 
+
+\setcounter{section}{-1}
+\section{预备知识}
+我打算先提一些与无界算子相关的概念和结论, 如果读者不是非常在意数学上的严谨性, 可将本节忽略. 
+
+\begin{remark}
+    当然, 我们讨论的都是线性算子.
+\end{remark}
+
+\begin{theorem}[Hellinger-Toeplitz 定理]
+    \label{Hellinger-Toeplitz}
+    设 $ A $ 是希尔伯特空间 $ H $ 到自身的处处有定义的线性算子. 若
+    \[ \langle Ax,y \rangle=\langle x,Ay \rangle,\quad\forall x,y\in H,\]
+    则 $ A $ 是有界的.
+\end{theorem}
+
+上述定理指出, 无界算子一定不是处处有定义的. 我们在量子力学中考虑的算子大部分都是无界的, 这让情况变得比较复杂.
+
+\begin{definition}[伴随算子]
+    对于无界的稠定 (定义域稠密的) 算子 $ A:H\to H $, 定义其伴随算子 $ A^* $ 如下:
+    \begin{enumerate}
+        \item 先定义 $ \mathrm{Dom}(A^*) $, 对于 $ \varphi\in H $, 若 $ \mathrm{Dom}(A) $ 上的线性泛函 
+        \[ \psi\mapsto \langle \varphi,A\psi\rangle \] 
+        是有界的, 则 $ \varphi\in\mathrm{Dom}(A^*) $.
+        \item 对于 $ \varphi\in\mathrm{Dom}(A^*) $, 存在唯一的 $ \rchi \in H$ 满足
+        \[ \langle \rchi,\psi \rangle=\langle \varphi,A\psi \rangle,\quad\forall\psi\in\mathrm{Dom}(A), \]
+        定义 $ A^*\varphi=\rchi $.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    对于 $ H $ 上的无界稠定算子 $ A $, 定义以下三种性质:
+    \begin{enumerate}
+        \item 对称 (symmetric): $ \langle \varphi,A\psi \rangle=\langle A\varphi,\psi \rangle $, $ \forall \varphi,\psi,\in\mathrm{Dom}(A) $.
+        \item 自伴 (self-adjoint): $ \mathrm{Dom}(A^*)=\mathrm{Dom}(A) $ 且 $ A^*\varphi=A\varphi $, $ \forall\varphi\in\mathrm{Dom}(A) $.
+        \item  本质自伴 (essentially self-adjoint): $ A $ 是对称的且 $ A $ 的图像的闭包是某个自伴算子的图像.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    无界稠定算子的伴随算子是闭的, 因此自伴算子都是闭的.
+\end{proposition}
+
+我们不加证明地指出, 接下来我们遇到的所有算子都是本质自伴的, 因此可通过取闭包来获得自伴的版本, 进而我们可以只考虑自伴算子.
+
+\begin{definition}[谱]
+    对于 $ H $ 上的无界算子 $ A $, $ \lambda\in\mathbb{C} $, 我们称 $ \lambda $ 属于 $ A $ 的预解集 (resolvent set), 若存在有界算子 $ B $ 使得
+    \begin{enumerate}
+        \item $ \forall\psi\in H $, $ B\psi\in\mathrm{Dom}(A) $, $ (A-\lambda I)B\psi=\psi $;
+        \item $ \forall\psi\in\mathrm{Dom}(A) $, $ B(A-\lambda I)\psi=\psi $.
+    \end{enumerate}
+    若不存在这样的 $ B $, 则称 $ \lambda $ 属于 $ A $ 的谱 (spectrum).
+\end{definition}
+
+\begin{proposition}
+    无界自伴算子的谱是包含于 $ \mathbb{R} $ 的闭集.
+\end{proposition}

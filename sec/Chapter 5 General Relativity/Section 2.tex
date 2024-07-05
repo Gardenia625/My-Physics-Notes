@@ -1,0 +1,169 @@
+\section{爱因斯坦场方程}
+\subsection{爱因斯坦场方程}
+\begin{axiom}[爱因斯坦场方程]
+	里奇曲率张量 $R_{\alpha\beta}$、标量曲率 $R$、能动张量 $T_{\alpha\beta}$ 满足 {\bf 爱因斯坦场方程}, 即
+	\[ R_{\alpha\beta}-\frac{1}{2}Rg_{\alpha\beta}=8\pi T_{\alpha\beta}.\]
+\end{axiom}
+特别地, 当 $T_{\alpha\beta}=0$ 时, 爱因斯坦方程也叫作{\bf 真空爱因斯坦方程}. 此时由于
+\[ 0=g^{\alpha\beta}\left( R_{\alpha\beta}-\frac{1}{2}g_{\alpha\beta} \right)=\frac{1}{2}R, \] 
+真空爱因斯坦场方程可以被简化为 $ R_{\alpha\beta}=0 $. 
+\begin{definition}[爱因斯坦张量]
+	广义黎曼空间中的 {\bf 爱因斯坦张量} 为
+	\[ G_{\alpha\beta}:=R_{\alpha\beta}-\frac{1}{2}Rg_{\alpha\beta}. \] 
+\end{definition}
+\begin{proposition}\keepline
+	\[ \nabla^\alpha G_{\alpha\beta}=0. \] 
+\end{proposition}
+\begin{proof}
+	黎曼曲率张量的性质见定理 \ref{prop of R}. 用 $g^{\alpha\mu}g^{\sigma\nu}$ 与比安基恒等式
+	\[ 0=\nabla_\sigma R_{\alpha\beta\mu\nu}+\nabla_{\beta}R_{\sigma\alpha\mu\nu}+\nabla_{\alpha}R_{\beta\sigma\mu\nu} \]
+	作缩并得
+	\begin{align*}
+		0 &= g^{\alpha\mu}\left( \nabla_\sigma R_{\alpha\beta\mu}{}^{\sigma}+\nabla_{\beta}R_{\sigma\alpha\mu}{}^{\sigma}+\nabla_{\alpha}R_{\beta\sigma\mu}{}^{\sigma} \right)\\
+		&= g^{\alpha\mu}\left( \nabla_\sigma R_{\alpha\beta\mu}{}^{\sigma}-\nabla_\beta R_{\alpha\mu}+\nabla_\alpha R_{\beta\mu} \right)\\
+		&= \nabla_{\sigma}R_{\beta}{}^{\sigma}-\nabla_\beta R+\nabla_\alpha R_{\beta}{}^{\alpha}\\
+		&=2\nabla_\alpha R_{\beta}{}^{\alpha}-\nabla_{\beta} R,
+	\end{align*}
+	由定理 \ref{prop of Ri} 知里奇曲率张量是对称的, 于是
+	\[ \nabla^\alpha G_{\alpha\beta} =\nabla_\alpha R_{\beta}{}^{\alpha}-\frac{1}{2}\nabla_\beta R=0.\qedhere \]
+\end{proof}
+利用爱因斯坦张量, 可将爱因斯坦场方程简写为
+\[ G_{\alpha\beta}=8\pi T_{\alpha\beta}. \] 
+
+\subsection{牛顿近似}
+\label{Newton}
+若不使用几何单位制, 则爱因斯坦场方程为
+\[ R_{\alpha\beta}-\frac{1}{2}Rg_{\alpha\beta}=\frac{8\pi G}{c^4} T_{\alpha\beta}, \] 
+其中 $G\approx 6.67430\times 10^{-11}\mathrm{m}^3\mathrm{kg}^{-1}\mathrm{s}^{-2}$ 为万有引力常数. 接下来我们依然取 $c=1$, 但暂时保留 $G$.
+
+首先我们来看一看牛顿力学下的引力论.
+
+若原点处有一个质量为 $M$ 的质点, 由牛顿的万有引力公式知点 $r^i$ 处质量为 $m$ 的质点受到的引力为
+\[ F^i=-\frac{GMm}{r^2}r^i, \] 
+其中 $r=|r^i|$. 由 $F^i=mA^i$ 知原点处的质点所产生的引力加速度场为
+\[ A^i=-\frac{GM}{r^3}r^i,\quad r^i\neq 0. \]
+取无穷远点的势能为 $0$, 则可以得到引力势
+\[ \phi(r^i)=\int_{r}^{\infty}\frac{GM}{x^2}\,\mathrm{d} x=-\frac{GM}{r}, \quad r^i\neq 0.\]
+容易验证引力加速度场是 $-\phi$ 的梯度场, 即 
+\[A^i=-(\nabla \phi)^i.\]
+
+一方面
+\begin{align*}
+	\iint_{\partial B(0,r)} \nabla\phi\cdot\,\mathrm{d}S&=\iint_{\partial B(0,r)} \frac{GM}{r^2}\,\mathrm{d}S=4\pi r^2\frac{GM}{r^2}=4\pi GM,\\
+	\iint_{\partial B(x^i,r)}\nabla\phi\cdot\,\mathrm{d}S&=\iiint_{B(x^i,r)}\nabla^2\phi\,\mathrm{d}V=0,\quad r<|x|,
+\end{align*}
+其中第二式用到了 $\nabla^2\phi=0$, $\nabla^2$ 是拉普拉斯算子. 
+\begin{remark}
+	$B(x^i,r)$ 表示以 $x^i$ 为心, 以 $r$ 为半径的开球.
+\end{remark}
+另一方面, 记 $\rho$ 为质量密度, 则 $\rho$ 是广义函数, 满足
+\[ \iiint_V \rho\,\mathrm{d}V=\begin{cases}
+	M, & 0\in V,\\
+	0, & 0\notin V.
+\end{cases} \] 
+
+综上, 当 $V=B(0,r)$ 或者 $V=B(x^i,r)$, $r<|x|$ 时
+\[ 4\pi G\iiint_V\rho\,\mathrm{d}V=\iint_{\partial V}\nabla\phi\cdot\,\mathrm{d}S=\iiint_{V} \nabla^2\phi\,\mathrm{d}V,\] 
+因此
+\[ \nabla^2\phi=4\pi G\rho.\tag{{\bf 泊松方程}} \] 
+\begin{remark}
+	由于 $\nabla^2$ 是线性算子, 上述方程对任意质量分布都成立.
+\end{remark}
+
+下证爱因斯坦方程在低速弱场近似下会退化为牛顿引力论中的泊松方程.
+
+我们先解释一下什么叫做``低速弱场近似'', 给定惯性系 $\{t,x^i\}$, 弱场低速近似指的是以下几条要求:
+\begin{enumerate}
+	\item 引力源的 $3$ 速度 $u^i$ 很小, 即 $|u^i|\ll 1$. 换言之, 引力源的 $4$ 速度 $U^\alpha$ 近似等于 $\{t,x^i\}$ 系的观者的 $4$ 速度 $Z^{\alpha}$, 即 $U^{\alpha}\approx Z^{\alpha}$.
+	\item 引力源的低速运动导致时空几何变化缓慢, 即 $|\partial_0g_{\alpha\beta}|\ll 1$.
+	\item 引力造成的时空弯曲很小, 即度量的分解 $g_{\alpha\beta}=\eta_{\alpha\beta}+h_{\alpha\beta}$ 满足 $ |h_{\alpha\beta}|\ll 1$.
+	\item 引力源的能动张量可以表达为 $ T_{\alpha\beta}=\rho(\mathrm{d}t)_{\alpha}(\mathrm{d}t)_{\beta} $.  
+\end{enumerate}
+
+先只考虑第三条要求, 我们对定理 \ref{Gamma-g} 中的
+\[ \Gamma^{\mu}{}_{\alpha\beta}=\frac{1}{2}g^{\mu\nu}(\partial_{\alpha}g_{\beta\nu}+\partial_\beta g_{\nu\alpha}-\partial_\nu g_{\alpha\beta}) \] 
+做近似 $g_{\alpha\beta}\approx \eta_{\alpha\beta}$ 则有
+\[ \Gamma^{\mu}{}_{\alpha\beta}=\frac{1}{2}\eta^{\mu\nu}(\partial_{\alpha}h_{\beta\nu}+\partial_\beta h_{\nu\alpha}-\partial_\nu h_{\alpha\beta}), \] 
+其中我们用到了 $\partial_\mu\eta_{\alpha\beta}=0$. 将上式带入定理 \ref{R-Gamma} 中的
+\[ R_{\alpha\mu\beta}{}^{\nu}=\partial_{\mu}\Gamma^{\nu}{}_{\alpha\beta}-\partial_{\alpha}\Gamma^{\nu}{}_{\mu\beta}+\Gamma^{\sigma}{}_{\beta\alpha}\Gamma^{\nu}{}_{\mu\sigma}-\Gamma^{\sigma}{}_{\beta\mu}\Gamma^{\nu}{}_{\alpha\sigma}, \] 
+并忽略掉最后两项 (最后两项是无穷小量 $\Gamma^{\mu}{}_{\alpha\beta}$ 的二次项) 得黎曼曲率的近似表达式
+\begin{align*}
+	R_{\alpha\mu\beta\nu} &= \frac{1}{2}\eta_{\nu\rho}\eta^{\rho\sigma}(\partial_\mu\partial_\alpha h_{\beta\sigma}+\partial_{\mu}\partial_\beta h_{\sigma\alpha}-\partial_\mu\partial_\sigma h_{\alpha\beta}\\
+	&\phantom{\frac{1}{2}\eta_{\nu\rho}\eta^{\rho\sigma}(}\hspace{0.11em}
+	-\partial_{\alpha}\partial_{\mu}h_{\beta\sigma}-\partial_{\alpha}\partial_{\beta}h_{\sigma\mu}+\partial_{\alpha}\partial_{\sigma}h_{\mu\beta})\\
+	&=\partial_\nu\partial_{[\alpha}h_{\mu]\beta}-\partial_\beta\partial_{[\alpha}h_{\mu]\nu}.
+\end{align*}
+\begin{remark}
+	这里忽略掉最后两项的操作也可以视作为了保持线性性而对 $h_{\alpha\beta}$ 做的额外限制.
+\end{remark}
+进一步地, 记 $h:=h_\mu{}^{\mu}$, 则有里奇曲率的近似表达式
+\begin{align*}
+	R_{\alpha\beta} &= \frac{1}{2} ( \partial^{\mu}\partial_{\alpha}h_{\mu\beta}-\partial^{\mu}\partial_{\mu}h_{\alpha\beta}-\partial_{\beta}\partial_{\alpha}h_{\mu}{}^{\mu}+\partial_\beta\partial_\mu h_{\alpha}{}^{\mu} )\\
+	&= \partial^{\mu}\partial_{(\alpha}h_{\beta)\mu}-\frac{1}{2}( \partial^\mu\partial_\mu h_{\alpha\beta}+\partial_\alpha\partial_\beta h ),
+\end{align*}
+和标量曲率的近似表达式
+\[ R=\partial^{\alpha}\partial^{\mu}h_{\alpha\mu}-\partial^{\mu}\partial_{\mu}h. \] 
+综上, 爱因斯坦场方程可被近似为
+\[ \partial^{\mu}\partial_{(\alpha}h_{\beta)\mu}-\frac{1}{2}\left( \partial^{\mu}\partial_{\mu}h_{\alpha\beta}+\partial_\alpha\partial_\beta h \right)-\frac{1}{2}\eta_{\alpha\beta}(\partial^{\alpha}\partial^{\mu}h_{\alpha\mu}-\partial^\mu\partial_\mu h)=8\pi GT_{\alpha\beta}, \] 
+这个方程叫做{\bf 线性爱因斯坦方程} (linearized Einstein equation), 我们称线性爱因斯坦方程对应的理论为{\bf 线性引力论} (linearized gravity). 记 
+\[ \overline{h}_{\alpha\beta}:=h_{\alpha\beta}-\frac{1}{2}\eta_{\alpha\beta}h, \]
+则线性爱因斯坦方程可进一步简写为
+\[ \label{LE}\partial^{\mu}\partial_{(\alpha}\overline{h}_{\beta)\mu}-\frac{1}{2}\partial^\mu\partial_\mu\overline{h}_{\alpha\beta}-\frac{1}{2}\eta_{\alpha\beta}\partial^{\mu}\partial^{\nu}\overline{h}_{\mu\nu}=8\pi GT_{\alpha\beta}.\tag{LE} \] 
+\begin{remark}
+	将 $\partial^{\beta}$ 作用于上式得 $\partial^{\beta}T_{\alpha\beta}=0$, 这说明线性引力论中能量、动量、角动量等守恒律也成立。
+\end{remark}
+
+设 $h_{\alpha\beta}$ 是线性爱因斯坦场方程的解, $\xi^{\alpha}$ 是充分小的向量场. 考虑
+\[ \tilde{h}_{\alpha\beta}=h_{\alpha\beta}+\partial_\alpha\xi_{\beta}+\partial_\beta\xi_{\alpha}, \]
+由 $\partial_\alpha$ 和 $\partial_\beta$ 的对易性, $\eta_{\alpha\beta}+h_{\alpha\beta}$ 和 $\eta_{\alpha\beta}+\tilde{h}_{\alpha\beta}$ 对应的黎曼曲率近似表达式是相同的 (由于 $\xi^{\alpha}$ 充分小, 前文推导中舍掉最后两项的操作依然可行), 进而知 $\tilde{h}_{\alpha\beta}$ 也是线性爱因斯坦方程的解, 这体现了线性引力论的规范自由性, 变换 $h_{\alpha\beta}\mapsto\tilde{h}_{\alpha\beta}$ 叫做{\bf 线性引力论的规范变换}. 利用规范变换, 我们可以保证 $h_{\alpha\beta}$ 满足
+\[ \partial^\beta\overline{h}_{\alpha\beta}=0, \] 
+上式也被称为{\bf 线性引力论的洛伦兹规范条件}. 
+\begin{remark}
+	容易验证
+	\[ \overline{\tilde{h}}_{\alpha\beta}=\tilde{h}_{\alpha\beta}-\frac{1}{2}\eta_{\alpha\beta}\tilde{h} \]
+	满足
+	\[ \partial^\beta\overline{\tilde{h}}_{\alpha\beta}=\partial^{\beta}\overline{h}_{ab}+\partial^\beta\partial_\beta\xi_\alpha. \]
+	因此想要 $\partial^\beta\overline{\tilde{h}}_{\alpha\beta}=0$ 成立, 只需要有
+	\[ \partial^{\beta}\partial_{\beta}\xi_\alpha=-\partial^{\beta}\overline{h}_{\alpha\beta}, \]
+	而这正是 $4$ 个非齐次的波动方程
+	\[ -\frac{\partial^2\xi_\alpha}{\partial t^2}+\frac{\partial^2\xi_\alpha}{\partial x^2}+\frac{\partial^2\xi_\alpha}{\partial y^2}+\frac{\partial^2\xi_\alpha}{\partial z^2}=-\partial^{\beta}\overline{h}_{\alpha\beta},\quad \alpha=0,1,2,3. \]
+\end{remark}
+基于线性引力论的洛伦兹规范条件, 线性爱因斯坦方程 (\ref{LE}) 中等号左侧的第一、三项都是零, 因此可以进一步简化为
+\[ \partial^{\mu}\partial_{\mu}\overline{h}_{\alpha\beta}=-16\pi GT_{\alpha\beta}. \] 
+
+现在开始一并考虑低速弱场近似的其他要求, 首先
+\[ \partial^{\mu}\partial_{\mu}\overline{h}_{\alpha\beta}=\partial^0\partial_0\overline{h}_{\alpha\beta}+\partial^{i}\partial_{i}\overline{h}_{\alpha\beta}\approx\partial^{i}\partial_{i}\overline{h}_{\alpha\beta}=\nabla^2\overline{h}_{\alpha\beta}, \] 
+其中 $\nabla^2$ 是 $\mathbb{R}^3$ 中的拉普拉斯算子. 此时线性爱因斯坦方程可重写为
+\begin{align*}
+	\nabla^2\overline{h}_{00}&=-16\pi G\rho,\\
+	\nabla^2\overline{h}_{0i}&=\nabla^2\overline{h}_{ij}=0.
+\end{align*}
+由调和函数的极值原理和 $|h_{ij}|\ll 1$ 知上述第二个方程的解只能是充分小的常值函数, 可以近似为 $0$. 
+
+至此, 爱因斯坦方程被近似为了
+\[ \nabla^2\overline{h}_{00}=-16\pi G\rho, \] 
+若记
+\[ \phi:=-\frac{1}{4}\overline{h}_{00}, \] 
+则爱因斯坦方程化为
+\[ \nabla^2\phi=4\pi G\rho, \] 
+这正是牛顿引力论中的泊松方程.
+
+那么 $\phi$ 和 $h_{\alpha\beta}$ 的关系又如何呢? 为了探究这一点, 注意到引力场中自由质点的世界线为测地线, 于是我们对测地线方程
+\[ \frac{\mathrm{d}^2 x^\mu(\tau)}{\mathrm{d}\tau^2 }+\Gamma^{\mu}{}_{\alpha\beta}\frac{\mathrm{d} x^{\alpha}(\tau)}{\mathrm{d} \tau}\frac{\mathrm{d} x^{\beta}(\tau)}{\mathrm{d} \tau}=0 \] 
+进行近似, 由低速假设 $U^{\alpha}\approx Z^{\alpha}$ 和 $|u^i|\ll 1$ 可将测地线方程简化为
+\[ \frac{\mathrm{d}^2 x^{\mu}(t)}{\mathrm{d} t^2}=-\Gamma^{\mu}{}_{00}, \]
+利用低速假设 $|\partial_0g_{\alpha\beta}|=|\partial_0h_{\alpha\beta}|\ll 1$ 可以将 $\Gamma^{\mu}{}_{00}$ 的分量近似为
+\begin{align*}
+	\Gamma^{0}{}_{00} &= \frac{1}{2}\eta^{00}(\partial_0h_{00}+\partial_0h_{00}-\partial_0h_{00})=-\frac{1}{2}\frac{\partial h_{00}}{\partial t}\approx 0,\\
+	\Gamma^{i}{}_{00} &= \frac{1}{2}\eta^{ij}(\partial_0h_{0j}+\partial_0h_{j0}-\partial_jh_{00})\approx-\frac{1}{2}\frac{\partial h_{00}}{\partial x^j},
+\end{align*}
+因此测地线方程可被近似为
+\[ \frac{\mathrm{d}^2 x^i(t)}{\mathrm{d} t^2}=\frac{1}{2}\frac{\partial h_{00}}{\partial x^i}. \] 
+而在牛顿引力论中, 引力场中自由质点的加速度为
+\[ \frac{\mathrm{d}^2 x^i(t)}{\mathrm{d} t^2}=a^i=-(\nabla\phi)^i=\frac{\partial \phi}{\partial x^i}, \] 
+对两种理论中算得的加速度进行对照可得
+\[ \label{E-N} h_{00}=-2\phi+C, \tag{$\phi$}\] 
+其中 $C$ 为常数.
+
+今后我们继续取 $G=1$.
+% \[ \overline{\tilde{h}}_{\alpha\beta}=\overline{h}_{\alpha\beta}+\partial_\alpha\xi_\beta+\partial_\beta\xi_\alpha-\eta_{\alpha\beta}\partial^{\mu}\xi_{\mu} \] 
